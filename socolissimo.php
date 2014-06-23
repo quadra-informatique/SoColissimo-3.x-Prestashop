@@ -55,6 +55,7 @@ class Socolissimo extends CarrierModule
     );
     public $personal_data_phone_error = false;
     public $personal_data_zip_code_error = false;
+    public $siret_error = false;
     public $url = '';
     public $errors = array();
     public $initial_cost = 0;
@@ -386,7 +387,8 @@ class Socolissimo extends CarrierModule
             'shop_zip_code' => $shop_zip_code,
             'shop_phone' => $shop_phone,
             'personal_data_phone_error' => $this->personal_data_phone_error,
-            'personal_data_zip_code_error' => $this->personal_data_zip_code_error
+            'personal_data_zip_code_error' => $this->personal_data_zip_code_error,
+            'siret_error' => $this->siret_error
         ));
         return $this->_html .= $this->fetchTemplate('personnal_data.tpl');
     }
@@ -487,6 +489,7 @@ class Socolissimo extends CarrierModule
             $siret = Tools::getValue('SOCOLISSIMO_PERSONAL_SIRET');
             $this->personal_data_phone_error = false;
             $this->personal_data_zip_code_error = false;
+            $this->siret_error = false;
 
             if (!(bool)preg_match('#^(([\d]{2})([\s]){0,1}){5}$#', $phone))
             {
@@ -498,7 +501,11 @@ class Socolissimo extends CarrierModule
                 $this->personal_data_zip_code_error = true;
                 $result = false;
             }
-
+            if (!$siret)
+            {
+                $this->siret_error = true;
+                $result = false;
+            }
             if ($result == false)
                 return false;
 
