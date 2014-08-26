@@ -35,21 +35,6 @@
 	{/foreach}
 
 	{literal}
-	function change_action_form()
-	{
-		if(!soBwdCompat) {
-			if ($('#id_carrier{/literal}{$id_carrier}{literal}').is(':not(:checked)'))
-				$('#form').attr("action", 'order.php');
-			else
-				$('#form').attr("action", baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
-		} else {
-			if ($("input[name*='delivery_option[']:checked").val().replace(",", "") != soCarrierId) {
-				$('#form').attr("action", 'order.php');
-			} else {
-				$('#form').attr("action", baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
-			}
-		}
-	}
 
 	$(document).ready(function() {
          $('.delivery_option').each(function( ) {
@@ -72,12 +57,16 @@
 				}
 			});
 		}
-
-		$('input[name=id_carrier]').change(function() {
-			change_action_form();
+		$( "#form" ).submit(function() {
+			if(!soBwdCompat) {
+				if ($('#id_carrier{/literal}{$id_carrier}{literal}').is(':checked'))
+					$('#form').attr("action", baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+			} else {
+				if ($("input[name*='delivery_option[']:checked").val().replace(",", "") == soCarrierId)
+					$('#form').attr("action", baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+			}
 		});
-		change_action_form();
-       });
+    });
 
 	function serialiseInput(inputs) {
 		var str = '?first_call=1&';
