@@ -30,6 +30,7 @@
 
 
 <iframe id="soFr" xml:lang="fr" width="100%" height="800" style="border:none;display:none;"src=""></iframe>
+<input id="hidden_cgv" type="hidden" value="{l s='Please accept the terms of service before the next step.' mod='socolissimo'}" />
 <script type="text/javascript">
     var opc = false;
 </script>
@@ -86,7 +87,7 @@
             $('[name=processCarrier]').click( function() {
                   if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId+','))
                     {
-                if (acceptCGV('{/literal}{l s='Please accept the terms of service before the next step.' mod='socolissimo'}{literal}')) {
+                if (acceptCGV(($('#hidden_cgv').val()))) {
 
                     if(soBwdCompat) { // 1.5 zone
                         $('div.delivery_options_address h3').css('display', 'none');
