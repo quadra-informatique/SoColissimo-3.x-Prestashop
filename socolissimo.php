@@ -1098,14 +1098,31 @@ class Socolissimo extends CarrierModule
 
 	public function checkRange($id_carrier)
 	{
-		switch (Configuration::get('PS_SHIPPING_METHOD'))
-		{
-			case '0' :
-				$sql = 'SELECT * FROM '._DB_PREFIX_.'range_price WHERE id_carrier = '.(int)$id_carrier;
-				break;
-			case '1' :
-				$sql = 'SELECT * FROM '._DB_PREFIX_.'range_weight WHERE id_carrier = '.(int)$id_carrier;
-				break;
+		$sql ='';
+		if (version_compare(_PS_VERSION_, '1.5', '>')){
+			$carrier = new Carrier($id_carrier);
+			if ($carrier->shipping_method){
+				switch ($carrier->shipping_method)
+				{
+				case '2' :
+					$sql = 'SELECT * FROM '._DB_PREFIX_.'range_price WHERE id_carrier = '.(int)$id_carrier;
+					break;
+				case '1' :
+					$sql = 'SELECT * FROM '._DB_PREFIX_.'range_weight WHERE id_carrier = '.(int)$id_carrier;
+					break;
+				}
+			}
+		}
+		if(!$sql){
+			switch (Configuration::get('PS_SHIPPING_METHOD'))
+			{
+				case '0' :
+					$sql = 'SELECT * FROM '._DB_PREFIX_.'range_price WHERE id_carrier = '.(int)$id_carrier;
+					break;
+				case '1' :
+					$sql = 'SELECT * FROM '._DB_PREFIX_.'range_weight WHERE id_carrier = '.(int)$id_carrier;
+					break;
+			}
 		}
 		return (bool)Db::getInstance()->getRow($sql);
 	}
