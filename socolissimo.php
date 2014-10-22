@@ -63,7 +63,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.9.6';
+		$this->version = '2.9.8';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr');
 		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
@@ -1099,7 +1099,8 @@ class Socolissimo extends CarrierModule
 	public function checkRange($id_carrier)
 	{
 		$sql ='';
-		if (version_compare(_PS_VERSION_, '1.5', '>')){
+		if (version_compare(_PS_VERSION_, '1.5', '>'))
+		{
 			$carrier = new Carrier($id_carrier);
 			if ($carrier->shipping_method){
 				switch ($carrier->shipping_method)
@@ -1113,7 +1114,8 @@ class Socolissimo extends CarrierModule
 				}
 			}
 		}
-		if(!$sql){
+		if(!$sql)
+		{
 			switch (Configuration::get('PS_SHIPPING_METHOD'))
 			{
 				case '0' :
