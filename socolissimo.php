@@ -30,7 +30,7 @@ if (!defined('_PS_VERSION_'))
 class Socolissimo extends CarrierModule
 {
 
-	private $html = '';
+	private $_html = '';
 	private $post_errors = array();
 	private $api_num_version = '4.0';
 	private $config = array(
