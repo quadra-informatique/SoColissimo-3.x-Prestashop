@@ -82,6 +82,9 @@ else
 	foreach ($errors_codes as $code)
 		$errors_list[] = $so->l('Error code:').' '.$so->getError($code);
 
+if (isset($return['TRADERCOMPANYNAME']) && Tools::getIsset(Tools::getValue('CHARSET')))
+	$return['TRADERCOMPANYNAME'] = utf8_decode($return['TRADERCOMPANYNAME']);
+	
 if (empty($errors_list))
 {
 	if ($so->isCorrectSignKey($return['SIGNATURE'], $return) &&
