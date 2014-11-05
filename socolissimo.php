@@ -63,7 +63,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.9.8';
+		$this->version = '2.9.9';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr');
 		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
@@ -776,6 +776,7 @@ class Socolissimo extends CarrierModule
 		$order = $params['order'];
 		$order->id_address_delivery = $this->isSameAddress((int)$order->id_address_delivery, (int)$order->id_cart, (int)$order->id_customer);
 		$order->update();
+		Configuration::updateValue('SOCOLISSIMO_CONFIGURATION_OK', true);
 	}
 
 	public function hookAdminOrder($params)
