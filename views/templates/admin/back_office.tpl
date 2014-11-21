@@ -121,7 +121,7 @@
         <div class="margin-form">
             <input type="radio" name="sup_active" id="active_on" value="1" {if isset($sup_active) && $sup_active}checked="checked" {/if}/>
             <label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="' . $this->l('Enabled') . '" title="' . $this->l('Enabled') . '" /></label>
-            <input type="radio" name="sup_active" id="active_off" value="0" ' .{if isset($sup_active) && !$sup_active}checked="checked"{/if}/>
+            <input type="radio" name="sup_active" id="active_off" value="0" {if isset($sup_active) && !$sup_active}checked="checked"{/if}/>
                    <label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="' . $this->l('Disabled') . '" title="' . $this->l('Disabled') . '" /></label>
             <p>{l s='Enable or disable the check availability  of SoColissimo service.' mod='socolissimo'}</p>
         </div>

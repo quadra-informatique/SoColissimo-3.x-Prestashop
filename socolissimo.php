@@ -63,7 +63,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.9.10';
+		$this->version = '2.9.11';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr');
 		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
@@ -1290,11 +1290,8 @@ class Socolissimo extends CarrierModule
 					{
 						if (version_compare(_PS_VERSION_, '1.5', '<'))
 							$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
-						else
-						{
-							if (!$product['is_virtual'])
-								$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
-						}
+						elseif (!$product['is_virtual'])
+							$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
 					}
 					if ($carrier->shipping_handling)
 						return $this->getCostByShippingMethod($carrier, $id_zone) + (float)$additional_shipping_cost + (float)Configuration::get('PS_SHIPPING_HANDLING');
@@ -1321,11 +1318,8 @@ class Socolissimo extends CarrierModule
 			{
 				if (version_compare(_PS_VERSION_, '1.5', '<'))
 					$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
-				else
-				{
-					if (!$product['is_virtual'])
-						$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
-				}
+				elseif (!$product['is_virtual'])
+					$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
 			}
 			if ($carrier->shipping_handling)
 				return $this->getCostByShippingMethod($carrier, $id_zone) + (float)$additional_shipping_cost + (float)Configuration::get('PS_SHIPPING_HANDLING');
@@ -1382,11 +1376,8 @@ class Socolissimo extends CarrierModule
 			{
 				if (version_compare(_PS_VERSION_, '1.5', '<'))
 					$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
-				else
-				{
-					if (!$product['is_virtual'])
-						$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
-				}
+				elseif (!$product['is_virtual'])
+					$additional_shipping_cost += (float)$product['additional_shipping_cost'] * $product['quantity'];
 			}
 
 			if ($carrier->shipping_handling)
