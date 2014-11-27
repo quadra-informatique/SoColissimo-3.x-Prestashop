@@ -688,7 +688,7 @@ class Socolissimo extends CarrierModule
 			'trInter' => Configuration::get('SOCOLISSIMO_EXP_BEL'),
 			'ceLang' => 'FR'
 		);
-		if (!$inputs['dyForwardingChargesCMT'])
+		if (!$inputs['dyForwardingChargesCMT'] && !Configuration::get('SOCOLISSIMO_COST_SELLER'))
 			unset($inputs['dyForwardingChargesCMT']);
 
 		// set params for Api 3.0 if needed
@@ -699,10 +699,10 @@ class Socolissimo extends CarrierModule
 
 		// calculate lowest cost
 		$from_cost = $std_cost_with_taxes;
-		if ($seller_cost_with_taxes)
+		if ($seller_cost_with_taxes || (Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER') && Configuration::get('SOCOLISSIMO_COST_SELLER')))
 			if ((float)str_replace(',', '.', $seller_cost_with_taxes) < (float)str_replace(',', '.', $std_cost_with_taxes))
 				$from_cost = $seller_cost_with_taxes;
-
+			
 		$this->context->smarty->assign(array(
 			'select_label' => $this->l('Select delivery mode'),
 			'edit_label' => $this->l('Edit delivery mode'),
