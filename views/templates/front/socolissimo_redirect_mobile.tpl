@@ -48,10 +48,10 @@
 		$( "#form" ).submit(function() {
 			if(!soBwdCompat) {
 				if ($('#id_carrier{/literal}{$id_carrier}{literal}').is(':checked'))
-					$('#form').attr("action", baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+					$('#form').attr("action", baseDir+'modules/socolissimo/redirect_mobile.php' + serialiseInput(soInputs));
 			} else {
 				if ($("input[name*='delivery_option[']:checked").val().replace(",", "") == soCarrierId)
-					$('#form').attr("action", baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+					$('#form').attr("action", baseDir+'modules/socolissimo/redirect_mobile.php' + serialiseInput(soInputs));
 			}
 		});
 	});
