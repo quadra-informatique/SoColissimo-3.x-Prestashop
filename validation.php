@@ -1,29 +1,29 @@
 <?php
-/**
-* 2007-2014 PrestaShop
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the Academic Free License (AFL 3.0)
-* that is bundled with this package in the file LICENSE.txt.
-* It is also available through the world-wide-web at this URL:
-* http://opensource.org/licenses/afl-3.0.php
-* If you did not receive a copy of the license and are unable to
-* obtain it through the world-wide-web, please send an email
-* to license@prestashop.com so we can send you a copy immediately.
-*
-* DISCLAIMER
-*
-* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
-* versions in the future. If you wish to customize PrestaShop for your
-* needs please refer to http://www.prestashop.com for more information.
-*
-*  @author    PrestaShop SA <contact@prestashop.com> Quadra Informatique <modules@quadra-informatique.fr>
-*  @copyright 2007-2014 PrestaShop SA
-*  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  International Registered Trademark & Property of PrestaShop SA
-*/
 
+/**
+ * 2007-2014 PrestaShop
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+ * versions in the future. If you wish to customize PrestaShop for your
+ * needs please refer to http://www.prestashop.com for more information.
+ *
+ *  @author    PrestaShop SA <contact@prestashop.com> Quadra Informatique <modules@quadra-informatique.fr>
+ *  @copyright 2007-2014 PrestaShop SA
+ *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ *  International Registered Trademark & Property of PrestaShop SA
+ */
 include('../../config/config.inc.php');
 include('../../init.php');
 require_once(_PS_MODULE_DIR_.'socolissimo/classes/SCFields.php');
@@ -64,7 +64,7 @@ if (!$so->checkErrors($errors_codes, SCError::REQUIRED))
 		$return['TRRETURNURLKO'] = Tools::getValue('TRRETURNURLKO'); /* api 4.0 */
 	else
 	{
-		/* Treating parameters for api 4.0 mobile */		
+		/* Treating parameters for api 4.0 mobile */
 		if (empty($return['TRINTER']))
 			$return['TRINTER'] = 0; /* 0 by default */
 		if (empty($return['CELANG']))
@@ -84,7 +84,7 @@ else
 
 if (isset($return['TRADERCOMPANYNAME']) && Tools::getIsset(Tools::getValue('CHARSET')))
 	$return['TRADERCOMPANYNAME'] = utf8_decode($return['TRADERCOMPANYNAME']);
-	
+
 if (empty($errors_list))
 {
 	if ($so->isCorrectSignKey($return['SIGNATURE'], $return) &&
@@ -120,6 +120,24 @@ $display->run();
 
 function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object)
 {
+	// we want at least one phone number
+	$cart = new Cart($id_cart);
+	$delivery_address = new Address($cart->id_address_delivery);
+	$billing_address = new Address($cart->id_address_invoice);
+	$phone_number = $so_params['CEPHONENUMBER'];
+	if (!$so_params['CEPHONENUMBER'])
+	{
+		if ($delivery_address->phone_mobile)
+			$phone_number = $delivery_address->phone_mobile;
+		elseif ($delivery_address->phone)
+			$phone_number = $delivery_address->phone;
+		elseif ($billing_address->phone_mobile)
+			$phone_number = $billing_address->phone_mobile;
+		elseif ($billing_address->phone)
+			$phone_number = $billing_address->phone;
+		else
+			$phone_number = '';
+	}
 	// if api use is 3.0 we need to decode for accentued chars
 	if (!isset($so_params['CHARSET']))
 		foreach ($so_params as $key => $value)
@@ -162,7 +180,7 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 					'.(isset($so_params['PRZIPCODE']) ? '\''.pSQL($so_params['PRZIPCODE']).'\'' : '\'\'').',
 					'.(isset($so_params['PRTOWN']) ? '\''.pSQL($so_params['PRTOWN']).'\'' : '\'\'').',
 					'.(isset($country_code) ? '\''.pSQL($country_code).'\'' : '\'\'').',
-					'.(isset($so_params['CEPHONENUMBER']) ? '\''.pSQL($so_params['CEPHONENUMBER']).'\'' : '\'\'').',
+					'.(isset($phone_number) ? '\''.pSQL($phone_number).'\'' : '\'\'').',
 					'.(isset($so_params['CEEMAIL']) ? '\''.pSQL($so_params['CEEMAIL']).'\'' : '\'\'').',
 					'.(isset($so_params['CECOMPANYNAME']) ? '\''.pSQL($so_params['CECOMPANYNAME']).'\'' : '\'\'').',
 					'.(isset($so_params['CEDELIVERYINFORMATION']) ? '\''.pSQL($so_params['CEDELIVERYINFORMATION']).'\'' : '\'\'').',
@@ -183,7 +201,7 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 					'.(isset($so_params['CEZIPCODE']) ? '\''.pSQL($so_params['CEZIPCODE']).'\'' : '\'\'').',
 					'.(isset($so_params['CETOWN']) ? '\''.pSQL($so_params['CETOWN']).'\'' : '\'\'').',
 					'.(isset($country_code) ? '\''.pSQL($country_code).'\'' : '\'\'').',
-					'.(isset($so_params['CEPHONENUMBER']) ? '\''.pSQL($so_params['CEPHONENUMBER']).'\'' : '\'\'').',
+					'.(isset($phone_number) ? '\''.pSQL($phone_number).'\'' : '\'\'').',
 					'.(isset($so_params['CEEMAIL']) ? '\''.pSQL($so_params['CEEMAIL']).'\'' : '\'\'').',
 					'.(isset($so_params['CECOMPANYNAME']) ? '\''.pSQL($so_params['CECOMPANYNAME']).'\'' : '\'\'').',
 					'.(isset($so_params['CEDELIVERYINFORMATION']) ? '\''.pSQL($so_params['CEDELIVERYINFORMATION']).'\'' : '\'\'').',
@@ -200,13 +218,13 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 		$table = _DB_PREFIX_.'socolissimo_delivery_info';
 		$values = array();
 		$values['delivery_mode'] = pSQL($so_params['DELIVERYMODE']);
+		$values['cephonenumber'] = pSQL($phone_number);
 
 		if ($so_object->delivery_mode == SCFields::RELAY_POINT)
 		{
 			isset($so_params['PRID']) ? $values['prid'] = pSQL($so_params['PRID']) : '';
 			isset($so_params['PRNAME']) ? $values['prname'] = Tools::ucfirst(pSQL($so_params['PRNAME'])) : '';
-			isset($delivery_mode[$so_params['DELIVERYMODE']]) ? $values['prfirstname'] =
-							pSQL($delivery_mode[$so_params['DELIVERYMODE']]) : $values['prfirstname'] = 'So Colissimo';
+			isset($delivery_mode[$so_params['DELIVERYMODE']]) ? $values['prfirstname'] = pSQL($delivery_mode[$so_params['DELIVERYMODE']]) : $values['prfirstname'] = 'So Colissimo';
 			isset($so_params['PRCOMPLADRESS']) ? $values['prcompladress'] = pSQL($so_params['PRCOMPLADRESS']) : '';
 			isset($so_params['PRADRESS1']) ? $values['pradress1'] = pSQL($so_params['PRADRESS1']) : '';
 			isset($so_params['PRADRESS2']) ? $values['pradress2'] = pSQL($so_params['PRADRESS2']) : '';
@@ -215,7 +233,6 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 			isset($so_params['PRZIPCODE']) ? $values['przipcode'] = pSQL($so_params['PRZIPCODE']) : '';
 			isset($so_params['PRTOWN']) ? $values['prtown'] = pSQL($so_params['PRTOWN']) : '';
 			isset($country_code) ? $values['cecountry'] = pSQL($country_code) : '';
-			isset($so_params['CEPHONENUMBER']) ? $values['cephonenumber'] = pSQL($so_params['CEPHONENUMBER']) : '';
 			isset($so_params['CEEMAIL']) ? $values['ceemail'] = pSQL($so_params['CEEMAIL']) : '';
 			isset($so_params['CEDELIVERYINFORMATION']) ? $values['cedeliveryinformation'] = pSQL($so_params['CEDELIVERYINFORMATION']) : '';
 			isset($so_params['CEDOORCODE1']) ? $values['cedoorcode1'] = pSQL($so_params['CEDOORCODE1']) : '';
@@ -239,7 +256,6 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 			isset($so_params['CETOWN']) ? $values['prtown'] = pSQL($so_params['CETOWN']) : '';
 			isset($country_code) ? $values['cecountry'] = pSQL($country_code) : '';
 			isset($so_params['CEEMAIL']) ? $values['ceemail'] = pSQL($so_params['CEEMAIL']) : '';
-			isset($so_params['CEPHONENUMBER']) ? $values['cephonenumber'] = pSQL($so_params['CEPHONENUMBER']) : '';
 			isset($so_params['CEDELIVERYINFORMATION']) ? $values['cedeliveryinformation'] = pSQL($so_params['CEDELIVERYINFORMATION']) : '';
 			isset($so_params['CEDOORCODE1']) ? $values['cedoorcode1'] = pSQL($so_params['CEDOORCODE1']) : '';
 			isset($so_params['CEDOORCODE2']) ? $values['cedoorcode2'] = pSQL($so_params['CEDOORCODE2']) : '';
