@@ -156,8 +156,10 @@
 				$('[name=processCarrier]').unbind('click').live('click', function () {
 					if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId+','))
 					{
-						if (acceptCGV())
+						if (acceptCGV()){
+							$('#soLink').attr('href', baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 							$("#soLink").trigger("click");
+						}
 						return false;
 					}
 					return true;
