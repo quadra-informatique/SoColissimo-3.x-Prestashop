@@ -259,7 +259,7 @@ class Socolissimo extends CarrierModule
 
 	public function hookBackOfficeHeader()
 	{
-		if (!Configuration::get('SOCOLISSIMO_PERSONAL_DATA'))
+		if (!Configuration::get('SOCOLISSIMO_PERSONAL_DATA') || !Configuration::get('SOCOLISSIMO_PERSONAL_SIRET'))
 		{
 			if (version_compare(_PS_VERSION_, '1.5', '<') || !method_exists($this->context->controller, 'addJQuery'))
 			{
