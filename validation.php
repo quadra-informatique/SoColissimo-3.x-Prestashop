@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 2007-2014 PrestaShop
  *
@@ -24,6 +23,7 @@
  *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
  */
+
 include('../../config/config.inc.php');
 include('../../init.php');
 require_once(_PS_MODULE_DIR_.'socolissimo/classes/SCFields.php');
@@ -53,7 +53,7 @@ if (!$so->checkErrors($errors_codes, SCError::REQUIRED))
 {
 	foreach ($_POST as $key => $val)
 		if ($so->isAvailableFields($key))
-			if (!Tools::getIsset(Tools::getValue('CHARSET'))) /* only way to know if api is 3.0 to get encode for accentued chars in key calculation */
+			if (!Tools::getValue('CHARSET')) /* only way to know if api is 3.0 to get encode for accentued chars in key calculation */
 				$return[Tools::strtoupper($key)] = utf8_encode(Tools::stripslashes($val));
 			else
 				$return[Tools::strtoupper($key)] = Tools::stripslashes($val);
@@ -82,13 +82,10 @@ else
 	foreach ($errors_codes as $code)
 		$errors_list[] = $so->l('Error code:').' '.$so->getError($code);
 
-if (isset($return['TRADERCOMPANYNAME']) && isset($return['CHARSET']))
-	$return['TRADERCOMPANYNAME'] = utf8_decode($return['TRADERCOMPANYNAME']);
-
 if (empty($errors_list))
 {
-	if ($so->isCorrectSignKey($return['SIGNATURE'], $return) &&
-			$so->context->cart->id && saveOrderShippingDetails($so->context->cart->id, (int)$return['TRCLIENTNUMBER'], $return, $so))
+	if ($so->isCorrectSignKey($return['SIGNATURE'], $return) && $so->context->cart->id && saveOrderShippingDetails($so->context->cart->id,
+			(int)$return['TRCLIENTNUMBER'], $return, $so))
 	{
 		$trparamplus = explode('|', $return['TRPARAMPLUS']);
 

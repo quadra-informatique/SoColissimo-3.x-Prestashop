@@ -43,7 +43,7 @@ foreach ($_GET as $key => $value)
 if (Tools::getIsset(Tools::getValue('cePays')) && Tools::getValue('cePays') == 'BE')
 	if (isset($inputs['cePhoneNumber']) && strpos($inputs['cePhoneNumber'], '324') === 0)
 		$inputs['cePhoneNumber'] = '+324'.Tools::substr($inputs['cePhoneNumber'], 2);
-	
+
 $param_plus = array(
 	/* Get the data set before */
 	Tools::getValue('trParamPlus'),

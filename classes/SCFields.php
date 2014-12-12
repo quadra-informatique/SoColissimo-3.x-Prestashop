@@ -114,7 +114,7 @@ class SCFields extends SCError
 			'CHARSET' => SCFields::NOT_REQUIRED,
 			'CEPAYS' => SCFields::NOT_REQUIRED,
 			'TRINTER' => SCFields::NOT_REQUIRED,
-			'CELANG' => SCFields::NOT_REQUIRED,			
+			'CELANG' => SCFields::NOT_REQUIRED,
 			'NUMVERSION' => SCFields::IGNORED,
 			'SIGNATURE' => SCFields::IGNORED
 		),
@@ -171,7 +171,7 @@ class SCFields extends SCError
 			'CHARSET' => SCFields::NOT_REQUIRED,
 			'CEPAYS' => SCFields::NOT_REQUIRED,
 			'TRINTER' => SCFields::NOT_REQUIRED,
-			'CELANG' => SCFields::NOT_REQUIRED,		
+			'CELANG' => SCFields::NOT_REQUIRED,
 			'PRPAYS' => SCFields::NOT_REQUIRED,
 			'CODERESEAU' => SCFields::NOT_REQUIRED,
 			'NUMVERSION' => SCFields::IGNORED,
@@ -261,8 +261,7 @@ class SCFields extends SCError
 	 */
 	public function isRequireField($name)
 	{
-		return (in_array(Tools::strtoupper($name), $this->fields[$this->delivery_mode]) &&
-				$this->fields[$this->delivery_mode] == SCFields::REQUIRED);
+		return (in_array(Tools::strtoupper($name), $this->fields[$this->delivery_mode]) && $this->fields[$this->delivery_mode] == SCFields::REQUIRED);
 	}
 
 	/**

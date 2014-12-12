@@ -70,7 +70,6 @@
 		</dl>
 
 		<input type="submit" class="button" name="submitPersonalSave" value="{l s='Confirm' mod='socolissimo'}" style="float: right; margin-top: 30px; padding: 10px 20px" />
-		<input type="submit" class="button" name="submitPersonalAskMeLater" value="{l s='Ask me later' mod='socolissimo'}" style="float: right; margin-top: 30px; margin-right: 15px; padding: 10px 20px" />
 	</form>
 	<form action="" method="post">
 		<input type="submit" class="button" name="submitPersonalCancel" value="{l s='Cancel' mod='socolissimo'}" style="float: right; padding: 10px 20px; margin: 30px 15px 0 0" />

@@ -21,6 +21,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_228485c5faff886fa4520323dc5b2c76'
 $_MODULE['<{socolissimo}prestashop>socolissimo_82b66af7b110e9bc75fd65479786e313'] = 'Surcoût non spécifié';
 $_MODULE['<{socolissimo}prestashop>socolissimo_5b2bf2a7c883ffae1b7b412d65a41984'] = 'Surcoût invalide';
 $_MODULE['<{socolissimo}prestashop>socolissimo_9ae6fe001d646e4631d877a3dd5c1e59'] = 'Le transporteur Socolissimo doit être différent du transporteur socolissimo CC';
+$_MODULE['<{socolissimo}prestashop>socolissimo_cc7d87a29b0f6eebb428d7d29c2b8638'] = 'Impossible de sauvegarder les paramètres tant que les informations complémentaires ne sont pas saisies (siret, téléphone,code postal)';
 $_MODULE['<{socolissimo}prestashop>socolissimo_20015706a8cbd457cbb6ea3e7d5dc9b3'] = 'Configuration mise à jour';
 $_MODULE['<{socolissimo}prestashop>socolissimo_126d781eae70fa41e9e848f3013e1799'] = 'Impossible de sauvegarder les paramètres';
 $_MODULE['<{socolissimo}prestashop>socolissimo_898d22b4259367825dbbbc174f049197'] = 'Choisir un mode de livraison';
@@ -141,7 +142,6 @@ $_MODULE['<{socolissimo}prestashop>personnal_data_5b208a9315eacba80fb231724ea47e
 $_MODULE['<{socolissimo}prestashop>personnal_data_60adc330494a66981dec101c81e27f03'] = 'Siret';
 $_MODULE['<{socolissimo}prestashop>personnal_data_eecb47313f320edf63380079b3ee1bc3'] = 'Le Numéro de siret est obligatoire';
 $_MODULE['<{socolissimo}prestashop>personnal_data_70d9be9b139893aa6c69b5e77e614311'] = 'Confirmer';
-$_MODULE['<{socolissimo}prestashop>personnal_data_a54c596b03b4a6857bbf031c6045f57e'] = 'Demandez moi plus tard';
 $_MODULE['<{socolissimo}prestashop>personnal_data_ea4788705e6873b424c65e91c2846b19'] = 'Annuler';
 $_MODULE['<{socolissimo}prestashop>error_58d256f5c88c3a887c1c3b8c9ee76f4d'] = 'Liste des erreurs SoColissimo :';
 $_MODULE['<{socolissimo}prestashop>error_0557fa923dcee4d0f86b1409f5c2167f'] = 'Retour';
