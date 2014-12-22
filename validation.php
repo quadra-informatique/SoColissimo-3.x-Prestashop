@@ -192,9 +192,9 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 					'.(isset($so_params['CEFIRSTNAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CEFIRSTNAME'])).'\'' : '\'\'').',
 					'.(isset($so_params['CECOMPLADRESS']) ? '\''.pSQL($so_params['CECOMPLADRESS']).'\'' : '\'\'').',
 					'.(isset($so_params['CEADRESS1']) ? '\''.pSQL($so_params['CEADRESS1']).'\'' : '\'\'').',
-					'.(isset($so_params['CEADRESS2']) ? '\''.pSQL($so_params['CEADRESS2']).'\'' : '\'\'').',
-					'.(isset($so_params['CEADRESS3']) ? '\''.pSQL($so_params['CEADRESS3']).'\'' : '\'\'').',
 					'.(isset($so_params['CEADRESS4']) ? '\''.pSQL($so_params['CEADRESS4']).'\'' : '\'\'').',
+					'.(isset($so_params['CEADRESS3']) ? '\''.pSQL($so_params['CEADRESS3']).'\'' : '\'\'').',
+					'.(isset($so_params['CEADRESS2']) ? '\''.pSQL($so_params['CEADRESS2']).'\'' : '\'\'').',
 					'.(isset($so_params['CEZIPCODE']) ? '\''.pSQL($so_params['CEZIPCODE']).'\'' : '\'\'').',
 					'.(isset($so_params['CETOWN']) ? '\''.pSQL($so_params['CETOWN']).'\'' : '\'\'').',
 					'.(isset($country_code) ? '\''.pSQL($country_code).'\'' : '\'\'').',
@@ -246,9 +246,9 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 			isset($so_params['CEFIRSTNAME']) ? $values['prfirstname'] = Tools::ucfirst(pSQL($so_params['CEFIRSTNAME'])) : '';
 			isset($so_params['CECOMPLADRESS']) ? $values['prcompladress'] = pSQL($so_params['CECOMPLADRESS']) : '';
 			isset($so_params['CEADRESS1']) ? $values['pradress1'] = pSQL($so_params['CEADRESS1']) : '';
-			isset($so_params['CEADRESS2']) ? $values['pradress2'] = pSQL($so_params['CEADRESS2']) : '';
+			isset($so_params['CEADRESS4']) ? $values['pradress2'] = pSQL($so_params['CEADRESS4']) : '';
 			isset($so_params['CEADRESS3']) ? $values['pradress3'] = pSQL($so_params['CEADRESS3']) : '';
-			isset($so_params['CEADRESS4']) ? $values['pradress4'] = pSQL($so_params['CEADRESS4']) : '';
+			isset($so_params['CEADRESS2']) ? $values['pradress4'] = pSQL($so_params['CEADRESS2']) : '';
 			isset($so_params['CEZIPCODE']) ? $values['przipcode'] = pSQL($so_params['CEZIPCODE']) : '';
 			isset($so_params['CETOWN']) ? $values['prtown'] = pSQL($so_params['CETOWN']) : '';
 			isset($country_code) ? $values['cecountry'] = pSQL($country_code) : '';
