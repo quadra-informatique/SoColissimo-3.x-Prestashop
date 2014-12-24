@@ -495,7 +495,7 @@ class Socolissimo extends CarrierModule
 				$this->personal_data_zip_code_error = true;
 				return false;
 			}
-			if (!$siret)
+			if (!$this->isSiret($siret))
 			{
 				$this->siret_error = true;
 				return false;
@@ -1564,5 +1564,24 @@ class Socolissimo extends CarrierModule
             external_module_name = ""
             WHERE  id_carrier NOT IN ( '.(int)Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER').','.(int)Configuration::get('SOCOLISSIMO_CARRIER_ID').')');
 	}
-
+	/**
+	 * Validate SIRET Code Taken from prestashop core for compatibility 1.4 reason
+	 * @static
+	 * @param $siret SIRET Code
+	 * @return boolean Return true if is valid
+	 */
+	public function isSiret($siret)
+	{
+		if (Tools::strlen($siret) != 14)
+			return false;
+		$sum = 0;
+		for ($i = 0; $i != 14; $i++)
+		{
+			$tmp = ((($i + 1) % 2) + 1) * intval($siret[$i]);
+			if ($tmp >= 10)
+				$tmp -= 9;
+			$sum += $tmp;
+		}
+		return ($sum % 10 === 0);
+	}
 }
