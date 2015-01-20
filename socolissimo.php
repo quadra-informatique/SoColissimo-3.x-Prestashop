@@ -74,6 +74,8 @@ class Socolissimo extends CarrierModule
 		$this->displayName = $this->l('So Colissimo');
 		$this->description = $this->l('Offer your customer 5 different delivery methods with LaPoste.');
 		$protocol = function_exists('Tools::getProtocol') ? Tools::getProtocol() : 'http://';
+		if (Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE'))
+			$protocol = 'https://';
 		$this->url = $protocol.Tools::getShopDomainSsl().__PS_BASE_URI__.'modules/'.$this->name.'/validation.php';
 
 		/** Backward compatibility */
@@ -715,6 +717,7 @@ class Socolissimo extends CarrierModule
 			'inputs' => $inputs,
 			'initialCost_label' => $this->l('From'),
 			'initialCost' => $from_cost.' €', // to change label for price in tpl
+			'taxMention' => $this->l(' TTC'), // to change label for price in tpl
 			'finishProcess' => $this->l('To choose SoColissimo, click on a delivery method')
 		));
 

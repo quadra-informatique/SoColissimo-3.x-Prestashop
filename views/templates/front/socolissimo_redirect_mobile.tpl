@@ -29,6 +29,7 @@
 	var initialCost_label = "{$initialCost_label|escape:'htmlall'}"
 	var initialCost = "{$initialCost|escape:'htmlall'}";
 	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
+	var taxMention = "{$taxMention|escape:'htmlall'}";
 	var baseDir = '{$content_dir|escape:'htmlall'}';
 	
 	{foreach from=$inputs item=input key=name name=myLoop}
@@ -42,7 +43,7 @@
 		else {
 			$('input.delivery_option_radio').each(function() {
 				if($(this).val() == soCarrierId+',')
-					$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label+'<br/>'+initialCost+' TTC');
+					$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label+'<br/>'+initialCost+taxMention);
 			});
 		}
 		$( "#form" ).submit(function() {
