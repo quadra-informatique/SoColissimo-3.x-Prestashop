@@ -806,7 +806,7 @@ class Socolissimo extends CarrierModule
 		if (((int)$order->id_carrier == (int)$so_carrier->id
 				|| in_array((int)$order->id_carrier, explode('|', Configuration::get('SOCOLISSIMO_CARRIER_ID_HIST')))) && !empty($delivery_infos))
 		{
-			$html = '<br><br><fieldset style="width:400px;"><legend><img src="'.$this->_path.'logo.gif" alt="" /> ';
+			$html = '<br><br><div class="panel"><fieldset style="width:400px;"><legend><img src="'.$this->_path.'logo.gif" alt="" /> ';
 			$html .= $this->l('So Colissimo').'</legend><b>'.$this->l('Delivery mode').' : </b>';
 
 			$sc_fields = new SCFields($delivery_infos['delivery_mode']);
@@ -859,7 +859,7 @@ class Socolissimo extends CarrierModule
 
 					break;
 			}
-			$html .= '</fieldset>';
+			$html .= '</fieldset></div>';
 			return $html;
 		}
 	}
