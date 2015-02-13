@@ -145,6 +145,7 @@ $_MODULE['<{socolissimo}prestashop>personnal_data_70d9be9b139893aa6c69b5e77e6143
 $_MODULE['<{socolissimo}prestashop>personnal_data_ea4788705e6873b424c65e91c2846b19'] = 'Annuler';
 $_MODULE['<{socolissimo}prestashop>personnal_data_4f436a03596ad79a40be25880291cd3e'] = 'J’accepte que les informations relatives à mon volume d’envoi de colis soient transmises à notre partenaire la Poste – Colissimo. ';
 $_MODULE['<{socolissimo}prestashop>personnal_data_fda6eb8be273d7802e2610df9faffa35'] = 'En cas de refus, vous pouvez adresser un mail à l’adresse suivante :';
+$_MODULE['<{socolissimo}prestashop>personnal_data_e6bb247715d6cd57acbd6ebad30d189a'] = 'Veuillez cocher la case pour continuer';
 $_MODULE['<{socolissimo}prestashop>error_58d256f5c88c3a887c1c3b8c9ee76f4d'] = 'Liste des erreurs SoColissimo :';
 $_MODULE['<{socolissimo}prestashop>error_0557fa923dcee4d0f86b1409f5c2167f'] = 'Retour';
 $_MODULE['<{socolissimo}prestashop>redirect_611a8475d4cbe64a9a2f5633a82fe314'] = 'Vous allez être redirigé vers Socolissimo dans quelques instants.Si ce n\'est pas le cas, veuillez cliquez sur le bouton.';
