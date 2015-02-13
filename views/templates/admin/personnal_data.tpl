@@ -67,6 +67,10 @@
 			<dt style="width: 40%"><label for="personal_siret" style="width: 100%;">{l s='Siret' mod='socolissimo'}* :</label></dt>
 			<dd><input type="text" value="{$siret|escape:'htmlall':'UTF-8'}" name="SOCOLISSIMO_PERSONAL_SIRET" id="personal_city" />
 			&nbsp;&nbsp;{if isset($siret_error) && $siret_error}<em style="font-size: .8em;  color: red;">({l s='Siret is mandatory' mod='socolissimo'})</em>{/if}</dd>
+			
+			<dt style="float: left; margin: 10px 0 0 2px;"><input type="checkbox" name="SOCOLISSIMO_INFO_PARTNER" value="1" id="info_partner" /></dt>
+			<dd>{l s='I accept that informations concerning the number of parcels are sent to our partner La poste -Colissimo.' mod='socolissimo'}<br>
+			{l s=' In case of refusal, you can sent an email at the following address :  ' mod='socolissimo'} <a style="color: #268ccd;" href="mailto: modules-prestashop@laposte.fr">modules-prestashop@laposte.fr</a></dd>
 		</dl>
 
 		<input type="submit" class="button" name="submitPersonalSave" value="{l s='Confirm' mod='socolissimo'}" style="float: right; margin-top: 30px; padding: 10px 20px" />

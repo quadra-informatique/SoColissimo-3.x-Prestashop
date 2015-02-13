@@ -63,7 +63,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.9.16';
+		$this->version = '2.9.17';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr');
 		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
@@ -483,9 +483,11 @@ class Socolissimo extends CarrierModule
 			$zip_code = Tools::getValue('SOCOLISSIMO_PERSONAL_ZIP_CODE');
 			$quantities = Tools::getValue('SOCOLISSIMO_PERSONAL_QUANTITIES');
 			$siret = Tools::getValue('SOCOLISSIMO_PERSONAL_SIRET');
+			$info_partner = Tools::getValue('SOCOLISSIMO_INFO_PARTNER');
 			$this->personal_data_phone_error = false;
 			$this->personal_data_zip_code_error = false;
 			$this->siret_error = false;
+			$this->check_partner_error = false;
 
 			if (!(bool)preg_match('#^(([\d]{2})([\s]){0,1}){5}$#', $phone))
 			{
@@ -500,6 +502,11 @@ class Socolissimo extends CarrierModule
 			if (!$this->isSiret($siret))
 			{
 				$this->siret_error = true;
+				return false;
+			}
+			if($info_partner == false)
+			{
+				$this->info_partner_error = true;
 				return false;
 			}
 
