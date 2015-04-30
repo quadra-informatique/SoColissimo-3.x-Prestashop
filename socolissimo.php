@@ -1062,6 +1062,7 @@ class Socolissimo extends CarrierModule
 			$new_address->firstname = preg_replace('/\d/', '', Tools::substr($return['prfirstname'], 0, 32));
 			$new_address->postcode = $return['przipcode'];
 			$new_address->city = $return['prtown'];
+			$new_address->phone_mobile = $return['cephonenumber'];
 			$new_address->id_country = $iso_code;
 			$new_address->alias = 'So Colissimo - '.date('d-m-Y');
 
@@ -1081,6 +1082,7 @@ class Socolissimo extends CarrierModule
 				((isset($return['pradress4'])) ? $new_address->other .= ' | '.$return['pradress4'] : $new_address->other = '');
 				$new_address->postcode = $return['przipcode'];
 				$new_address->city = $return['prtown'];
+				$new_address->phone_mobile = $return['cephonenumber'];
 				$new_address->id_country = $iso_code;
 				$new_address->alias = 'So Colissimo - '.date('d-m-Y');
 				$new_address->add();
