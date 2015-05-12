@@ -64,7 +64,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.9.17';
+		$this->version = '2.9.18';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr');
 		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
@@ -1062,9 +1062,9 @@ class Socolissimo extends CarrierModule
 			$new_address->firstname = preg_replace('/\d/', '', Tools::substr($return['prfirstname'], 0, 32));
 			$new_address->postcode = $return['przipcode'];
 			$new_address->city = $return['prtown'];
-			$new_address->phone_mobile = $return['cephonenumber'];
 			$new_address->id_country = $iso_code;
 			$new_address->alias = 'So Colissimo - '.date('d-m-Y');
+			$new_address->phone_mobile = $return['cephonenumber'];
 
 			if (!in_array($return['delivery_mode'], array('DOM', 'RDV')))
 			{
@@ -1082,7 +1082,6 @@ class Socolissimo extends CarrierModule
 				((isset($return['pradress4'])) ? $new_address->other .= ' | '.$return['pradress4'] : $new_address->other = '');
 				$new_address->postcode = $return['przipcode'];
 				$new_address->city = $return['prtown'];
-				$new_address->phone_mobile = $return['cephonenumber'];
 				$new_address->id_country = $iso_code;
 				$new_address->alias = 'So Colissimo - '.date('d-m-Y');
 				$new_address->add();
