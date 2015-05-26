@@ -162,7 +162,8 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 		$sql = 'INSERT INTO '._DB_PREFIX_.'socolissimo_delivery_info
 			( `id_cart`, `id_customer`, `delivery_mode`, `prid`, `prname`, `prfirstname`, `prcompladress`,
 			`pradress1`, `pradress2`, `pradress3`, `pradress4`, `przipcode`, `prtown`,`cecountry`, `cephonenumber`, `ceemail` ,
-			`cecompanyname`, `cedeliveryinformation`, `cedoorcode1`, `cedoorcode2`,`codereseau`, `cename`, `cefirstname`)
+			`cecompanyname`, `cedeliveryinformation`, `cedoorcode1`, `cedoorcode2`,`codereseau`, `cename`, `cefirstname`,`lotacheminement`,`distributionsort`,
+			`versionplantri`)
 			VALUES ('.(int)$id_cart.','.(int)$id_customer.',';
 		if ($so_object->delivery_mode == SCFields::RELAY_POINT)
 			$sql .= '\''.pSQL($so_params['DELIVERYMODE']).'\',
