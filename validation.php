@@ -183,9 +183,12 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 					'.(isset($so_params['CEDELIVERYINFORMATION']) ? '\''.pSQL($so_params['CEDELIVERYINFORMATION']).'\'' : '\'\'').',
 					'.(isset($so_params['CEDOORCODE1']) ? '\''.pSQL($so_params['CEDOORCODE1']).'\'' : '\'\'').',
 					'.(isset($so_params['CEDOORCODE2']) ? '\''.pSQL($so_params['CEDOORCODE2']).'\'' : '\'\'').',
-                                    '.(isset($so_params['CODERESEAU']) ? '\''.pSQL($so_params['CODERESEAU']).'\'' : '\'\'').',
-                                    '.(isset($so_params['CENAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CENAME'])).'\'' : '\'\'').',
-                                    '.(isset($so_params['CEFIRSTNAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CEFIRSTNAME'])).'\'' : '\'\'').')';
+                    '.(isset($so_params['CODERESEAU']) ? '\''.pSQL($so_params['CODERESEAU']).'\'' : '\'\'').',
+                    '.(isset($so_params['CENAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CENAME'])).'\'' : '\'\'').',
+                    '.(isset($so_params['CEFIRSTNAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CEFIRSTNAME'])).'\'' : '\'\'').',
+					'.(isset($so_params['LOTACHEMINEMENT']) ? '\''.pSQL($so_params['LOTACHEMINEMENT']).'\'' : '\'\'').',
+					'.(isset($so_params['DISTRIBUTIONSORT']) ? '\''.pSQL($so_params['DISTRIBUTIONSORT']).'\'' : '\'\'').',
+					'.(isset($so_params['VERSIONPLANTRI']) ? '\''.pSQL($so_params['VERSIONPLANTRI']).'\'' : '\'\'').')';
 		else
 			$sql .= '\''.pSQL($so_params['DELIVERYMODE']).'\',\'\',
 					'.(isset($so_params['CENAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CENAME'])).'\'' : '\'\'').',
@@ -204,9 +207,12 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 					'.(isset($so_params['CEDELIVERYINFORMATION']) ? '\''.pSQL($so_params['CEDELIVERYINFORMATION']).'\'' : '\'\'').',
 					'.(isset($so_params['CEDOORCODE1']) ? '\''.pSQL($so_params['CEDOORCODE1']).'\'' : '\'\'').',
 					'.(isset($so_params['CEDOORCODE2']) ? '\''.pSQL($so_params['CEDOORCODE2']).'\'' : '\'\'').',
-                                    '.(isset($so_params['CODERESEAU']) ? '\''.pSQL($so_params['CODERESEAU']).'\'' : '\'\'').',
-                                    '.(isset($so_params['CENAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CENAME'])).'\'' : '\'\'').',
-                                    '.(isset($so_params['CEFIRSTNAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CEFIRSTNAME'])).'\'' : '\'\'').')';
+                    '.(isset($so_params['CODERESEAU']) ? '\''.pSQL($so_params['CODERESEAU']).'\'' : '\'\'').',
+                    '.(isset($so_params['CENAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CENAME'])).'\'' : '\'\'').',
+                    '.(isset($so_params['CEFIRSTNAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CEFIRSTNAME'])).'\'' : '\'\'').',
+					'.(isset($so_params['LOTACHEMINEMENT']) ? '\''.pSQL($so_params['LOTACHEMINEMENT']).'\'' : '\'\'').',
+					'.(isset($so_params['DISTRIBUTIONSORT']) ? '\''.pSQL($so_params['DISTRIBUTIONSORT']).'\'' : '\'\'').',
+					'.(isset($so_params['VERSIONPLANTRI']) ? '\''.pSQL($so_params['VERSIONPLANTRI']).'\'' : '\'\'').')';
 		if (Db::getInstance()->execute($sql))
 			return true;
 	}
@@ -238,6 +244,10 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 			isset($so_params['CODERESEAU']) ? $values['codereseau'] = pSQL($so_params['CODERESEAU']) : '';
 			isset($so_params['CENAME']) ? $values['cename'] = pSQL($so_params['CENAME']) : '';
 			isset($so_params['CEFIRSTNAME']) ? $values['cefirstname'] = pSQL($so_params['CEFIRSTNAME']) : '';
+			isset($so_params['LOTACHEMINEMENT']) ? $values['lotacheminement'] = pSQL($so_params['LOTACHEMINEMENT']) : '';
+			isset($so_params['DISTRIBUTIONSORT']) ? $values['distributionsort'] = pSQL($so_params['DISTRIBUTIONSORT']) : '';
+			isset($so_params['VERSIONPLANTRI']) ? $values['versionplantri'] = pSQL($so_params['VERSIONPLANTRI']) : '';
+			
 		}
 		else
 		{
@@ -260,6 +270,9 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 			isset($so_params['CODERESEAU']) ? $values['codereseau'] = pSQL($so_params['CODERESEAU']) : '';
 			isset($so_params['CENAME']) ? $values['cename'] = pSQL($so_params['CENAME']) : '';
 			isset($so_params['CEFIRSTNAME']) ? $values['cefirstname'] = pSQL($so_params['CEFIRSTNAME']) : '';
+			isset($so_params['LOTACHEMINEMENT']) ? $values['lotacheminement'] = pSQL($so_params['LOTACHEMINEMENT']) : '';
+			isset($so_params['DISTRIBUTIONSORT']) ? $values['distributionsort'] = pSQL($so_params['DISTRIBUTIONSORT']) : '';
+			isset($so_params['VERSIONPLANTRI']) ? $values['versionplantri'] = pSQL($so_params['VERSIONPLANTRI']) : '';
 		}
 		$where = ' `id_cart` =\''.(int)$id_cart.'\' AND `id_customer` =\''.(int)$id_customer.'\'';
 

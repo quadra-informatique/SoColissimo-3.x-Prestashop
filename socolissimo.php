@@ -64,7 +64,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.9.18';
+		$this->version = '2.9.19';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr');
 		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
@@ -173,6 +173,9 @@ class Socolissimo extends CarrierModule
                                `codereseau` varchar(3) NOT NULL,
                                `cename` varchar(64) NOT NULL,
 				  `cefirstname` varchar(64) NOT NULL,
+				  `lotacheminement` varchar(64) NOT NULL,
+				  `distributionsort` varchar(64) NOT NULL,
+				  `versionplantri` text(10) NOT NULL,
 				  PRIMARY KEY  (`id_cart`,`id_customer`)
 				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;';
 
@@ -1525,7 +1528,7 @@ class Socolissimo extends CarrierModule
 	public function runUpgrades($install = false)
 	{
 		if (Configuration::get('SOCOLISSIMO_VERSION') != $this->version)
-			foreach (array('2.8.0', '2.8.4', '2.8.5') as $version)
+			foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.19') as $version)
 			{
 				$file = dirname(__FILE__).'/upgrade/install-'.$version.'.php';
 				if (Configuration::get('SOCOLISSIMO_VERSION') < $version && file_exists($file))
