@@ -223,6 +223,10 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 		$values = array();
 		$values['delivery_mode'] = pSQL($so_params['DELIVERYMODE']);
 		$values['cephonenumber'] = pSQL($phone_number);
+		// reseting optionnal field
+		$values['lotacheminement'] = '';
+		$values['distributionsort'] = '';
+		$values['versionplantri'] = '';
 
 		if ($so_object->delivery_mode == SCFields::RELAY_POINT)
 		{
