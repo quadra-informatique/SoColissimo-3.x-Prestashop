@@ -112,6 +112,7 @@ $_MODULE['<{socolissimo}prestashop>back_office_da3291084cc788d52c68d1dd5cc98718'
 $_MODULE['<{socolissimo}prestashop>back_office_3d9f139daab1faaf99dd7bd5b5c966de'] = 'Soyez très prudent avec ces paramètres, le changement peut provoquer un dysfonctionnement du module.';
 $_MODULE['<{socolissimo}prestashop>back_office_b0b2896e75025245cbb05e96bd1466d6'] = 'Adresse FO';
 $_MODULE['<{socolissimo}prestashop>back_office_ce88aabea3b363c753b02ddcb2fbafff'] = 'URL de la page So Colissimo.';
+$_MODULE['<{socolissimo}prestashop>back_office_f301233626a5e924ac7d9aee2e79f305'] = 'Si vous utilisez SSL, cette url doit être renseignée en https.';
 $_MODULE['<{socolissimo}prestashop>back_office_9abdbf15f57390e082b3dedc95a2d55f'] = 'Adresse FO Mobile';
 $_MODULE['<{socolissimo}prestashop>back_office_28ce6cc9476f00b31c72b6e4c375e211'] = 'URL de la page So Colissimo Mobile. Les clients naivguant avec des smartphones ou Ipad seront redirigés sur cette url. Attention cette url n\'autorise pas la livraison en Belgique pour le moment.';
 $_MODULE['<{socolissimo}prestashop>back_office_dd82197366d33b9dea0d2d8f3603d00b'] = 'Mode d\'affichage';
@@ -141,11 +142,11 @@ $_MODULE['<{socolissimo}prestashop>personnal_data_043950cb479c3260ade8eeece54b54
 $_MODULE['<{socolissimo}prestashop>personnal_data_5b208a9315eacba80fb231724ea47e83'] = '> 250 colis / mois';
 $_MODULE['<{socolissimo}prestashop>personnal_data_60adc330494a66981dec101c81e27f03'] = 'Siret';
 $_MODULE['<{socolissimo}prestashop>personnal_data_eecb47313f320edf63380079b3ee1bc3'] = 'Le Numéro de siret est obligatoire';
-$_MODULE['<{socolissimo}prestashop>personnal_data_70d9be9b139893aa6c69b5e77e614311'] = 'Confirmer';
-$_MODULE['<{socolissimo}prestashop>personnal_data_ea4788705e6873b424c65e91c2846b19'] = 'Annuler';
 $_MODULE['<{socolissimo}prestashop>personnal_data_4f436a03596ad79a40be25880291cd3e'] = 'J’accepte que les informations relatives à mon volume d’envoi de colis soient transmises à notre partenaire la Poste – Colissimo. ';
 $_MODULE['<{socolissimo}prestashop>personnal_data_fda6eb8be273d7802e2610df9faffa35'] = 'En cas de refus, vous pouvez adresser un mail à l’adresse suivante :';
 $_MODULE['<{socolissimo}prestashop>personnal_data_e6bb247715d6cd57acbd6ebad30d189a'] = 'Veuillez cocher la case pour continuer';
+$_MODULE['<{socolissimo}prestashop>personnal_data_70d9be9b139893aa6c69b5e77e614311'] = 'Confirmer';
+$_MODULE['<{socolissimo}prestashop>personnal_data_ea4788705e6873b424c65e91c2846b19'] = 'Annuler';
 $_MODULE['<{socolissimo}prestashop>error_58d256f5c88c3a887c1c3b8c9ee76f4d'] = 'Liste des erreurs SoColissimo :';
 $_MODULE['<{socolissimo}prestashop>error_0557fa923dcee4d0f86b1409f5c2167f'] = 'Retour';
 $_MODULE['<{socolissimo}prestashop>redirect_611a8475d4cbe64a9a2f5633a82fe314'] = 'Vous allez être redirigé vers Socolissimo dans quelques instants.Si ce n\'est pas le cas, veuillez cliquez sur le bouton.';

@@ -32,50 +32,53 @@
 	var baseDir = '{$content_dir|escape:'htmlall'}';
 
 	{foreach from=$inputs item=input key=name name=myLoop}
-		soInputs.{$name} = "{$input|strip_tags|addslashes}";
+	soInputs.{$name} = "{$input|strip_tags|addslashes}";
 	{/foreach}
 
 	{literal}
 
-	$(document).ready(function() {
-         $('.delivery_option').each(function( ) {
-                if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id_carrier_seller}{literal},') {
-                    $(this).remove();
-                            }
-           });
-        $('#id_carrier{/literal}{$id_carrier_seller}{literal}').parent().parent().remove();
-		if(!soBwdCompat){
-			$($('#carrierTable input#id_carrier'+soCarrierId).parent().parent()).find('.carrier_price .price').html(initialCost_label+'<br/>'+initialCost);
-			$($('#carrierTable input#id_carrier'+soCarrierId).parent().parent()).find('.carrier_price').css('white-space','nowrap');
-		} else {
-			$('input.delivery_option_radio').each(function() {
-				if($(this).val() == soCarrierId+',') {
-					$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label+'<br/>'+initialCost+taxMention);
-				// 1.6 themes
-				if($(this).next().children('div.delivery_option_price').length == 0)
-					$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label+'<br/>'+initialCost+taxMention);
-							
+		$(document).ready(function () {
+			$('.delivery_option').each(function ( ) {
+				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id_carrier_seller}{literal},') {
+					$(this).remove();
 				}
 			});
-		}
-		$( "#form" ).submit(function() {
-			if(!soBwdCompat) {
-				if ($('#id_carrier{/literal}{$id_carrier}{literal}').is(':checked'))
-					$('#form').attr("action", baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+			$('#id_carrier{/literal}{$id_carrier_seller}{literal}').parent().parent().remove();
+			if (!soBwdCompat) {
+				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price .price').html(initialCost_label + '<br/>' + initialCost);
+				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price').css('white-space', 'nowrap');
 			} else {
-				if ($("input[name*='delivery_option[']:checked").val().replace(",", "") == soCarrierId)
-					$('#form').attr("action", baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
-			}
-		});
-    });
+				$('input.delivery_option_radio').each(function () {
+					if ($(this).val() == soCarrierId + ',') {
+						$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
+						// 1.6 themes
+						if ($(this).next().children('div.delivery_option_price').length == 0)
+							$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
 
-	function serialiseInput(inputs) {
-		var str = '?first_call=1&';
-		for ( var cle in inputs ) {
-			str += cle + '=' + inputs[cle] + '&';
-                }
-		return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message='+ $('#gift_message').attr('value'));
-	}
+					}
+				});
+			}
+			$("#form").submit(function () {
+				if (!soBwdCompat) {
+					if ($('#id_carrier{/literal}{$id_carrier}{literal}').is(':checked'))
+						$('#form').attr("action", baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+				} else {
+					if ($("input[name*='delivery_option[']:checked").val().replace(",", "") == soCarrierId)
+						$('#form').attr("action", baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+				}
+			});
+		});
+
+		function serialiseInput(inputs) {
+			var str = '?first_call=1&';
+			for (var cle in inputs) {
+				str += cle + '=' + inputs[cle] + '&';
+			}
+			if (!soBwdCompat)
+				return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
+			else
+				return (str + 'module=socolissimo&controller=redirect&fc=module&gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
+		}
 	{/literal}
 
 </script>

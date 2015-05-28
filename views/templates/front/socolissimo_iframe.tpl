@@ -32,94 +32,100 @@
 <iframe id="soFr" xml:lang="fr" width="100%" height="800" style="border:none;display:none;"src=""></iframe>
 <input id="hidden_cgv" type="hidden" value="{l s='Please accept the terms of service before the next step.' mod='socolissimo'}" />
 <script type="text/javascript">
-    var opc = false;
+	var opc = false;
 </script>
 
 {if isset($already_select_delivery) && $already_select_delivery}
     <script type="text/javascript">
-        var already_select_delivery = true;
+		var already_select_delivery = true;
     </script>
 {else}
     <script type="text/javascript">
-        var already_select_delivery = false;
+		var already_select_delivery = false;
     </script>
 {/if}
-
 <script type="text/javascript">
-    var soInputs = new Object();
-    var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
-    var soCarrierId = "{$id_carrier|escape:'htmlall'}";
-    var soToken = "{$token|escape:'htmlall'}";
-    var initialCost_label = "{$initialCost_label|escape:'htmlall'}";
-    var initialCost = "{$initialCost|escape:'htmlall'}";
+	var soInputs = new Object();
+	var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
+	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
+	var soToken = "{$token|escape:'htmlall'}";
+	var initialCost_label = "{$initialCost_label|escape:'htmlall'}";
+	var initialCost = "{$initialCost|escape:'htmlall'}";
 	var taxMention = "{$taxMention|escape:'htmlall'}";
-    var baseDir = '{$content_dir|escape:'htmlall'}';
+	var baseDir = '{$content_dir|escape:'htmlall'}';
 
-    {foreach from=$inputs item=input key=name name=myLoop}
-        soInputs.{$name} = "{$input|strip_tags|addslashes}";
+	{foreach from=$inputs item=input key=name name=myLoop}
+	soInputs.{$name} = "{$input|strip_tags|addslashes}";
     {/foreach}
 
     {literal}
 
-    $(document).ready(function()
-    {
-        $('.delivery_option').each(function( ) {
-                if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id_carrier_seller}{literal},') {
-                    $(this).remove();
-                            }
-           });
-        $('#id_carrier{/literal}{$id_carrier_seller}{literal}').parent().parent().remove();
+		$(document).ready(function ()
+		{
+			$('.delivery_option').each(function ( ) {
+				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id_carrier_seller}{literal},') {
+					$(this).remove();
+				}
+			});
+			$('#id_carrier{/literal}{$id_carrier_seller}{literal}').parent().parent().remove();
 
-        if(!soBwdCompat){
-            $($('#carrierTable input#id_carrier'+soCarrierId).parent().parent()).find('.carrier_price .price').html(initialCost_label+'<br/>'+initialCost);
-            $($('#carrierTable input#id_carrier'+soCarrierId).parent().parent()).find('.carrier_price').css('white-space','nowrap');
-        } else {
-            $('input.delivery_option_radio').each(function() {
-                if($(this).val() == soCarrierId+',') {
-                 $(this).next().children().children().find('div.delivery_option_price').html(initialCost_label+'<br/>'+initialCost+taxMention);
-				 // 1.6 themes
-				if($(this).next().children('div.delivery_option_price').length == 0)
-					$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label+'<br/>'+initialCost+taxMention);
-							
-                }
-            });
-        }
+			if (!soBwdCompat) {
+				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price .price').html(initialCost_label + '<br/>' + initialCost);
+				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price').css('white-space', 'nowrap');
+			} else {
+				$('input.delivery_option_radio').each(function () {
+					if ($(this).val() == soCarrierId + ',') {
+						$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
+						// 1.6 themes
+						if ($(this).next().children('div.delivery_option_price').length == 0)
+							$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
 
-            $('[name=processCarrier]').click( function() {
-                  if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId+','))
-                    {
-                if (acceptCGV(($('#hidden_cgv').val()))) {
+					}
+				});
+			}
 
-                    if(soBwdCompat) { // 1.5 zone
-                        $('div.delivery_options_address h3').css('display', 'none');
-                        $('div.delivery_options').css('display', 'none');
-                    } else { // 1.4 zone
-                         $('#carrierTable td').css('display', 'none');
-                         $('#carrierTable th').css('display', 'none');
-                    }
+			$('[name=processCarrier]').click(function () {
+				if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
+				{
+					if (acceptCGV(($('#hidden_cgv').val()))) {
 
-                    // common zone
-                    $('h3.condition_title').css('display', 'none');
-                    $('p.checkbox').css('display', 'none');
-                    $('h3.carrier_title').css('display', 'none');
-                    $('h3.gift_title').css('display', 'none');
-                    $('#gift_div').css('display', 'none');
-                    $('p.cart_navigation').css('display', 'none');
-                    $('#soFr').css('display', 'block');
-                    $('#soFr').attr('src',  baseDir+'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
-                }
-                return false;
-            }
-            return true;
-        });
-    });
+						if (soBwdCompat) { // 1.5 zone
+							$('div.delivery_options_address h3').css('display', 'none');
+							$('div.delivery_options').css('display', 'none');
+						} else { // 1.4 zone
+							$('#carrierTable td').css('display', 'none');
+							$('#carrierTable th').css('display', 'none');
+						}
 
-    function serialiseInput(inputs) {
-        var str = '?first_call=1&';
-        for (var cle in inputs)
-            str += cle + '=' + inputs[cle] + '&';
-        return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message='+ $('#gift_message').attr('value'));
-    }
+						// common zone
+						$('h3.condition_title').css('display', 'none');
+						$('p.checkbox').css('display', 'none');
+						$('h3.carrier_title').css('display', 'none');
+						$('h3.gift_title').css('display', 'none');
+						$('#gift_div').css('display', 'none');
+						$('p.cart_navigation').css('display', 'none');
+						$('#soFr').css('display', 'block');
+						if (soBwdCompat)
+							$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+						else
+							$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+					}
+					return false;
+				}
+				return true;
+			});
+		});
+
+		function serialiseInput(inputs) {
+
+			var str = '?first_call=1&';
+			for (var cle in inputs)
+				str += cle + '=' + inputs[cle] + '&';
+			if (!soBwdCompat)
+				return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
+			else
+				return (str + 'module=socolissimo&controller=redirect&fc=module&gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
+		}
 
     {/literal}
 </script>

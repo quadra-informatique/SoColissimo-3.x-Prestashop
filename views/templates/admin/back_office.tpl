@@ -99,13 +99,14 @@
         <label>{l s='Url So' mod='socolissimo'} : </label>
         <div class="margin-form">
             <input type="text" size="45" name="url_so" value="{if isset($url_so)}{$url_so|escape:'htmlall':'UTF-8'}{/if}" />
-            <p>{l s='Url of back office SoColissimo.' mod='socolissimo'}</p>
+            <p>{l s='Url of back office SoColissimo.' mod='socolissimo'}<br/>
+			<span style="color:red">{l s='If you use ssl, this url must be set as https.' mod='socolissimo'}</span></p>
         </div>
         <label>{l s='Url So Mobile' mod='socolissimo'} : </label>
         <div class="margin-form">
             <input type="text" size="45" name="url_so_mobile" value="{if isset($url_so_mobile)}{$url_so_mobile|escape:'htmlall':'UTF-8'}{/if}" />
-            <p>{l s='Url of back office SoColissimo Mobile. Customers with smartphones or ipad will be redirect there. Warning, this url do not allow delivery in belgium' mod='socolissimo'}</p>
-
+            <p>{l s='Url of back office SoColissimo Mobile. Customers with smartphones or ipad will be redirect there. Warning, this url do not allow delivery in belgium' mod='socolissimo'}
+			<br/><span style="color:red">{l s='If you use ssl, this url must be set as https.' mod='socolissimo'}</span></p>
         </div>
         <label>{l s='Display Mode' mod='socolissimo'} : </label>
         <div class="margin-form">
