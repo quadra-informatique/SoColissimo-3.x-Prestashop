@@ -64,7 +64,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.9.20';
+		$this->version = '2.9.21';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr');
 		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
@@ -716,7 +716,10 @@ class Socolissimo extends CarrierModule
 		if ($seller_cost_with_taxes || (Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER') && Configuration::get('SOCOLISSIMO_COST_SELLER')))
 			if ((float)str_replace(',', '.', $seller_cost_with_taxes) < (float)str_replace(',', '.', $std_cost_with_taxes))
 				$from_cost = $seller_cost_with_taxes;
-
+		$rewrite_active = true;
+		if(!Configuration::get('PS_REWRITING_SETTINGS'))
+			$rewrite_active = false;
+			
 		$this->context->smarty->assign(array(
 			'select_label' => $this->l('Select delivery mode'),
 			'edit_label' => $this->l('Edit delivery mode'),
@@ -730,7 +733,8 @@ class Socolissimo extends CarrierModule
 			'initialCost_label' => $this->l('From'),
 			'initialCost' => $from_cost.' €', // to change label for price in tpl
 			'taxMention' => $this->l(' TTC'), // to change label for price in tpl
-			'finishProcess' => $this->l('To choose SoColissimo, click on a delivery method')
+			'finishProcess' => $this->l('To choose SoColissimo, click on a delivery method'),
+			'rewrite_active' => $rewrite_active
 		));
 
 		$ids = array();

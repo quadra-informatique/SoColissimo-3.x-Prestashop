@@ -53,6 +53,7 @@
 	var initialCost = "{$initialCost|escape:'htmlall'}";
 	var taxMention = "{$taxMention|escape:'htmlall'}";
 	var baseDir = '{$content_dir|escape:'htmlall'}';
+	var rewriteActive = '{$rewrite_active|escape:'htmlall'}';
 
 	{foreach from=$inputs item=input key=name name=myLoop}
 	soInputs.{$name} = "{$input|strip_tags|addslashes}";
@@ -106,7 +107,10 @@
 						$('p.cart_navigation').css('display', 'none');
 						$('#soFr').css('display', 'block');
 						if (soBwdCompat)
-							$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+							if(rewriteActive)
+								$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+							else
+								$('#soFr').attr('src', baseDir + 'index.php' + serialiseInput(soInputs));
 						else
 							$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 					}

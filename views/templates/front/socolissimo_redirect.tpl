@@ -30,6 +30,7 @@
 	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
 	var taxMention = "{$taxMention|escape:'htmlall'}";
 	var baseDir = '{$content_dir|escape:'htmlall'}';
+	var rewriteActive = '{$rewrite_active|escape:'htmlall'}';
 
 	{foreach from=$inputs item=input key=name name=myLoop}
 	soInputs.{$name} = "{$input|strip_tags|addslashes}";
@@ -64,7 +65,10 @@
 						$('#form').attr("action", baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 				} else {
 					if ($("input[name*='delivery_option[']:checked").val().replace(",", "") == soCarrierId)
-						$('#form').attr("action", baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+						if(rewriteActive)
+							$('#form').attr('action', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+						else
+							$('#form').attr('action', baseDir + 'index.php' + serialiseInput(soInputs));
 				}
 			});
 		});

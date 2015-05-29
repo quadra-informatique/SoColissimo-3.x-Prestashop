@@ -58,6 +58,7 @@
 	var initialCost = "{$initialCost|escape:'htmlall'}";
 	var taxMention = "{$taxMention|escape:'htmlall'}";
 	var baseDir = '{$content_dir|escape:'htmlall'}';
+	var rewriteActive = '{$rewrite_active|escape:'htmlall'}';
 
 	{foreach from=$inputs item=input key=name name=myLoop}
 	soInputs.{$name} = "{$input|strip_tags|addslashes}";
@@ -159,7 +160,10 @@
 					{
 						if (acceptCGV()) {
 							if (soBwdCompat)
-								$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+								if(rewriteActive)
+									$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+								else
+									$('#soFr').attr('src', baseDir + 'index.php' + serialiseInput(soInputs));
 							else
 								$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 							$("#soLink").trigger("click");
@@ -205,7 +209,10 @@
 		function redirect()
 		{
 			if (soBwdCompat)
-				$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+				if(rewriteActive)
+					$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+				else
+					$('#soFr').attr('src', baseDir + 'index.php' + serialiseInput(soInputs));
 			else
 				$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 			$("#soLink").trigger("click");
