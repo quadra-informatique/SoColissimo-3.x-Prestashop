@@ -82,8 +82,9 @@ class Socolissimo extends CarrierModule
 		/** Backward compatibility */
 		require(_PS_MODULE_DIR_.$this->name.'/backward_compatibility/backward.php');
 
-		if ((Configuration::get('SOCOLISSIMO_VERSION') != $this->version) && Configuration::get('SOCOLISSIMO_VERSION'))
-			$this->runUpgrades(true);
+		if (version_compare(_PS_VERSION_, '1.5', '<'))
+			if ((Configuration::get('SOCOLISSIMO_VERSION') != $this->version) && Configuration::get('SOCOLISSIMO_VERSION'))
+				$this->runUpgrades(true);
 		if (self::isInstalled($this->name))
 		{
 			$warning = array();
@@ -1531,23 +1532,26 @@ class Socolissimo extends CarrierModule
 	 */
 	public function runUpgrades($install = false)
 	{
-		if (Configuration::get('SOCOLISSIMO_VERSION') != $this->version)
-			foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.19') as $version)
-			{
-				$file = dirname(__FILE__).'/upgrade/install-'.$version.'.php';
-				if (Configuration::get('SOCOLISSIMO_VERSION') < $version && file_exists($file))
-				{
-					include_once $file;
-					call_user_func('upgrade_module_'.str_replace('.', '_', $version), $this, $install);
-				}
-			}
-		if (!Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER'))
+		if (version_compare(_PS_VERSION_, '1.5', '<'))
 		{
-			//add carrier for seller cost
-			$this->createSoColissimoCarrierSeller($this->config);
+			if (Configuration::get('SOCOLISSIMO_VERSION') != $this->version)
+				foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.20') as $version)
+				{
+					$file = dirname(__FILE__).'/upgrade/install-'.$version.'.php';
+					if (Configuration::get('SOCOLISSIMO_VERSION') < $version && file_exists($file))
+					{
+						include_once $file;
+						call_user_func('upgrade_module_'.str_replace('.', '_', $version), $this, $install);
+					}
+				}
+			if (!Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER'))
+			{
+				//add carrier for seller cost
+				$this->createSoColissimoCarrierSeller($this->config);
+				Configuration::updateValue('SOCOLISSIMO_VERSION', $this->version);
+			}
 			Configuration::updateValue('SOCOLISSIMO_VERSION', $this->version);
 		}
-		Configuration::updateValue('SOCOLISSIMO_VERSION', $this->version);
 	}
 
 	public function getCarrierShop($id_shop, $id_socolissimo)

@@ -27,7 +27,7 @@
 if (!defined('_PS_VERSION_'))
 	exit;
 
-function upgrade_module_2_9_19($object, $install = false)
+function upgrade_module_2_9_20($object, $install = false)
 {	
 	// add column lotacheminement, versionplantri, distributionsort in table socolissimo_delivery_info, checking exitence first (2.9.19 update)
 	$query = 'SELECT * FROM INFORMATION_SCHEMA.COLUMNS
@@ -69,6 +69,6 @@ function upgrade_module_2_9_19($object, $install = false)
 		$query = 'ALTER TABLE '._DB_PREFIX_.'socolissimo_delivery_info add  `versionplantri` varchar(10) NOT NULL';
 		Db::getInstance()->Execute($query);
 	}
-	Configuration::updateValue('SOCOLISSIMO_VERSION', '2.9.19');
+	Configuration::updateValue('SOCOLISSIMO_VERSION', '2.9.20');
 	return true;
 }
