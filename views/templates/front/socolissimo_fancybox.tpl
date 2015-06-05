@@ -161,9 +161,9 @@
 						if (acceptCGV()) {
 							if (soBwdCompat)
 								if(rewriteActive)
-									$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+									$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
 								else
-									$('#soFr').attr('src', baseDir + 'index.php' + serialiseInput(soInputs));
+									$('#soLink').attr('href', baseDir + 'index.php' + serialiseInput(soInputs));
 							else
 								$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 							$("#soLink").trigger("click");
@@ -210,9 +210,9 @@
 		{
 			if (soBwdCompat)
 				if(rewriteActive)
-					$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
+					$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
 				else
-					$('#soFr').attr('src', baseDir + 'index.php' + serialiseInput(soInputs));
+					$('#soLink').attr('href', baseDir + 'index.php' + serialiseInput(soInputs));
 			else
 				$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 			$("#soLink").trigger("click");
