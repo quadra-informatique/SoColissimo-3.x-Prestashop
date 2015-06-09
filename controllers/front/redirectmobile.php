@@ -53,7 +53,9 @@ class SocolissimoRedirectmobileModuleFrontController extends ModuleFrontControll
 
 		Context::getContext()->smarty->assign(array(
 			'inputs' => $inputs,
-			'socolissimo_url' => $socolissimo_url
+			'socolissimo_url' => $socolissimo_url,
+			'logo' => Tools::getHttpHost(true).__PS_BASE_URI__.'modules/socolissimo/logo.gif',
+			'loader' => Tools::getHttpHost(true).__PS_BASE_URI__.'modules/socolissimo/img/ajax-loader.gif',
 		));
 
 		$this->setTemplate('redirect.tpl');

@@ -34,9 +34,9 @@
 				{foreach from=$inputs key=key item=val}
 					<input type="hidden" name="{$key|escape:'htmlall':'UTF-8'}" value="{$val|escape:'htmlall':'UTF-8'}"/>
 				{/foreach}
-				<img src="logo.gif" />
+				<img src="{$logo|escape:'htmlall':'UTF-8'}" />
 				<p>{l s='You will be redirect to socolissimo in few moment. If it is not the case, please click button.' mod='socolissimo'}</p>
-				<p><img src="img/ajax-loader.gif" /></p>
+				<p><img src="{$loader|escape:'htmlall':'UTF-8'}" /></p>
 				<input type="submit" value="Envoyer" />
 			</form>
 		</div>

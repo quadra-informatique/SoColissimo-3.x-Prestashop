@@ -58,7 +58,9 @@ $inputs['signature'] = $so->generateKey($inputs);
 $socolissimo_url = Configuration::get('SOCOLISSIMO_URL');
 Context::getContext()->smarty->assign(array(
 	'inputs' => $inputs,
-	'socolissimo_url' => $socolissimo_url
+	'socolissimo_url' => $socolissimo_url,
+	'logo' => 'logo.gif',
+	'loader' => 'ajax-loader.gif'
 ));
 
 Context::getContext()->smarty->display(_PS_MODULE_DIR_.'socolissimo/views/templates/front/redirect.tpl');
