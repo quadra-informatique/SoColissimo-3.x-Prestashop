@@ -11,6 +11,8 @@ class SocolissimoRedirectmobileModuleFrontController extends ModuleFrontControll
 {
 
 	public $ssl = true;
+	public $display_header = false;
+	public $display_footer = false;
 
 	/**
 	 * @see FrontController::initContent()
