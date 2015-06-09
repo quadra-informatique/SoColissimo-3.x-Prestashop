@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <script type="text/javascript">
-
+	var link_socolissimo = "{$link_socolissimo|escape:'html'}";
 	var soInputs = new Object();
 	var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
 	var initialCost_label = "{$initialCost_label|escape:'htmlall'}"
@@ -53,23 +53,17 @@
 						$('#form').attr("action", baseDir + 'modules/socolissimo/redirect_mobile.php' + serialiseInput(soInputs));
 				} else {
 					if ($("input[name*='delivery_option[']:checked").val().replace(",", "") == soCarrierId)
-						if(rewriteActive)
-							$('#form').attr('action', baseDir + 'modules/socolissimo/redirectmobile' + serialiseInput(soInputs));
-						else
-							$('#form').attr('action', baseDir + 'index.php' + serialiseInput(soInputs));
+						$('#form').attr('action', link_socolissimo + serialiseInput(soInputs));
 				}
 			});
 		});
 
 		function serialiseInput(inputs) {
 			var str = '?first_call=1&';
-			for (var cle in inputs) {
+			for (var cle in inputs)
 				str += cle + '=' + inputs[cle] + '&';
-			}
-			if (!soBwdCompat)
-				return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
-			else
-				return (str + 'module=socolissimo&controller=redirectmobile&fc=module&gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
+			return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
+			
 		}
 	{/literal}
 </script>

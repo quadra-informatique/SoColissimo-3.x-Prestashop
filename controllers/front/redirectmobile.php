@@ -45,7 +45,12 @@ class SocolissimoRedirectmobileModuleFrontController extends ModuleFrontControll
 		/* Add signature to get the gift and gift message in the trParamPlus */
 		$inputs['signature'] = $so->generateKey($inputs);
 
-		$socolissimo_url = Configuration::get('SOCOLISSIMO_URL_MOBILE');
+		// automatic settings api protocol for ssl
+		$protocol = 'http://';
+		if (Configuration::get('PS_SSL_ENABLED'))
+			$protocol = 'https://';
+		$socolissimo_url = $protocol.Configuration::get('SOCOLISSIMO_URL_MOBILE');
+
 		Context::getContext()->smarty->assign(array(
 			'inputs' => $inputs,
 			'socolissimo_url' => $socolissimo_url

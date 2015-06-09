@@ -49,6 +49,7 @@
 {/if}
 
 <script type="text/javascript">
+	var link_socolissimo = "{$link_socolissimo|escape:'html'}";
 	var soInputs = new Object();
 	var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
 	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
@@ -80,7 +81,7 @@
 			'enableEscapeButton': true,
 			'type': 'iframe',
 			onStart: function () {
-				$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs))
+				$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs))
 			},
 			onClosed: function () {
 				$.ajax({
@@ -160,10 +161,7 @@
 					{
 						if (acceptCGV()) {
 							if (soBwdCompat)
-								if(rewriteActive)
-									$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
-								else
-									$('#soLink').attr('href', baseDir + 'index.php' + serialiseInput(soInputs));
+								$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
 							else
 								$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 							$("#soLink").trigger("click");
@@ -209,10 +207,7 @@
 		function redirect()
 		{
 			if (soBwdCompat)
-				if(rewriteActive)
-					$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect' + serialiseInput(soInputs));
-				else
-					$('#soLink').attr('href', baseDir + 'index.php' + serialiseInput(soInputs));
+				$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
 			else
 				$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 			$("#soLink").trigger("click");
@@ -224,10 +219,7 @@
 			var str = '?first_call=1&';
 			for (var cle in inputs)
 				str += cle + '=' + inputs[cle] + '&';
-			if (!soBwdCompat)
-				return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
-			else
-				return (str + 'module=socolissimo&controller=redirect&fc=module&gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
+			return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));
 		}
 
 	{/literal}
