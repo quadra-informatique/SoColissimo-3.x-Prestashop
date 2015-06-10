@@ -53,5 +53,8 @@ if ($result['answer'] && !($result = $socolissimo->getDeliveryInfos(Context::get
 }
 
 header('Content-type: application/json');
-echo Tools::json_encode($result);
+if (version_compare(_PS_VERSION_, '1.5', '<'))
+	echo json_encode($result);
+else
+	echo Tools::json_encode($result);
 exit(0);

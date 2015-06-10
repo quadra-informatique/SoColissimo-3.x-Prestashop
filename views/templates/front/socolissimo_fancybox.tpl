@@ -81,7 +81,10 @@
 			'enableEscapeButton': true,
 			'type': 'iframe',
 			onStart: function () {
-				$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs))
+				if (soBwdCompat)
+					$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
+				else
+					$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 			},
 			onClosed: function () {
 				$.ajax({
