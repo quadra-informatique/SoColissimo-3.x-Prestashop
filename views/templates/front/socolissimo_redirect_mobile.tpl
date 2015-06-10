@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo|escape:'html'}";
+	var link_socolissimo = "{$link_socolissimo|escape:'UTF-8'}";
 	var soInputs = new Object();
 	var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
 	var initialCost_label = "{$initialCost_label|escape:'htmlall'}"
@@ -59,7 +59,10 @@
 		});
 
 		function serialiseInput(inputs) {
-			var str = '?first_call=1&';
+			if (soBwdCompat && !rewriteActive)
+				var str = '&first_call=1&';
+			else
+				var str = '?first_call=1&';
 			for (var cle in inputs)
 				str += cle + '=' + inputs[cle] + '&';
 			return (str + 'gift=' + $('#gift').attr('checked') + '&gift_message=' + $('#gift_message').attr('value'));

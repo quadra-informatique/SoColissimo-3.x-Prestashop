@@ -129,7 +129,6 @@ class Socolissimo extends CarrierModule
 	public function install()
 	{
 		if (!parent::install() || !Configuration::updateValue('SOCOLISSIMO_ID', null) || !Configuration::updateValue('SOCOLISSIMO_KEY', null)
-				|| !Configuration::updateValue('SOCOLISSIMO_VERSION', $this->version)
 				|| !Configuration::updateValue('SOCOLISSIMO_URL', 'ws.colissimo.fr/pudo-fo-frame/storeCall.do')
 				|| !Configuration::updateValue('SOCOLISSIMO_URL_MOBILE', 'ws-mobile.colissimo.fr/')
 				|| !Configuration::updateValue('SOCOLISSIMO_PREPARATION_TIME', 1)
@@ -183,6 +182,11 @@ class Socolissimo extends CarrierModule
 		if (!Db::getInstance()->execute($sql))
 			return false;
 
+		if (!version_compare(_PS_VERSION_, '1.5', '<'))
+			if (Shop::isFeatureActive())
+				Shop::setContext(Shop::CONTEXT_ALL);
+		if(!Configuration::updateValue('SOCOLISSIMO_VERSION', $this->version))
+			return false;
 		// Add carrier in back office
 		if (!$this->createSoColissimoCarrier($this->config))
 			return false;
@@ -895,6 +899,10 @@ class Socolissimo extends CarrierModule
 
 	public function hookUpdateCarrier($params)
 	{
+		if (!version_compare(_PS_VERSION_, '1.5', '<'))
+			if (Shop::isFeatureActive())
+				Shop::setContext(Shop::CONTEXT_ALL);
+			
 		if ((int)$params['id_carrier'] == (int)Configuration::get('SOCOLISSIMO_CARRIER_ID'))
 		{
 			Configuration::updateValue('SOCOLISSIMO_CARRIER_ID', (int)$params['carrier']->id);
@@ -962,6 +970,10 @@ class Socolissimo extends CarrierModule
 
 		if ($carrier->add())
 		{
+			if (!version_compare(_PS_VERSION_, '1.5', '<'))
+				if (Shop::isFeatureActive())
+					Shop::setContext(Shop::CONTEXT_ALL);
+			
 			Configuration::updateValue('SOCOLISSIMO_CARRIER_ID', (int)$carrier->id);
 			$groups = Group::getgroups(true);
 
@@ -1017,6 +1029,9 @@ class Socolissimo extends CarrierModule
 
 		if ($carrier->add())
 		{
+			if (!version_compare(_PS_VERSION_, '1.5', '<'))
+				if (Shop::isFeatureActive())
+					Shop::setContext(Shop::CONTEXT_ALL);
 			Configuration::updateValue('SOCOLISSIMO_CARRIER_ID_SELLER', (int)$carrier->id);
 			$groups = Group::getgroups(true);
 
