@@ -730,6 +730,10 @@ class Socolissimo extends CarrierModule
 		$module_link = '';
 		if (!version_compare(_PS_VERSION_, '1.5', '<'))
 			$module_link = $link->getModuleLink('socolissimo', 'redirect', array(), true);
+			
+		$module_link_mobile = '';
+		if (!version_compare(_PS_VERSION_, '1.5', '<'))
+			$module_link_mobile = $link->getModuleLink('socolissimo', 'redirectmobile', array(), true);
 		
 		// automatic settings api protocol for ssl
 		$protocol = 'http://';
@@ -751,7 +755,8 @@ class Socolissimo extends CarrierModule
 			'taxMention' => $this->l(' TTC'), // to change label for price in tpl
 			'finishProcess' => $this->l('To choose SoColissimo, click on a delivery method'),
 			'rewrite_active' => $rewrite_active,
-			'link_socolissimo' => $module_link
+			'link_socolissimo' => $module_link,
+			'link_socolissimo_mobile' => $module_link_mobile
 		));
 
 		$ids = array();

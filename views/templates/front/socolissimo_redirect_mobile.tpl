@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo|escape:'UTF-8'}";
+	var link_socolissimo = "{$link_socolissimo_mobile|escape:'UTF-8'}";
 	var soInputs = new Object();
 	var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
 	var initialCost_label = "{$initialCost_label|escape:'htmlall'}"
@@ -43,8 +43,12 @@
 				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price .price').html(initialCost_label + '<br/>' + initialCost);
 			else {
 				$('input.delivery_option_radio').each(function () {
-					if ($(this).val() == soCarrierId + ',')
+					if ($(this).val() == soCarrierId + ',') {
 						$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
+						// 1.6 themes
+						if ($(this).next().children('div.delivery_option_price').length == 0)
+							$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
+					}
 				});
 			}
 			$("#form").submit(function () {
