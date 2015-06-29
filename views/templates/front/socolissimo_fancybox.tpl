@@ -190,7 +190,7 @@
 				if (soBwdCompat) {
 					carrier.next().children().children().find('div.delivery_option_delay').append('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label}{literal}</a></div>');
 					// 1.6 theme
-					carrier.parent().parent().parent().parent().find('td.delivery_option_price').before('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label}{literal}</a></div>');
+					carrier.parent().parent().parent().parent().find('td.delivery_option_price').before('<td><div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" style="text-align:center;" >{/literal}{$select_label}{literal}</a></div></td>');
 				}
 				else
 					$(container).parent().siblings('.carrier_infos').append('<a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label}{literal}</a>');
