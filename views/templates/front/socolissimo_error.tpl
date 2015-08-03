@@ -33,6 +33,9 @@
 				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id}{literal},') {
 					$(this).remove();
 				}
+				if ($(this).find('input.delivery_option_radio').val() == '{/literal}{$id}{literal},') {
+					$(this).remove();
+				}
 			});
 			{/literal}
 		{literal}
