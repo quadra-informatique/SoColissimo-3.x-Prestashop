@@ -671,6 +671,16 @@ class Socolissimo extends CarrierModule
 					}
 				}
 			}
+			else
+			{
+				// for cart rule with restriction
+				$key_search = $id_carrier.',';
+				$deliveries_list = $params['cart']->getDeliveryOptionList();
+				foreach($deliveries_list as $deliveries)
+					foreach($deliveries as $key => $elt)
+						if($key == $key_search)
+							$free_shipping = $elt['is_free'];
+			}
 		}
 		if ($free_shipping)
 		{
@@ -751,7 +761,7 @@ class Socolissimo extends CarrierModule
 			'SOBWD_C' => (version_compare(_PS_VERSION_, '1.5', '<')) ? false : true, // Backward compatibility for js process in tpl
 			'inputs' => $inputs,
 			'initialCost_label' => $this->l('From'),
-			'initialCost' => $from_cost.' €', // to change label for price in tpl
+			'initialCost' => $from_cost.$this->l(' €'), // to change label for price in tpl
 			'taxMention' => $this->l(' TTC'), // to change label for price in tpl
 			'finishProcess' => $this->l('To choose SoColissimo, click on a delivery method'),
 			'rewrite_active' => $rewrite_active,
