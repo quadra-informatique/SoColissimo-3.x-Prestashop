@@ -29,10 +29,10 @@ class SocolissimoRedirectModuleFrontController extends ModuleFrontController
 		$inputs = array();
 		foreach ($_GET as $key => $value)
 			if (in_array($key, $fields))
-				$inputs[$key] = Tools::getValue($key);
+				$inputs[$key] = trim(Tools::getValue($key));
 
 		/* for belgium number specific format */
-		if (Tools::getIsset(Tools::getValue('cePays')) && Tools::getValue('cePays') == 'BE')
+		if (Tools::getValue('cePays') == 'BE')
 			if (isset($inputs['cePhoneNumber']) && strpos($inputs['cePhoneNumber'], '324') === 0)
 				$inputs['cePhoneNumber'] = '+324'.Tools::substr($inputs['cePhoneNumber'], 2);
 
