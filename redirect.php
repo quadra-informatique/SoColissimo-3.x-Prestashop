@@ -42,7 +42,7 @@ foreach ($_GET as $key => $value)
 /* for belgium number specific format */
 if (Tools::getValue('cePays') == 'BE')
 	if (isset($inputs['cePhoneNumber']) && strpos($inputs['cePhoneNumber'], '324') === 0)
-		$inputs['cePhoneNumber'] = '+324'.Tools::substr($inputs['cePhoneNumber'], 2);
+		$inputs['cePhoneNumber'] = '+324'.Tools::substr($inputs['cePhoneNumber'], 3);
 
 $param_plus = array(
 	/* Get the data set before */
