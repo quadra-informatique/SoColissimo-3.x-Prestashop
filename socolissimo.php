@@ -477,10 +477,6 @@ class Socolissimo extends CarrierModule
 		elseif (!Validate::isInt(Tools::getValue('dypreparationtime')))
 			$this->post_errors[] = $this->l('Invalid preparation time');
 
-		if (Tools::getValue('overcost') == null)
-			$this->post_errors[] = $this->l('Additional cost not specified');
-		elseif (!Validate::isFloat(Tools::getValue('overcost')))
-			$this->post_errors[] = $this->l('Invalid additional cost');
 		if ((int)Tools::getValue('id_socolissimo_allocation') == (int)Tools::getValue('id_socolissimocc_allocation'))
 			$this->post_errors[] = $this->l('Socolissimo carrier cannot be the same as socolissimo CC');
 	}
