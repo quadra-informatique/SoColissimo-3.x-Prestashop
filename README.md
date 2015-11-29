@@ -6,7 +6,7 @@ Quadra Informatique est partenaire de La Poste pour vous présenter So-Colissimo
 
 [Découvrez pas à pas la configuration du module Simplicité pour Prestashop][3]
 
-## Téléchargez et installez le module So Colissimo pour Prestashop
+## Téléchargez et installez le module
 
 [La dernière version stable du module est disponible ICI][4]
 
