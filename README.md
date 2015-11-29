@@ -1,32 +1,47 @@
-Module So Colissimo Simplicité pour Prestashop
-=============================
+# Module So Colissimo SimplicitÃ© pour Prestashop
 
-Quadra Informatique est partenaire de La Poste pour vous présenter So-Colissimo : découvrez dès maintenant la nouvelle solution de livraison de La Poste, exclusivement dédiée à l'e-commerce.
+Quadra Informatique est partenaire de La Poste pour vous prÃ©senter So-Colissimo : dÃ©couvrez dÃ¨s maintenant la nouvelle solution de livraison de La Poste, exclusivement dÃ©diÃ©e Ã  l'e-commerce.
 
-Manuel Utilisateur
---------
+## Manuel Utilisateur
 
-Découvrez pas à pas la configuration du module Simplicité pour Prestashop.
+[DÃ©couvrez pas Ã  pas la configuration du module SimplicitÃ© pour Prestashop][3]
 
-[Téléchargement du Manuel utilisateur][1]
+## TÃ©lÃ©chargez et installez le module So Colissimo pour Prestashop
 
-N'hésitez pas à nous faire des retours pour enrichir ce manuel.
+[La derniÃ¨re version stable du module est disponible ICI][4]
 
-Téléchargez et installez le module So Colissimo pour Prestashop
---------
+## Contributing
 
-La dernière version stable du module est disponible sur [Prestashop Addons][2]
+This module is an **open-source extension** to the PrestaShop e-commerce solution. Everyone is welcome and even encouraged to contribute with their own improvements.
 
+### Requirements for contributing
 
-Participez à la vie du Module Prestashop
---------
+Contributors **must** follow the following rules:
 
-Vous êtes développeur ? Technophile ? ou vous construisez une nouvelle boutique ?
-[Téléchargez la dernière version Release candidate du module][3]
+* **Make your Pull Request on the "master" branch**
+* Do NOT update the module's version number.
+* Follow [the coding standards][1].
 
-Celle version inclus les toutes dernières améliorations du module.
-N'hésitez pas à nous faire part de vos retours ou remarques.
+### Contributing process in details
 
-[1]: http://shop.quadra-informatique.fr/fr/index.php?controller=attachment&id_attachment=17
-[2]: http://addons.prestashop.com/fr/transport-logistique-livraison-modules-prestashop/1745-so-colissimo.html
-[3]: http://shop.quadra-informatique.fr/fr/index.php?controller=attachment&id_attachment=16
+Contributors wishing to edit a module's files should follow the following process:
+
+1. Create your GitHub account, if you do not have one already.
+2. Fork the ganalytics project to your GitHub account.
+3. Clone your fork to your local machine in the ```/modules``` directory of your PrestaShop installation.
+4. Create a branch in your local clone of the module for your changes.
+5. Change the files in your branch. Be sure to follow [the coding standards][1]!
+6. Push your changed branch to your fork in your GitHub account.
+7. Create a pull request for your changes **on the _'dev'_ branch** of the module's project. If you need help to make a pull request, read the [Github help page about creating pull requests][2].
+8. Wait for one of the core developers either to include your change in the codebase, or to comment on possible improvements you should make to your code.
+
+That's it: you have contributed to this open-source project! Congratulations!
+
+## Disclamer
+
+Per to the OSL 3 License, the Original Work is provided under this License on an "AS IS" BASIS and WITHOUT WARRANTY, either express or implied, including, without limitation, the warranties of non-infringement, merchantability or fitness for a particular purpose. THE ENTIRE RISK AS TO THE QUALITY OF THE ORIGINAL WORK IS WITH YOU. This DISCLAIMER OF WARRANTY constitutes an essential part of this License. No license to the Original Work is granted by this License except under this disclaimer.
+
+[1]: http://devdocs.magento.com/guides/v2.0/coding-standards/code-standard-php.html
+[2]: https://help.github.com/articles/using-pull-requests
+[3]: http://shop.quadra-informatique.fr/?controller=attachment&id_attachment=17
+[4]: http://shop.quadra-informatique.fr/?controller=attachment&id_attachment=16
