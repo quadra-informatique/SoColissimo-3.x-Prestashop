@@ -27,7 +27,7 @@
 <form action="{$smarty.server.REQUEST_URI|escape:'htmlall'}" method="post" class="form">
     <input type="hidden" value={if isset($taxrate)}{$taxrate}{else}0{/if} class="taxrate" name="taxrate" />
     <fieldset><legend><img src="{$moduleDir|escape:'htmlall'}/logo.gif" alt="" />{l s='Description' mod='socolissimo'}</legend>
-        {l s='SoColissimo is a service offered by La Poste, which allows you to offer buyers 5 modes of delivery.' mod='socolissimo'} :
+        {l s='Colissimo is a service offered by La Poste, which allows you to offer buyers 5 modes of delivery.' mod='socolissimo'} :
         <br/><br/><ul style ="list-style:disc outside none;margin-left:30px;">
             <li>{l s='Home delivery' mod='socolissimo'}.</li>
             <li>{l s='Home delivery (with appointment) between 5pm and 9:30pm ' mod='socolissimo'}.</li>
@@ -41,17 +41,17 @@
     <fieldset><legend><img src="{$moduleDir|escape:'htmlall'}/logo.gif" alt="" />{l s='Settings' mod='socolissimo'}</legend>
         <label style="color:#CC0000;text-decoration : underline;">{l s='Important' mod='socolissimo'} : </label>
         <div class="margin-form">
-            <p  style="width:500px">{l s='To open your SoColissimo account, please contact "La Poste" at this phone number: 3634 (French phone number).' mod='socolissimo'}</p>
+            <p  style="width:500px">{l s='To open your Colissimo account, please contact "La Poste" at this phone number: 3634 (French phone number).' mod='socolissimo'}</p>
         </div>
         <label>{l s='ID So' mod='socolissimo'} : </label>
         <div class="margin-form">
             <input type="text" name="id_user" value="{if isset($id_user)}{$id_user}{/if}" />
-            <p>{l s='Id user for back office SoColissimo.' mod='socolissimo'}</p>
+            <p>{l s='Id user for back office Colissimo.' mod='socolissimo'}</p>
         </div>
         <label>{l s='Key' mod='socolissimo'} : </label>
         <div class="margin-form">
             <input type="text" name="key" value="{if isset($key)}{$key}{/if}" />
-            <p>{l s='Secure key for back office SoColissimo.' mod='socolissimo'}</p>
+            <p>{l s='Secure key for back office Colissimo.' mod='socolissimo'}</p>
         </div>
         <label>{l s='Preparation time' mod='socolissimo'}: </label>
         <div class="margin-form">
@@ -92,12 +92,12 @@
         <label>{l s='Url So' mod='socolissimo'} : </label>
         <div class="margin-form">
             <input type="text" size="45" name="url_so" value="{if isset($url_so)}{$url_so|escape:'htmlall':'UTF-8'}{/if}" />
-            <p>{l s='Url of back office SoColissimo.' mod='socolissimo'}<br/></p>
+            <p>{l s='Url of back office Colissimo.' mod='socolissimo'}<br/></p>
         </div>
         <label>{l s='Url So Mobile' mod='socolissimo'} : </label>
         <div class="margin-form">
             <input type="text" size="45" name="url_so_mobile" value="{if isset($url_so_mobile)}{$url_so_mobile|escape:'htmlall':'UTF-8'}{/if}" />
-            <p>{l s='Url of back office SoColissimo Mobile. Customers with smartphones or ipad will be redirect there. Warning, this url do not allow delivery in belgium' mod='socolissimo'}
+            <p>{l s='Url of back office Colissimo Mobile. Customers with smartphones or ipad will be redirect there. Warning, this url do not allow delivery in belgium' mod='socolissimo'}
 			<br/></p>
         </div>
         <label>{l s='Display Mode' mod='socolissimo'} : </label>
@@ -116,7 +116,7 @@
             <label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="' . $this->l('Enabled') . '" title="' . $this->l('Enabled') . '" /></label>
             <input type="radio" name="sup_active" id="active_off" value="0" {if isset($sup_active) && !$sup_active}checked="checked"{/if}/>
                    <label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="' . $this->l('Disabled') . '" title="' . $this->l('Disabled') . '" /></label>
-            <p>{l s='Enable or disable the check availability  of SoColissimo service.' mod='socolissimo'}</p>
+            <p>{l s='Enable or disable the check availability  of Colissimo service.' mod='socolissimo'}</p>
         </div>
         <label>{l s='Url Supervision' mod='socolissimo'} : </label>
         <div class="margin-form">
@@ -134,7 +134,7 @@
                     {/if}
                 {/foreach}
             </select>
-            <p>{l s='Re allocation of SoColissimo id carrier.' mod='socolissimo'}</p>
+            <p>{l s='Re allocation of Colissimo id carrier.' mod='socolissimo'}</p>
         </div>
         <label>{l s='Allocation socolissimo CC' mod='socolissimo'} : </label>
         <div class="margin-form">
@@ -147,7 +147,7 @@
                     {/if}
                 {/foreach}
             </select>
-            <p>{l s='Re allocation of SoColissimo CC id carrier.' mod='socolissimo'}</p>
+            <p>{l s='Re allocation of Colissimo CC id carrier.' mod='socolissimo'}</p>
         </div>
         <div class="margin-form">
             <input type="submit" value="{l s='Save' mod='socolissimo'}" name="submitSave" class="button" style="margin:10px 0px 0px 25px;" />
@@ -155,7 +155,7 @@
     </fieldset></form>
 <div class="clear">&nbsp;</div>
 <fieldset><legend><img src="{$moduleDir}/logo.gif" alt="" />{l s='Information' mod='socolissimo'}</legend>
-    <p>{l s='Please fill in these two addresses in your Back Office SoColissimo.' mod='socolissimo'} : </p><br>
+    <p>{l s='Please fill in these two addresses in your Back Office Colissimo.' mod='socolissimo'} : </p><br>
     <label>{l s='Validation url' mod='socolissimo'} : </label>
     <div class="margin-form">
         <p>{if isset($validation_url)}{$validation_url}{/if}</p>

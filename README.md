@@ -1,4 +1,4 @@
-# Module So Colissimo Simplicité pour Prestashop
+# Module Colissimo Simplicité pour Prestashop
 
 Quadra Informatique est partenaire de La Poste pour vous présenter So-Colissimo : découvrez dès maintenant la nouvelle solution de livraison de La Poste, exclusivement dédiée à l'e-commerce.
 

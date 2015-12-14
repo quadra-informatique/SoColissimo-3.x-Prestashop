@@ -25,7 +25,7 @@
 */
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{socolissimo}prestashop>socolissimo_42ab10dea7d96b9c353e0f5bae43ec20'] = 'So Colissimo';
+$_MODULE['<{socolissimo}prestashop>socolissimo_42ab10dea7d96b9c353e0f5bae43ec20'] = 'Colissimo Simplicité';
 $_MODULE['<{socolissimo}prestashop>socolissimo_9e13e80360ceb625672531275f01ec1f'] = 'Offri ai tuoi clienti diverse modalità di consegna LaPoste.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_f8e355b97fa1be7a8d8c206aa66f0077'] = '\'Zona/e del corriere\'';
 $_MODULE['<{socolissimo}prestashop>socolissimo_690c1c6abf905b88281a7cd324af9942'] = '\'Gruppo Corriere\'';
@@ -36,7 +36,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_ac08649aa09ff3b879525627bf086dd1'
 $_MODULE['<{socolissimo}prestashop>socolissimo_a3a53f075adf77334cc34d0f7497ff44'] = '\'Url So\'';
 $_MODULE['<{socolissimo}prestashop>socolissimo_4d470fde8487e755a50e9235e3dc13ab'] = 'deve essere configurato per utilizzare questo modulo correttamente';
 $_MODULE['<{socolissimo}prestashop>socolissimo_b5a7adde1af5c87d7fd797b6245c2a39'] = 'Descrizione';
-$_MODULE['<{socolissimo}prestashop>socolissimo_d0b34d3e1cb0cc1150ae6bf650e9b569'] = 'SoColissimo è un servizio offerto da La Poste, che permette di offrire all\'acquirente 5 modalità di consegna';
+$_MODULE['<{socolissimo}prestashop>socolissimo_d0b34d3e1cb0cc1150ae6bf650e9b569'] = 'Colissimo è un servizio offerto da La Poste, che permette di offrire all\'acquirente 5 modalità di consegna';
 $_MODULE['<{socolissimo}prestashop>socolissimo_6cefaa978ccec960693d10cefeb2c2bf'] = 'A casa';
 $_MODULE['<{socolissimo}prestashop>socolissimo_46b7627e5f130e33f007ae9d430efe84'] = 'A casa com appuntamenti';
 $_MODULE['<{socolissimo}prestashop>socolissimo_36b6babbab9524441a49cc7c6e2bbbfa'] = 'Nello spazio Cityssimo';
@@ -46,11 +46,11 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_9fbff0971c06ee404f638e9abcbd9446'
 $_MODULE['<{socolissimo}prestashop>socolissimo_5b6cf869265c13af8566f192b4ab3d2a'] = 'Documentazione';
 $_MODULE['<{socolissimo}prestashop>socolissimo_f4f70727dc34561dfde1a3c529b6205c'] = 'Impostazioni';
 $_MODULE['<{socolissimo}prestashop>socolissimo_0ab984d91ab0a037bdf692bf0e73c349'] = 'Importante';
-$_MODULE['<{socolissimo}prestashop>socolissimo_58f73ae759adc826a9e15e26280cdaa4'] = 'Per aprire il tuo account SoColissimo, si prega di contattare \"La Poste\"  a questo numero telefonico: 3634 (numero di telefono francese)';
+$_MODULE['<{socolissimo}prestashop>socolissimo_58f73ae759adc826a9e15e26280cdaa4'] = 'Per aprire il tuo account Colissimo, si prega di contattare \"La Poste\"  a questo numero telefonico: 3634 (numero di telefono francese)';
 $_MODULE['<{socolissimo}prestashop>socolissimo_9c85d4c2bae6ab548fe23e57bd89ddc4'] = 'ID So';
-$_MODULE['<{socolissimo}prestashop>socolissimo_7b95472e0575adc1e3d90a2d7b51e496'] = 'ID utente per back office SoColissimo.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_7b95472e0575adc1e3d90a2d7b51e496'] = 'ID utente per back office Colissimo.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_897356954c2cd3d41b221e3f24f99bba'] = 'Chiave';
-$_MODULE['<{socolissimo}prestashop>socolissimo_fe78e0a947bf1e0c9e0d9485f40e69cb'] = 'Chiave sicura per back office SoColissimo.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_fe78e0a947bf1e0c9e0d9485f40e69cb'] = 'Chiave sicura per back office Colissimo.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_64979b52d796defbdf05356df9e37d57'] = 'Tempo di preparazione';
 $_MODULE['<{socolissimo}prestashop>socolissimo_c76660d589be9a49e8846e51b71744ae'] = 'Giorno/i';
 $_MODULE['<{socolissimo}prestashop>socolissimo_b503bab0c9a43c25045cb102487724af'] = 'Tempo medio di preparazione del materiale.';
@@ -60,18 +60,18 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_0dbced3ca25b864482dd16e405c0d762'
 $_MODULE['<{socolissimo}prestashop>socolissimo_da3291084cc788d52c68d1dd5cc98718'] = 'Costo aggiuntivo deve essere lo stesso del ColiPoste Back Office.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_3d9f139daab1faaf99dd7bd5b5c966de'] = 'Fare MOLTA ATTENZIONE con queste impostazioni, il cambiamento può causare un malfunzionamento del modulo';
 $_MODULE['<{socolissimo}prestashop>socolissimo_b0b2896e75025245cbb05e96bd1466d6'] = 'URL So';
-$_MODULE['<{socolissimo}prestashop>socolissimo_ce88aabea3b363c753b02ddcb2fbafff'] = 'URL del back office SoColissimo.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_ce88aabea3b363c753b02ddcb2fbafff'] = 'URL del back office Colissimo.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_45313bad96da16bf04f88c1fb39419b7'] = 'Fancybox';
 $_MODULE['<{socolissimo}prestashop>socolissimo_00d23a76e43b46dae9ec7aa9dcbebb32'] = 'Attivato';
 $_MODULE['<{socolissimo}prestashop>socolissimo_b9f5c797ebbf55adccdd8539a65a0241'] = 'Disattivato';
 $_MODULE['<{socolissimo}prestashop>socolissimo_678f3f992afdb9f6e90cd36497ea76a1'] = 'Se si attiva questa opzione, la pagina di socolissimo verrà visualizzata in una fancybox';
 $_MODULE['<{socolissimo}prestashop>socolissimo_85068ddf0b9bcbb6913008356fe328a0'] = 'Supervisione';
-$_MODULE['<{socolissimo}prestashop>socolissimo_fdd526b84abc0b8fc17060e62d022b84'] = 'Autorizza o meno la verifica di disponibilità dei servizi di SoColissimo';
+$_MODULE['<{socolissimo}prestashop>socolissimo_fdd526b84abc0b8fc17060e62d022b84'] = 'Autorizza o meno la verifica di disponibilità dei servizi di Colissimo';
 $_MODULE['<{socolissimo}prestashop>socolissimo_32996bdf4214d6cb8bf7fa02273813c8'] = 'Supervisione Url';
 $_MODULE['<{socolissimo}prestashop>socolissimo_af688489282270bcd9e3399db85e30df'] = 'L\'URL di supervisione è quello di garantire la disponibilità del servizio socolissimo. Non è consigliabile ai disabili.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_c9cc8cce247e49bae79f15173ce97354'] = 'Salva';
 $_MODULE['<{socolissimo}prestashop>socolissimo_a82be0f551b8708bc08eb33cd9ded0cf'] = 'Informazioni';
-$_MODULE['<{socolissimo}prestashop>socolissimo_3e387f5ebd657c6372f0594c8226863e'] = 'Qui ci sono due indirizzi che è necessario compilare nel tuo Back Office SoColissimo';
+$_MODULE['<{socolissimo}prestashop>socolissimo_3e387f5ebd657c6372f0594c8226863e'] = 'Qui ci sono due indirizzi che è necessario compilare nel tuo Back Office Colissimo';
 $_MODULE['<{socolissimo}prestashop>socolissimo_49977cbb6772deeac9ceb89f069e491c'] = 'Convalida degli URL';
 $_MODULE['<{socolissimo}prestashop>socolissimo_06dc3f24f73027164d2b19556118624e'] = 'Ritorno url';
 $_MODULE['<{socolissimo}prestashop>socolissimo_82c440defe28e2099cba1af1f0761807'] = 'ID SO non specificato';
@@ -84,7 +84,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_20015706a8cbd457cbb6ea3e7d5dc9b3'
 $_MODULE['<{socolissimo}prestashop>socolissimo_126d781eae70fa41e9e848f3013e1799'] = 'Impossibile salvare le impostazioni';
 $_MODULE['<{socolissimo}prestashop>socolissimo_898d22b4259367825dbbbc174f049197'] = 'Selezionare la modalità di consegna';
 $_MODULE['<{socolissimo}prestashop>socolissimo_6e55ec92b403f0ab31c29f62c837834a'] = 'Modifica modalità di consegna';
-$_MODULE['<{socolissimo}prestashop>socolissimo_7ea4eac85d1d1967562869cf1e14b1d0'] = 'Per scegliere SoColissimo, spunta un metodo di consegna';
+$_MODULE['<{socolissimo}prestashop>socolissimo_7ea4eac85d1d1967562869cf1e14b1d0'] = 'Per scegliere Colissimo, spunta un metodo di consegna';
 $_MODULE['<{socolissimo}prestashop>socolissimo_201bdb87f8e278b943d07ae924d5de6e'] = 'Modalità di consegna';
 $_MODULE['<{socolissimo}prestashop>socolissimo_ce26601dac0dea138b7295f02b7620a7'] = 'Cliente';
 $_MODULE['<{socolissimo}prestashop>socolissimo_1c76cbfe21c6f44c1d1e59d54f3e4420'] = 'Società';

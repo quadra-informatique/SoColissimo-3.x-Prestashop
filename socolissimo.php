@@ -34,7 +34,7 @@ class Socolissimo extends CarrierModule
 	private $post_errors = array();
 	private $api_num_version = '4.0';
 	private $config = array(
-		'name' => 'La Poste - So Colissimo',
+		'name' => 'La Poste - Colissimo Simplicité',
 		'id_tax_rules_group' => 0,
 		'url' => 'http://www.colissimo.fr/portail_colissimo/suivreResultat.do?parcelnumber=@',
 		'active' => true,
@@ -66,13 +66,13 @@ class Socolissimo extends CarrierModule
 		$this->tab = 'shipping_logistics';
 		$this->version = '2.9.22';
 		$this->author = 'Quadra Informatique';
-		$this->limited_countries = array('fr');
+		$this->limited_countries = array('fr','be');
 		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
 
 		parent::__construct();
 
 		$this->page = basename(__FILE__, '.php');
-		$this->displayName = $this->l('So Colissimo');
+		$this->displayName = $this->l('Colissimo Simplicité');
 		$this->description = $this->l('Offer your customer 5 different delivery methods with LaPoste.');
 		$protocol = function_exists('Tools::getProtocol') ? Tools::getProtocol() : 'http://';
 		if (Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE'))
@@ -288,7 +288,7 @@ class Socolissimo extends CarrierModule
 
 	public function getContent()
 	{
-		$this->_html .= '<h2>'.$this->l('So Colissimo').' Version '.Configuration::get('SOCOLISSIMO_VERSION').'</h2>';
+		$this->_html .= '<h2>'.$this->l('Colissimo Simplicité').' Version '.Configuration::get('SOCOLISSIMO_VERSION').'</h2>';
 
 		if (!empty($_POST) && (Tools::isSubmit('submitPersonalSave') || Tools::isSubmit('submitPersonalCancel')))
 			$validation = $this->postPersonalProcess();
@@ -864,7 +864,7 @@ class Socolissimo extends CarrierModule
 				|| in_array((int)$order->id_carrier, explode('|', Configuration::get('SOCOLISSIMO_CARRIER_ID_HIST')))) && !empty($delivery_infos))
 		{
 			$html = '<br><div class="panel"><fieldset style="width:400px;"><legend><img src="'.$this->_path.'logo.gif" alt="" /> ';
-			$html .= $this->l('So Colissimo').'</legend><b>'.$this->l('Delivery mode').' : </b>';
+			$html .= $this->l('Colissimo Simplicité').'</legend><b>'.$this->l('Delivery mode').' : </b>';
 
 			$sc_fields = new SCFields($delivery_infos['delivery_mode']);
 
@@ -1122,7 +1122,7 @@ class Socolissimo extends CarrierModule
 			$new_address->postcode = $return['przipcode'];
 			$new_address->city = $return['prtown'];
 			$new_address->id_country = $iso_code;
-			$new_address->alias = 'So Colissimo - '.date('d-m-Y');
+			$new_address->alias = 'Colissimo Simplicité - '.date('d-m-Y');
 			$new_address->phone_mobile = $return['cephonenumber'];
 
 			if (!in_array($return['delivery_mode'], array('DOM', 'RDV')))
@@ -1142,7 +1142,7 @@ class Socolissimo extends CarrierModule
 				$new_address->postcode = $return['przipcode'];
 				$new_address->city = $return['prtown'];
 				$new_address->id_country = $iso_code;
-				$new_address->alias = 'So Colissimo - '.date('d-m-Y');
+				$new_address->alias = 'Colissimo - '.date('d-m-Y');
 				$new_address->add();
 			}
 			return (int)$new_address->id;

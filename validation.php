@@ -232,7 +232,7 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 		{
 			isset($so_params['PRID']) ? $values['prid'] = pSQL($so_params['PRID']) : '';
 			isset($so_params['PRNAME']) ? $values['prname'] = Tools::ucfirst(pSQL($so_params['PRNAME'])) : '';
-			isset($delivery_mode[$so_params['DELIVERYMODE']]) ? $values['prfirstname'] = pSQL($delivery_mode[$so_params['DELIVERYMODE']]) : $values['prfirstname'] = 'So Colissimo';
+			isset($delivery_mode[$so_params['DELIVERYMODE']]) ? $values['prfirstname'] = pSQL($delivery_mode[$so_params['DELIVERYMODE']]) : $values['prfirstname'] = 'Colissimo';
 			isset($so_params['PRCOMPLADRESS']) ? $values['prcompladress'] = pSQL($so_params['PRCOMPLADRESS']) : '';
 			isset($so_params['PRADRESS1']) ? $values['pradress1'] = pSQL($so_params['PRADRESS1']) : '';
 			isset($so_params['PRADRESS2']) ? $values['pradress2'] = pSQL($so_params['PRADRESS2']) : '';
