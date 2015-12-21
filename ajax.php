@@ -53,5 +53,5 @@ if ($result['answer'] && !($result = $socolissimo->getDeliveryInfos(Context::get
 }
 
 header('Content-type: application/json');
-Tools::jsonEncode($result);
+echo Tools::jsonEncode($result);
 exit(0);
