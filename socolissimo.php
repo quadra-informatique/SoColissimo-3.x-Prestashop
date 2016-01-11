@@ -1122,7 +1122,7 @@ class Socolissimo extends CarrierModule
 			$new_address->postcode = $return['przipcode'];
 			$new_address->city = $return['prtown'];
 			$new_address->id_country = $iso_code;
-			$new_address->alias = 'Colissimo Simplicité - '.date('d-m-Y');
+			$new_address->alias = 'Colissimo - '.date('d-m-Y');
 			$new_address->phone_mobile = $return['cephonenumber'];
 
 			if (!in_array($return['delivery_mode'], array('DOM', 'RDV')))
