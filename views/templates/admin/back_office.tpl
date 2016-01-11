@@ -89,6 +89,24 @@
         </div>
     </fieldset>
     <div class="clear">&nbsp;</div>
+    <fieldset><legend><img src="{$moduleDir}/logo.gif" alt="" />{l s='Return URL' mod='socolissimo'}</legend>
+        <div class="margin-form"> 
+            {l s='Please fill in these two addresses in your' mod='socolissimo'}&nbsp;
+            <a href="https://www.colissimo.entreprise.laposte.fr/">{l s='Colissimo Enterprise account' mod='socolissimo'}</a>,
+            {l s='in the "Simplicity – Delivery options selection page"' mod='socolissimo'} 
+            {l s='and in the "Simplicity – Delivery options selection page (mobile version)" configuration pages' mod='socolissimo'}<br/>
+            </div>
+        <label>{l s='When the customer has successfully selected the delivery method (Validation)' mod='socolissimo'} : </label>
+        <div class="margin-form">
+            <p>{if isset($validation_url)}{$validation_url}{/if}</p>
+        </div>
+        <div class="clear">&nbsp;</div>
+        <label>{l s='When the client could not select the delivery method (Failed)' mod='socolissimo'} : </label>
+        <div class="margin-form">
+            <p>{if isset($return_url)}{$return_url}{/if}</p>
+        </div>
+    </fieldset>
+    <div class="clear">&nbsp;</div>
     <fieldset><legend><img src="{$moduleDir|escape:'htmlall'}/logo.gif" alt="" />{l s='Colissimo Simplicité System Settings' mod='socolissimo'}</legend>
         <div class="margin-form" style="color:red;font-weight:bold;"> 
             {l s='Be VERY CAREFUL with these settings, any changes may cause the module to malfunction.' mod='socolissimo'}<br/><br/>
@@ -171,23 +189,6 @@
             <input type="submit" value="{l s='Save' mod='socolissimo'}" name="submitSave" class="button" style="margin:10px 0px 0px 25px;" />
         </div>
     </fieldset></form>
-<div class="clear">&nbsp;</div>
-<fieldset><legend><img src="{$moduleDir}/logo.gif" alt="" />{l s='Information' mod='socolissimo'}</legend>
-    <div class="margin-form"> 
-        {l s='Please fill in these two addresses in your' mod='socolissimo'}&nbsp;
-        <a href="https://www.colissimo.entreprise.laposte.fr/">{l s='Colissimo Enterprise account' mod='socolissimo'}</a>,
-        {l s='in the "Simplicity – Delivery options selection page"' mod='socolissimo'} 
-        {l s='and in the "Simplicity – Delivery options selection page (mobile version)" configuration pages' mod='socolissimo'}<br/>
-        </div>
-    <label>{l s='Validation url' mod='socolissimo'} : </label>
-    <div class="margin-form">
-        <p>{if isset($validation_url)}{$validation_url}{/if}</p>
-    </div>
-    <label>{l s='Return url' mod='socolissimo'} : </label>
-    <div class="margin-form">
-        <p>{if isset($return_url)}{$return_url}{/if}</p>
-    </div>
-</fieldset>
 <div class="clear">&nbsp;</div>
 <fieldset><legend><img src="{$moduleDir}/logo.gif" alt="" />{l s='Save configuration' mod='socolissimo'}</legend>
     <div class="margin-form">
