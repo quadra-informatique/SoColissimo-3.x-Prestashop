@@ -1533,6 +1533,7 @@ class Socolissimo extends CarrierModule
 			';', '€', '~', '#', '{', '(', '[', '|', '\\', '^', ')', ']', '=', '}', '$', '¤', '£', '%', 'μ', '*', '§', '!', '°', '²', '"');
 		foreach ($array_unauthorised_api as $key => $value)
 			$str = str_replace($value, '', $str);
+		$str = preg_replace('/\s+/', ' ', $str);
 		return $str;
 	}
 
