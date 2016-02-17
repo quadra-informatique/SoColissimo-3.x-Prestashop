@@ -94,10 +94,13 @@ $_MODULE['<{socolissimo}prestashop>back_office_e8ef87f5b6dbb21f8ce723754d9a84c5'
 $_MODULE['<{socolissimo}prestashop>back_office_e0e6fe64136b218b8519159f5f12aab3'] = 'Par Téléphone : Appeler le';
 $_MODULE['<{socolissimo}prestashop>back_office_89e3f45d52e4eb6c500f7d5a991db3e5'] = '(depuis la France)';
 $_MODULE['<{socolissimo}prestashop>back_office_b85c36380d5c6d64f9f1f695c41529e1'] = 'En laissant un message';
+$_MODULE['<{socolissimo}prestashop>back_office_99e50117d92381279d37ee8e2e56e914'] = 'Manuel Commerçant';
+$_MODULE['<{socolissimo}prestashop>back_office_0b109c779a5057b45d8b06d3c05d6910'] = 'N\'hésitez pas à consulter le';
+$_MODULE['<{socolissimo}prestashop>back_office_fd54c99e2b37f92c479e2538d58a6130'] = 'pour vous aider à configurer le module.';
 $_MODULE['<{socolissimo}prestashop>back_office_13b57cd0aee37312d2fe3fb37e1f116c'] = 'Paramètres Colissimo Simplicité';
 $_MODULE['<{socolissimo}prestashop>back_office_517eecff5d2df414b6adfea07856c74e'] = 'Clé de cryptage';
 $_MODULE['<{socolissimo}prestashop>back_office_aa249f0e5da116b5e3afcc983896e715'] = 'Disponible dans votre';
-$_MODULE['<{socolissimo}prestashop>back_office_e455dff447a30594f630662cac2ce4a3'] = 'Espace Colissimo Entreprise';
+$_MODULE['<{socolissimo}prestashop>back_office_106aaf1d43f3c54b85f03a50d75d93ab'] = 'Colissimo Box';
 $_MODULE['<{socolissimo}prestashop>back_office_e560c4129cececb601e1e62bf73c6688'] = 'Identifiant Front Office';
 $_MODULE['<{socolissimo}prestashop>back_office_78d979636ca71507cfcc6368fa6c9ae3'] = 'Délai de préparation de commande';
 $_MODULE['<{socolissimo}prestashop>back_office_c76660d589be9a49e8846e51b71744ae'] = 'Jour(s)';
@@ -134,8 +137,8 @@ $_MODULE['<{socolissimo}prestashop>back_office_578096cb378fea4d78dc6e59fee84c31'
 $_MODULE['<{socolissimo}prestashop>back_office_7001bdc2a0dca0abf8cb633029c68ef6'] = 'Ce coût s\'applique en lieu et place du coût \"normal\" pour la livraison en commerce de proximité.  Un transporteur \"commerce de proximité\" a été crée afin de vous permettre de paramétrer son coût par tranche de prix/poids. Ses tarifs seront utilisés à la place de ceux du transporteur classique lors d\'une livraison en point commerce. Une fois configuré, merci de désactiver le transporteur \"commerce de proximité\".';
 $_MODULE['<{socolissimo}prestashop>back_office_de2f435741ad4ee91553202b8bcc0507'] = 'Transporteur Point de retrait';
 $_MODULE['<{socolissimo}prestashop>back_office_c12fa33252d42e12e6e6674b95a901c4'] = 'Transporteur utilisé pour déterminé le tarif de la livraison en point de retrait';
-$_MODULE['<{socolissimo}prestashop>back_office_c9cc8cce247e49bae79f15173ce97354'] = 'Sauvegarder';
 $_MODULE['<{socolissimo}prestashop>back_office_cf565402d32b79d33f626252949a6941'] = 'Enregistrer la configuration';
+$_MODULE['<{socolissimo}prestashop>back_office_c9cc8cce247e49bae79f15173ce97354'] = 'Sauvegarder';
 $_MODULE['<{socolissimo}prestashop>personnal_data_214157b085c3957c0e8974257eedbcb1'] = 'Étape préliminaire';
 $_MODULE['<{socolissimo}prestashop>personnal_data_6264ee9382870e7e4001f0b6a955e152'] = 'Afin d\'assurer le fonctionnement correct du module, veuillez compléter ce formulaire.';
 $_MODULE['<{socolissimo}prestashop>personnal_data_2e425432a80e80d146d26df8b7c7c6bc'] = 'Les champs suivis d\'une * sont obligatoires.';

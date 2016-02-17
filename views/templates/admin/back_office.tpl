@@ -47,8 +47,15 @@
         {l s='To open your Colissimo account, please contact' mod='socolissimo'} <b>{l s='La Poste' mod='socolissimo'}</b> :
         <ul>
             <li>{l s='By phone : Call' mod='socolissimo'}<b> 3634 </b>{l s='(French phone number)' mod='socolissimo'}</li>
-            <li><a href="https://www.colissimo.entreprise.laposte.fr/contact">{l s='By message' mod='socolissimo'}</a></li>
+            <li><a href="https://www.colissimo.entreprise.laposte.fr/contact" target="_blank">{l s='By message' mod='socolissimo'}</a></li>
         </ul>
+    </fieldset>
+    <div class="clear">&nbsp;</div>
+    <fieldset><legend><img src="{$moduleDir|escape:'htmlall'}/logo.gif" alt="" />{l s='Vendor manual' mod='socolissimo'}</legend>
+            {l s='Don\'t hesitate to read the' mod='socolissimo'} 
+        <b><a href="{$moduleDir|escape:'htmlall'}/readme_fr.pdf" target="_blank">{l s='Vendor manual' mod='socolissimo'} </a></b> 
+        {l s='to help you to configure the module' mod='socolissimo'} 
+
     </fieldset>
     <div class="clear">&nbsp;</div>
     <fieldset><legend><img src="{$moduleDir|escape:'htmlall'}/logo.gif" alt="" />{l s='Colissimo Simplicité Settings' mod='socolissimo'}</legend>
@@ -56,20 +63,20 @@
         <div class="margin-form">
             <input type="text" name="key" value="{if isset($key)}{$key}{/if}" />
             <p>{l s='Available in your' mod='socolissimo'}&nbsp;
-                <a href="https://www.colissimo.entreprise.laposte.fr">{l s='Colissimo Enterprise account' mod='socolissimo'}</a></p>
+                <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >{l s='Colissimo Box' mod='socolissimo'}</a></p>
         </div>
         <label>{l s='Front Offic Identifier' mod='socolissimo'} : </label>
         <div class="margin-form">
             <input type="text" name="id_user" value="{if isset($id_user)}{$id_user}{/if}" />
             <p>{l s='Available in your' mod='socolissimo'}&nbsp;
-                <a href="https://www.colissimo.entreprise.laposte.fr">{l s='Colissimo Enterprise account' mod='socolissimo'}</a></p>
+                <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >{l s='Colissimo Box' mod='socolissimo'}</a></p>
         </div>
         <label>{l s='Order Preparation time' mod='socolissimo'}: </label>
         <div class="margin-form">
             <input type="text" size="5" name="dypreparationtime" value="{if isset($dypreparationtime)}{$dypreparationtime}{else}0{/if}" />{l s='Day(s)' mod='socolissimo'}
             <p>{l s='Business days from Monday to Friday' mod='socolissimo'} <br><span style="color:red">
                     {l s='Must be the same paramter as in your' mod='socolissimo'}&nbsp;
-                    <a style="color:red" href="https://www.colissimo.entreprise.laposte.fr">{l s='Colissimo Enterprise account' mod='socolissimo'}</a></span></p>
+                    <a style="color:red" href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >{l s='Colissimo Box' mod='socolissimo'}</a></span></p>
         </div>
         <label>{l s='Expedition in belgium' mod='socolissimo'}: </label>
         <div class="margin-form">
@@ -85,17 +92,17 @@
             <input type="text" size="5" name="costbelgttc" class="costbelgttc" value="{if isset($supcostbelgttc)}{$supcostbelgttc|number_format:2:".":""}{else}0{/if}" readonly/> TTC
             <p>{l s='in addition to the cost of delivery in France' mod='socolissimo'} <br><span style="color:red">
                     {l s='Must be the same paramter as in your' mod='socolissimo'}&nbsp;
-                    <a style="color:red" href="https://www.colissimo.entreprise.laposte.fr">{l s='Colissimo Enterprise account' mod='socolissimo'}</a></span></p>
+                    <a style="color:red" href="https://www.colissimo.entreprise.laposte.fr" target="_blank">{l s='Colissimo Box' mod='socolissimo'}</a></span></p>
         </div>
     </fieldset>
     <div class="clear">&nbsp;</div>
     <fieldset><legend><img src="{$moduleDir}/logo.gif" alt="" />{l s='Return URL' mod='socolissimo'}</legend>
         <div class="margin-form"> 
             {l s='Please fill in these two addresses in your' mod='socolissimo'}&nbsp;
-            <a href="https://www.colissimo.entreprise.laposte.fr/">{l s='Colissimo Enterprise account' mod='socolissimo'}</a>,
+            <a href="https://www.colissimo.entreprise.laposte.fr/" target="_blank">{l s='Colissimo Box' mod='socolissimo'}</a>,
             {l s='in the "Simplicity – Delivery options selection page"' mod='socolissimo'} 
             {l s='and in the "Simplicity – Delivery options selection page (mobile version)" configuration pages' mod='socolissimo'}<br/>
-            </div>
+        </div>
         <label>{l s='When the customer has successfully selected the delivery method (Validation)' mod='socolissimo'} : </label>
         <div class="margin-form">
             <p>{if isset($validation_url)}{$validation_url}{/if}</p>
@@ -185,16 +192,19 @@
             </select>
             <p>{l s='Carrier used to get "Colissimo at a withdrawal point" cost' mod='socolissimo'}</p>
         </div>
+    </fieldset>
+    <div class="clear">&nbsp;</div>
+    <fieldset><legend><img src="{$moduleDir}/logo.gif" alt="" />{l s='Save configuration' mod='socolissimo'}</legend>
+        <div class="margin-form"> 
+            {l s='Don\'t hesitate to read the' mod='socolissimo'} 
+            <b><a href="{$moduleDir|escape:'htmlall'}/readme_fr.pdf" target="_blank">{l s='Vendor manual' mod='socolissimo'} </a></b> 
+            {l s='to help you to configure the module' mod='socolissimo'} 
+        </div>
         <div class="margin-form">
             <input type="submit" value="{l s='Save' mod='socolissimo'}" name="submitSave" class="button" style="margin:10px 0px 0px 25px;" />
         </div>
-    </fieldset></form>
-<div class="clear">&nbsp;</div>
-<fieldset><legend><img src="{$moduleDir}/logo.gif" alt="" />{l s='Save configuration' mod='socolissimo'}</legend>
-    <div class="margin-form">
-        <input type="submit" value="{l s='Save' mod='socolissimo'}" name="submitSave" class="button" style="margin:10px 0px 0px 25px;" />
-    </div>
-</fieldset>
+    </fieldset>
+</form>
 {literal}
     <script type="text/javascript">
         $(document).ready(function () {
