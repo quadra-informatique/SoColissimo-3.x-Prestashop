@@ -1117,8 +1117,10 @@ class Socolissimo extends CarrierModule
 				|| str_replace(array(' ', '.', '-', ',', ';', '+', '/', '\\', '+', '(', ')'), '', $ps_address->phone_mobile) != $return['cephonenumber'])
 		{
 			$new_address->id_customer = (int)$id_customer;
-			$new_address->lastname = preg_replace('/\d/', '', Tools::substr($return['prname'], 0, 32));
-			$new_address->firstname = preg_replace('/\d/', '', Tools::substr($return['prfirstname'], 0, 32));
+            $firstname = preg_replace('/\d/', '', Tools::substr($return['prfirstname'], 0, 32));
+            $lastname = preg_replace('/\d/', '', Tools::substr($return['prname'], 0, 32));
+			$new_address->lastname = trim($this->formatName($lastname));
+			$new_address->firstname = trim($this->formatName($firstname));
 			$new_address->postcode = $return['przipcode'];
 			$new_address->city = $return['prtown'];
 			$new_address->id_country = $iso_code;
@@ -1625,7 +1627,12 @@ class Socolissimo extends CarrierModule
             WHERE c.deleted = 0 AND c.id_carrier <> '.(int)$id_socolissimo);
 		}
 	}
-
+    
+    public function formatName($name)
+    {
+        return preg_replace('/[0-9!<>,;?=+()@#"°{}_$%:]/','', stripslashes($name));
+    }
+    
 	public function reallocationCarrier($id_socolissimo)
 	{
 		// carrier must be module carrier
