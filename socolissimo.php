@@ -1592,7 +1592,7 @@ class Socolissimo extends CarrierModule
 		if (version_compare(_PS_VERSION_, '1.5', '<'))
 		{
 			if (Configuration::get('SOCOLISSIMO_VERSION') != $this->version)
-				foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.20','2.9.21','2.9.22') as $version)
+				foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.20','2.9.21','2.9.22','2.9.24') as $version)
 				{
 					$file = dirname(__FILE__).'/upgrade/install-'.$version.'.php';
 					if (Configuration::get('SOCOLISSIMO_VERSION') < $version && file_exists($file))
@@ -1630,7 +1630,7 @@ class Socolissimo extends CarrierModule
     
     public function formatName($name)
     {
-        return preg_replace('/[0-9!<>,;?=+()@#"°{}_$%:]/','', stripslashes($name));
+        return preg_replace('/[0-9!<>,;?=+()@#"°{}_$%:]/','', Tools::stripslashes($name));
     }
     
 	public function reallocationCarrier($id_socolissimo)
