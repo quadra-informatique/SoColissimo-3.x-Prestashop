@@ -86,7 +86,7 @@
 				});
 			}
 
-			$('[name=processCarrier]').click(function () {
+			$("#form").submit(function () {
 				if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
 				{
 					if (acceptCGV(($('#hidden_cgv').val()))) {
