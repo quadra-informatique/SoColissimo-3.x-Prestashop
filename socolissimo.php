@@ -801,7 +801,7 @@ class Socolissimo extends CarrierModule
 					return $this->fetchTemplate('socolissimo_redirect_mobile.tpl');
 			}
 			else // 1.5
-			if (Context::getContext()->getMobileDevice() || _THEME_NAME_ == 'prestashop_mobile' || $this->isIpad())
+			if (Context::getContext()->getMobileDevice() || _THEME_NAME_ == 'prestashop_mobile' || $this->isIpad() || $this->isMobile() )
 				if (Configuration::get('PS_ORDER_PROCESS_TYPE'))
 				{
 					$tab_id_soco = explode('|', Configuration::get('SOCOLISSIMO_CARRIER_ID_HIST'));
@@ -1551,7 +1551,7 @@ class Socolissimo extends CarrierModule
 			$get_mobile_device = Context::getContext()->getMobileDevice();
 
 		// set api params for 4.0 and mobile
-		if ($get_mobile_device || $this->isIpad())
+		if ($get_mobile_device || $this->isIpad() || $this->isMobile() )
 		{
 			unset($inputs['CHARSET']);
 			$inputs['numVersion'] = '4.0';
@@ -1566,6 +1566,14 @@ class Socolissimo extends CarrierModule
 	public function isIpad()
 	{
 		return (bool)strpos($_SERVER['HTTP_USER_AGENT'], 'iPad');
+	}
+	
+	public function isMobile()
+	{		
+		if(  method_exists(Context::getContext()->mobile_detect,isMobile)  )
+			return (bool)Context::getContext()->mobile_detect->isMobile();
+		else
+			return false;		
 	}
 
 	public function fetchTemplate($name)
