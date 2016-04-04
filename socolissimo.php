@@ -67,7 +67,7 @@ class Socolissimo extends CarrierModule
 		$this->version = '2.9.25';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr','be');
-		$this->module_key = 'faa857ecf7579947c8eee2d9b3d1fb04';
+		$this->module_key = '8b991db851bdf7c64ca441f1a4481964';
 
 		parent::__construct();
 
