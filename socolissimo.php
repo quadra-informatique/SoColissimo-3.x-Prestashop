@@ -291,9 +291,7 @@ class Socolissimo extends CarrierModule
 		$this->_html .= '<h2>'.$this->l('Colissimo Simplicité').' Version '.Configuration::get('SOCOLISSIMO_VERSION').'</h2>';
 
 		if (!empty($_POST) && (Tools::isSubmit('submitPersonalSave') || Tools::isSubmit('submitPersonalCancel')))
-			$validation = $this->postPersonalProcess();
-		else
-			$validation = true;
+			$this->postPersonalProcess();
 
 		if (!empty($_POST) && Tools::isSubmit('submitSave'))
 		{
@@ -306,7 +304,7 @@ class Socolissimo extends CarrierModule
 		}
 
 		if (!Configuration::get('SOCOLISSIMO_PERSONAL_DATA') || !Configuration::get('SOCOLISSIMO_PERSONAL_SIRET'))
-			$this->displayPersonalDataForm($validation);
+			$this->displayPersonalDataForm(false);
 		/* var to report */
 		$module_dir = _MODULE_DIR_.$this->name;
 		$tax_rate = Tax::getCarrierTaxRate(Configuration::get('SOCOLISSIMO_CARRIER_ID'), null);
@@ -528,7 +526,7 @@ class Socolissimo extends CarrierModule
 
 	private function postProcess()
 	{
-		if (!Configuration::get('SOCOLISSIMO_PERSONAL_DATA') && !Configuration::get('SOCOLISSIMO_PERSONAL_SIRET'))
+		if (!Configuration::get('SOCOLISSIMO_PERSONAL_DATA') || !Configuration::get('SOCOLISSIMO_PERSONAL_SIRET'))
 			$this->_html .= '<div class="alert error" style="color:red;"><img src="'._PS_IMG_.'admin/forbbiden.gif" alt="nok"/>'.$this->l('Cannot save settings while mandatory infos not completed').'</div>';
 		else
 		{
@@ -1570,7 +1568,7 @@ class Socolissimo extends CarrierModule
 	
 	public function isMobile()
 	{		
-		if(  method_exists(Context::getContext()->mobile_detect,isMobile)  )
+		if (method_exists(Context::getContext()->mobile_detect,'isMobile'))
 			return (bool)Context::getContext()->mobile_detect->isMobile();
 		else
 			return false;		
