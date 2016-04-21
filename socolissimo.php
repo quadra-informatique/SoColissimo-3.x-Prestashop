@@ -290,7 +290,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->_html .= '<h2>'.$this->l('Colissimo Simplicité').' Version '.Configuration::get('SOCOLISSIMO_VERSION').'</h2>';
 
-		if (!empty($_POST) && (Tools::isSubmit('submitPersonalSave') || Tools::isSubmit('submitPersonalCancel')))
+		if (!empty($_POST) && Tools::isSubmit('submitPersonalSave'))
 			$this->postPersonalProcess();
 
 		if (!empty($_POST) && Tools::isSubmit('submitSave'))
