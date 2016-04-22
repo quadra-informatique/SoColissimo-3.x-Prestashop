@@ -64,7 +64,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.9.25';
+		$this->version = '2.10.0';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr','be');
 		$this->module_key = '8b991db851bdf7c64ca441f1a4481964';
@@ -136,7 +136,6 @@ class Socolissimo extends CarrierModule
 				|| !Configuration::updateValue('SOCOLISSIMO_COST_SELLER', false)
 				|| !Configuration::updateValue('SOCOLISSIMO_OVERCOST', 3.6)
 				|| !Configuration::updateValue('SOCOLISSIMO_SUP_URL', 'ws.colissimo.fr/supervision-pudo-frame/supervision.jsp')
-				|| !Configuration::updateValue('SOCOLISSIMO_SUP_BELG', true)
 				|| !Configuration::updateValue('SOCOLISSIMO_SUP', true)
 				|| !Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', false)
 				|| !Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', true)
@@ -176,6 +175,7 @@ class Socolissimo extends CarrierModule
 				  `lotacheminement` varchar(64) NOT NULL,
 				  `distributionsort` varchar(64) NOT NULL,
 				  `versionplantri` text(10) NOT NULL,
+				  `dyforwardingcharges` decimal(20.6) NOT NULL,
 				  PRIMARY KEY  (`id_cart`,`id_customer`)
 				) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;';
 
@@ -215,7 +215,6 @@ class Socolissimo extends CarrierModule
 		Configuration::deleteByName('SOCOLISSIMO_CARRIER_ID_SELLER');
 		Configuration::deleteByName('SOCOLISSIMO_SUP');
 		Configuration::deleteByName('SOCOLISSIMO_EXP_BEL');
-		Configuration::deleteByName('SOCOLISSIMO_SUP_BELG');
 		Configuration::deleteByName('SOCOLISSIMO_SUP_URL');
 		Configuration::deleteByName('SOCOLISSIMO_OVERCOST_TAX');
 
@@ -315,7 +314,6 @@ class Socolissimo extends CarrierModule
 		$dypreparationtime = (int)Tools::getValue('dypreparationtime', Configuration::get('SOCOLISSIMO_PREPARATION_TIME'));
 		$costseller = Tools::getValue('costseller', Configuration::get('SOCOLISSIMO_COST_SELLER'));
 		$exp_bel_activ = Tools::getValue('exp_bel_activ', Configuration::get('SOCOLISSIMO_EXP_BEL'));
-		$supcostbelg = (float)Tools::getValue('supcostbelg', Configuration::get('SOCOLISSIMO_SUP_BELG'));
 		$overcost = (float)Tools::getValue('overcost', number_format(Configuration::get('SOCOLISSIMO_OVERCOST'), 2, '.', ''));
 		$url_so = htmlentities(Tools::getValue('url_so', Configuration::get('SOCOLISSIMO_URL')), ENT_NOQUOTES, 'UTF-8');
 		$url_so_mobile = htmlentities(Tools::getValue('url_so_mobile', Configuration::get('SOCOLISSIMO_URL_MOBILE')), ENT_NOQUOTES, 'UTF-8');
@@ -348,7 +346,6 @@ class Socolissimo extends CarrierModule
 			'dypreparationtime' => $dypreparationtime,
 			'costseller' => $costseller,
 			'exp_bel_activ' => $exp_bel_activ,
-			'supcostbelg' => $supcostbelg,
 			'overcost' => $overcost,
 			'taxrate' => $tax_rate,
 			'url_so' => $url_so,
@@ -551,7 +548,6 @@ class Socolissimo extends CarrierModule
 					&& Configuration::updateValue('SOCOLISSIMO_URL_MOBILE', pSQL(Tools::getValue('url_so_mobile')))
 					&& Configuration::updateValue('SOCOLISSIMO_COST_SELLER', Tools::getValue('costseller'))
 					&& Configuration::updateValue('SOCOLISSIMO_EXP_BEL', (Tools::getValue('exp_bel_active')))
-					&& Configuration::updateValue('SOCOLISSIMO_SUP_BELG', (float)Tools::getValue('supcostbelg'))
 					&& Configuration::updateValue('SOCOLISSIMO_PREPARATION_TIME', (int)Tools::getValue('dypreparationtime'))
 					&& Configuration::updateValue('SOCOLISSIMO_OVERCOST', (float)Tools::getValue('overcost'))
 					&& Configuration::updateValue('SOCOLISSIMO_SUP_URL', Tools::getValue('url_sup'))
@@ -786,8 +782,7 @@ class Socolissimo extends CarrierModule
 		else
 			$this->context->smarty->assign('already_select_delivery', false);
 
-		if (($country->iso_code == 'FR' || ($country->iso_code == 'BE'
-				&& Configuration::get('SOCOLISSIMO_EXP_BEL'))) && (Configuration::Get('SOCOLISSIMO_ID') != null)
+		if ((Configuration::Get('SOCOLISSIMO_ID') != null)
 				&& (Configuration::get('SOCOLISSIMO_KEY') != null) && $this->checkAvailibility()
 				&& $this->checkSoCarrierAvailable((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'))
 				&& in_array((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'), $ids))
@@ -1336,10 +1331,26 @@ class Socolissimo extends CarrierModule
 		// apply overcost if needed
 		if (!empty($delivery_info))
 		{
-			if ($delivery_info['delivery_mode'] == 'RDV')
-				$shipping_cost += (float)Configuration::get('SOCOLISSIMO_OVERCOST');
-			if ($delivery_info['cecountry'] == 'BE')
-				$shipping_cost += (float)Configuration::get('SOCOLISSIMO_SUP_BELG');
+			// check api already return a shipping cost ?
+            $api_price = $this->getApiPrice((int)$this->context->cart->id);
+            if($api_price)
+            {
+				$carrier_colissimo = new Carrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'));
+				$address = new Address((int)$this->context->cart->id_address_delivery);
+                if (version_compare(_PS_VERSION_, '1.5', '<')) {
+                    $tax_carrier = new Tax($carrier_colissimo->id_tax);
+                    $tax = $tax_carrier->rate;
+                }
+                else
+                    $tax = $carrier_colissimo->getTaxesRate($address);
+                // must retrieve the price without tax if needed
+				if($tax)
+                {
+                    (float)$tax_rate = ((float)$tax / 100) + 1;
+                    $api_price = (float)$api_price / (float)$tax_rate;
+				}
+                return (float)$api_price;
+            }
 			if ($delivery_info['delivery_mode'] == 'A2P' && Configuration::get('SOCOLISSIMO_COST_SELLER') && $delivery_info['cecountry'] == 'FR')
 			{
 				if (Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER'))
@@ -1598,7 +1609,7 @@ class Socolissimo extends CarrierModule
 		if (version_compare(_PS_VERSION_, '1.5', '<'))
 		{
 			if (Configuration::get('SOCOLISSIMO_VERSION') != $this->version)
-				foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.20','2.9.21','2.9.22','2.9.24','2.9.25') as $version)
+				foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.20','2.9.21','2.9.22','2.9.24','2.9.25','2.10.0') as $version)
 				{
 					$file = dirname(__FILE__).'/upgrade/install-'.$version.'.php';
 					if (Configuration::get('SOCOLISSIMO_VERSION') < $version && file_exists($file))
@@ -1676,4 +1687,14 @@ class Socolissimo extends CarrierModule
 		}
 		return ($sum % 10 === 0);
 	}
+	
+	 public function getApiPrice($id_cart)
+    {
+        if((int)$id_cart) {
+			return Db::getInstance()->getValue('SELECT dyforwardingcharges
+            FROM '._DB_PREFIX_.'socolissimo_delivery_info
+            WHERE id_cart = '.(int)$id_cart);
+        }
+        return false;
+    }
 }

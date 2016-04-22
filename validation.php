@@ -163,7 +163,7 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 			( `id_cart`, `id_customer`, `delivery_mode`, `prid`, `prname`, `prfirstname`, `prcompladress`,
 			`pradress1`, `pradress2`, `pradress3`, `pradress4`, `przipcode`, `prtown`,`cecountry`, `cephonenumber`, `ceemail` ,
 			`cecompanyname`, `cedeliveryinformation`, `cedoorcode1`, `cedoorcode2`,`codereseau`, `cename`, `cefirstname`,`lotacheminement`,`distributionsort`,
-			`versionplantri`)
+			`versionplantri`,`dyforwardingcharges`)
 			VALUES ('.(int)$id_cart.','.(int)$id_customer.',';
 		if ($so_object->delivery_mode == SCFields::RELAY_POINT)
 			$sql .= '\''.pSQL($so_params['DELIVERYMODE']).'\',
@@ -189,7 +189,8 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
                     '.(isset($so_params['CEFIRSTNAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CEFIRSTNAME'])).'\'' : '\'\'').',
 					'.(isset($so_params['LOTACHEMINEMENT']) ? '\''.pSQL($so_params['LOTACHEMINEMENT']).'\'' : '\'\'').',
 					'.(isset($so_params['DISTRIBUTIONSORT']) ? '\''.pSQL($so_params['DISTRIBUTIONSORT']).'\'' : '\'\'').',
-					'.(isset($so_params['VERSIONPLANTRI']) ? '\''.pSQL($so_params['VERSIONPLANTRI']).'\'' : '\'\'').')';
+					'.(isset($so_params['VERSIONPLANTRI']) ? '\''.pSQL($so_params['VERSIONPLANTRI']).'\'' : '\'\'').',
+					'.(isset($so_params['DYFORWARDINGCHARGES']) ? '\''.pSQL($so_params['DYFORWARDINGCHARGES']).'\'' : '\'\'').')';
 		else
 			$sql .= '\''.pSQL($so_params['DELIVERYMODE']).'\',\'\',
 					'.(isset($so_params['CENAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CENAME'])).'\'' : '\'\'').',
@@ -213,7 +214,8 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
                     '.(isset($so_params['CEFIRSTNAME']) ? '\''.Tools::ucfirst(pSQL($so_params['CEFIRSTNAME'])).'\'' : '\'\'').',
 					'.(isset($so_params['LOTACHEMINEMENT']) ? '\''.pSQL($so_params['LOTACHEMINEMENT']).'\'' : '\'\'').',
 					'.(isset($so_params['DISTRIBUTIONSORT']) ? '\''.pSQL($so_params['DISTRIBUTIONSORT']).'\'' : '\'\'').',
-					'.(isset($so_params['VERSIONPLANTRI']) ? '\''.pSQL($so_params['VERSIONPLANTRI']).'\'' : '\'\'').')';
+					'.(isset($so_params['VERSIONPLANTRI']) ? '\''.pSQL($so_params['VERSIONPLANTRI']).'\'' : '\'\'').',
+					'.(isset($so_params['DYFORWARDINGCHARGES']) ? '\''.pSQL($so_params['DYFORWARDINGCHARGES']).'\'' : '\'\'').')';
 		if (Db::getInstance()->execute($sql))
 			return true;
 	}
@@ -252,6 +254,7 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 			isset($so_params['LOTACHEMINEMENT']) ? $values['lotacheminement'] = pSQL($so_params['LOTACHEMINEMENT']) : '';
 			isset($so_params['DISTRIBUTIONSORT']) ? $values['distributionsort'] = pSQL($so_params['DISTRIBUTIONSORT']) : '';
 			isset($so_params['VERSIONPLANTRI']) ? $values['versionplantri'] = pSQL($so_params['VERSIONPLANTRI']) : '';
+            isset($so_params['DYFORWARDINGCHARGES']) ? $values['dyforwardingcharges'] = pSQL($so_params['DYFORWARDINGCHARGES']) : '';
 			
 		}
 		else
@@ -278,6 +281,7 @@ function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object
 			isset($so_params['LOTACHEMINEMENT']) ? $values['lotacheminement'] = pSQL($so_params['LOTACHEMINEMENT']) : '';
 			isset($so_params['DISTRIBUTIONSORT']) ? $values['distributionsort'] = pSQL($so_params['DISTRIBUTIONSORT']) : '';
 			isset($so_params['VERSIONPLANTRI']) ? $values['versionplantri'] = pSQL($so_params['VERSIONPLANTRI']) : '';
+            isset($so_params['DYFORWARDINGCHARGES']) ? $values['dyforwardingcharges'] = pSQL($so_params['DYFORWARDINGCHARGES']) : '';
 		}
 		$where = ' `id_cart` =\''.(int)$id_cart.'\' AND `id_customer` =\''.(int)$id_customer.'\'';
 
