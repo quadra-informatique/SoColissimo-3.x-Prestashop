@@ -132,7 +132,6 @@ class Socolissimo extends CarrierModule
 				|| !Configuration::updateValue('SOCOLISSIMO_URL', 'ws.colissimo.fr/pudo-fo-frame/storeCall.do')
 				|| !Configuration::updateValue('SOCOLISSIMO_URL_MOBILE', 'ws-mobile.colissimo.fr/')
 				|| !Configuration::updateValue('SOCOLISSIMO_PREPARATION_TIME', 1)
-				|| !Configuration::updateValue('SOCOLISSIMO_EXP_BEL', true)
 				|| !Configuration::updateValue('SOCOLISSIMO_COST_SELLER', false)
 				|| !Configuration::updateValue('SOCOLISSIMO_OVERCOST', 3.6)
 				|| !Configuration::updateValue('SOCOLISSIMO_SUP_URL', 'ws.colissimo.fr/supervision-pudo-frame/supervision.jsp')
@@ -214,7 +213,6 @@ class Socolissimo extends CarrierModule
 		Configuration::deleteByName('SOCOLISSIMO_CARRIER_ID');
 		Configuration::deleteByName('SOCOLISSIMO_CARRIER_ID_SELLER');
 		Configuration::deleteByName('SOCOLISSIMO_SUP');
-		Configuration::deleteByName('SOCOLISSIMO_EXP_BEL');
 		Configuration::deleteByName('SOCOLISSIMO_SUP_URL');
 		Configuration::deleteByName('SOCOLISSIMO_OVERCOST_TAX');
 
@@ -313,7 +311,6 @@ class Socolissimo extends CarrierModule
 		$key = Tools::safeOutput(Tools::getValue('key', Configuration::get('SOCOLISSIMO_KEY')));
 		$dypreparationtime = (int)Tools::getValue('dypreparationtime', Configuration::get('SOCOLISSIMO_PREPARATION_TIME'));
 		$costseller = Tools::getValue('costseller', Configuration::get('SOCOLISSIMO_COST_SELLER'));
-		$exp_bel_activ = Tools::getValue('exp_bel_activ', Configuration::get('SOCOLISSIMO_EXP_BEL'));
 		$overcost = (float)Tools::getValue('overcost', number_format(Configuration::get('SOCOLISSIMO_OVERCOST'), 2, '.', ''));
 		$url_so = htmlentities(Tools::getValue('url_so', Configuration::get('SOCOLISSIMO_URL')), ENT_NOQUOTES, 'UTF-8');
 		$url_so_mobile = htmlentities(Tools::getValue('url_so_mobile', Configuration::get('SOCOLISSIMO_URL_MOBILE')), ENT_NOQUOTES, 'UTF-8');
@@ -345,7 +342,6 @@ class Socolissimo extends CarrierModule
 			'key' => $key,
 			'dypreparationtime' => $dypreparationtime,
 			'costseller' => $costseller,
-			'exp_bel_activ' => $exp_bel_activ,
 			'overcost' => $overcost,
 			'taxrate' => $tax_rate,
 			'url_so' => $url_so,
@@ -547,7 +543,6 @@ class Socolissimo extends CarrierModule
 					&& Configuration::updateValue('SOCOLISSIMO_URL', pSQL(Tools::getValue('url_so')))
 					&& Configuration::updateValue('SOCOLISSIMO_URL_MOBILE', pSQL(Tools::getValue('url_so_mobile')))
 					&& Configuration::updateValue('SOCOLISSIMO_COST_SELLER', Tools::getValue('costseller'))
-					&& Configuration::updateValue('SOCOLISSIMO_EXP_BEL', (Tools::getValue('exp_bel_active')))
 					&& Configuration::updateValue('SOCOLISSIMO_PREPARATION_TIME', (int)Tools::getValue('dypreparationtime'))
 					&& Configuration::updateValue('SOCOLISSIMO_OVERCOST', (float)Tools::getValue('overcost'))
 					&& Configuration::updateValue('SOCOLISSIMO_SUP_URL', Tools::getValue('url_sup'))
@@ -717,7 +712,7 @@ class Socolissimo extends CarrierModule
 			'trReturnUrlOk' => htmlentities($this->url, ENT_NOQUOTES, 'UTF-8'),
 			'CHARSET' => 'UTF-8',
 			'cePays' => $country->iso_code,
-			'trInter' => Configuration::get('SOCOLISSIMO_EXP_BEL'),
+			'trInter' => 1,
 			'ceLang' => 'FR'
 		);
 		if (!$inputs['dyForwardingChargesCMT'] && !Configuration::get('SOCOLISSIMO_COST_SELLER'))

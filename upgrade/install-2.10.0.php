@@ -44,6 +44,7 @@ function upgrade_module_2_10_0($object, $install = false)
 		Db::getInstance()->Execute($query);
 	}
     Configuration::deleteByName('SOCOLISSIMO_SUP_BELG');
+	Configuration::deleteByName('SOCOLISSIMO_EXP_BEL');
 	Configuration::updateValue('SOCOLISSIMO_VERSION', '2.10.0');
 	return true;
 }
