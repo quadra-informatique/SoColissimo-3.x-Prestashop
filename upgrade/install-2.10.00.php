@@ -27,9 +27,9 @@
 if (!defined('_PS_VERSION_'))
 	exit;
 
-function upgrade_module_2_10_0($object, $install = false)
+function upgrade_module_2_10_00($object, $install = false)
 {	
-	// add column dyforwardingcharges checking exitence first (2.10.0 update)
+	// add column dyforwardingcharges checking exitence first (2.10.00 update)
 	$query = 'SELECT * FROM INFORMATION_SCHEMA.COLUMNS
 			  WHERE COLUMN_NAME= "dyforwardingcharges"
 			  AND TABLE_NAME=  "'._DB_PREFIX_.'socolissimo_delivery_info"
@@ -45,6 +45,6 @@ function upgrade_module_2_10_0($object, $install = false)
 	}
     Configuration::deleteByName('SOCOLISSIMO_SUP_BELG');
 	Configuration::deleteByName('SOCOLISSIMO_EXP_BEL');
-	Configuration::updateValue('SOCOLISSIMO_VERSION', '2.10.0');
+	Configuration::updateValue('SOCOLISSIMO_VERSION', '2.10.00');
 	return true;
 }

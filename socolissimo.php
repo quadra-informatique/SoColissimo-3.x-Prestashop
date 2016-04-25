@@ -64,7 +64,7 @@ class Socolissimo extends CarrierModule
 	{
 		$this->name = 'socolissimo';
 		$this->tab = 'shipping_logistics';
-		$this->version = '2.10.0';
+		$this->version = '2.10.00';
 		$this->author = 'Quadra Informatique';
 		$this->limited_countries = array('fr','be');
 		$this->module_key = '8b991db851bdf7c64ca441f1a4481964';
@@ -1333,8 +1333,7 @@ class Socolissimo extends CarrierModule
 				$carrier_colissimo = new Carrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'));
 				$address = new Address((int)$this->context->cart->id_address_delivery);
                 if (version_compare(_PS_VERSION_, '1.5', '<')) {
-                    $tax_carrier = new Tax($carrier_colissimo->id_tax);
-                    $tax = $tax_carrier->rate;
+					$tax = Tax::getCarrierTaxRate($carrier_colissimo->id,$address->id);
                 }
                 else
                     $tax = $carrier_colissimo->getTaxesRate($address);
@@ -1604,10 +1603,10 @@ class Socolissimo extends CarrierModule
 		if (version_compare(_PS_VERSION_, '1.5', '<'))
 		{
 			if (Configuration::get('SOCOLISSIMO_VERSION') != $this->version)
-				foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.20','2.9.21','2.9.22','2.9.24','2.9.25','2.10.0') as $version)
+				foreach (array('2.8.0', '2.8.4', '2.8.5','2.9.20','2.9.21','2.9.22','2.9.24','2.9.25','2.10.00') as $version)
 				{
 					$file = dirname(__FILE__).'/upgrade/install-'.$version.'.php';
-					if (Configuration::get('SOCOLISSIMO_VERSION') < $version && file_exists($file))
+					if (version_compare(Configuration::get('SOCOLISSIMO_VERSION'), $version,'<') && file_exists($file))
 					{
 						include_once $file;
 						call_user_func('upgrade_module_'.str_replace('.', '_', $version), $this, $install);
