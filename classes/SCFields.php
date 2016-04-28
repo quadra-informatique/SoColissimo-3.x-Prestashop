@@ -218,9 +218,6 @@ class SCFields extends SCError
 	public function __construct($delivery = 'DOM')
 	{
 		parent::__construct();
-
-		include dirname(__FILE__).'/../backward_compatibility/backward.php';
-
 		$this->setDeliveryMode($delivery);
 	}
 

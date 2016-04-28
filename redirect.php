@@ -27,7 +27,6 @@
 require_once('../../config/config.inc.php');
 require_once(_PS_ROOT_DIR_.'/init.php');
 require_once(dirname(__FILE__).'/classes/SCFields.php');
-require_once(dirname(__FILE__).'/backward_compatibility/backward.php');
 
 $so = new SCfields('API');
 

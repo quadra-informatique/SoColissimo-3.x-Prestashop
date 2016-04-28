@@ -40,7 +40,7 @@ $display = new BWDisplay();
 $display->setTemplate(dirname(__FILE__).'/views/templates/front/error.tpl');
 
 $errors_list = array();
-$redirect = __PS_BASE_URI__.(version_compare(_PS_VERSION_, '1.5', '<') ? 'order.php?' : 'index.php?controller=order&');
+$redirect = __PS_BASE_URI__.'index.php?controller=order&';
 $so->context->smarty->assign('so_url_back', $redirect);
 
 $return = array();
