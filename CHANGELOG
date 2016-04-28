@@ -24,73 +24,143 @@
  *  International Registered Trademark & Property of PrestaShop SA
  */
 
-2.9.23 :
-- "SoColissimo Simplicité" is now "Colissimo Simplicité"
+# 2.10.00
+[-] MO : some retro 1.4 compat
+[-] MO : delete useless field belgium
+[-] MO : force international mode api
+[-] MO : delete useless cancel button on siret pop
+[-] MO : fix popup siret
+[*] MO : New module key
+[-] MO : Bad mobile detect 1.6
+[-] MO : avoid conflit with advanceeucompliace
 
-2.9.22 :
-- Delete field overcost in back office setting, it will not be used anymore by Laposte from october 2015.
-- fix belgium phone number format
-- fix cart rule for prestashop 1.6
+# 2.9.25
+[-] MO : Right function call stripslahes
+[-] MO : Bug fix for relais point name
+[-] MO : Vendor Manual & back office wording update
+[-] MO : bug fix on multiple space address field
 
-2.9.21 :
-- fix for redirect in fancybox mode
-- fix install for multishop
-- change api url to automatic settings for ssl if needed
- 
-2.9.20 :
-- Bug fix for calling API La poste in SSL for prestashop  1.5 and >
- 
-2.9.19 :
-- Add 3 new fields in table deliveries_info : lotacheminement, distributionsort, versionplantri
+# 2.9.24
+[-] MO : back office Wording update
+[-] MO : Address name too long
 
-2.9.16 :
-- Force SSL when SSL on all pages is actived
-- Enabled field TTC on translation
-- Minor visual improvement in back office order in 1.6
+# 2.9.23
+[*] Missing echo in last fix (report from ps repo)
+[*] "SoColissimo Simplicité" is now "Colissimo Simplicité"
 
-2.9.15 :
-- Switch ceaddress4 to ceaddress2 in validation.php for printing
-- Adding check validatity siret number
+# 2.9.22
+[-] MO : removing test on overcost field
+[-] MO : removing overcost field
+[-] MO : fix cartrule with carrier restriction
+[-] MO : bug fix belgium phone
+[-] MO : fix bug on cart rule restriction on carrier
+[-] MO : bug fix for format belgium phonenumber
+[-] MO : fix bug for non available country
+[*] MO : Update of documentation readme_fr
+[-] MO : fix alignment for OPC button in 1.6 themes
+[-] MO : report commit 65a4120.
 
-2.9.14 :
-- Siret number is now mandatory for new user
-- For old user siret number will be asked
-- encoding detection fixed on validation.php
+# 2.9.21
+[-] MO : add translation in error.tpl
+[-] MO : fix redirect for mobile
+[-] MO : fix redirect fancybox for prestashop 1.4
+[-] MO : fix redirect for 1.4 version
+[-] MO : fix for rewrite not actived and multishop
+[-] MO : fix hide header and footer load page
+[-] MO : bug fix for image not loading api page
+[-] MO : release candidat 2.9.21
+[-] MO : fix fancybox bug link to api la poste
 
-2.9.13 :
-- Fix bug gift and gif message on fancy box mode
-- Fix bug on trader compnay name encoding
-- adding at least one phone number on table socolissimo delivery
+# 2.9.20
+[-] MO : fix bug on install
+[-] MO : bug fix on SSL for prestashop > 1.5
 
-2.9.12 :
-- Fix bug free cost for CC carrier
-- Fix bug redirection to api mobile
+# 2.9.19
+[-] MO : reset optionnal field in delivery address
+[-] MO : adding new field in sql request
+[-] MO : adding fields in devlivery table
 
-2.9.8 :
-- Fix message notice with range on module page
-- Fix message error during checking step when tradename company have accentued char
- 
-Socolissimo 2.9.6 :
-- Some Coding standard prestashop
-- Fix bug OPC 1.6 themes
+# 2.9.18
+[-] MO : Align version number with Prestashop Repository
+[-] MO : adding phone mobile to address in any case
+[-] MO : adding pdf files
 
-Socolissimo
-2.8.5 :
+# 2.9.17
+[-] MO : add message when checkbox not checked
+[*] MO : remove space in translation file
+[*] MO : add texte for informations transmissions to partner
 
+# 2.9.16
+[*] MO : display of socolissimo information in order in BO
+[*] MO : force SSL and enabled translation
+
+# 2.9.15
+[*] MO : Check test for siret
+[*] MO : switch ceaddress4
+
+# 2.9.14
+[*] MO : bug fix on loading fancybox in admin 1.4
+[*] MO : siret number is now mandatory for new user
+
+# 2.9.13
+[*] MO : bug fix gift on fancybox mode
+[*] MO : bug fix on test trader company
+[*] MO : adding at least one phone number
+
+# 2.9.12
+[*] MO : bug fix redirection to api mobile
+[*] MO : bug fix for CC free cost
+
+# 2.9.11
+[*] MO : coding standard
+
+# 2.9.10
+[*] MO : bring back original .gitmodules
+
+# 2.9.9
+Merge commit "Bring back configuration key" from Quetzacoalt91 from Prestashop Repository
+
+# 2.9.8
+[*] MO : fix notice message a range
+[*] MO : bug fix on encoded comapny name
+[-] MO : fixed Notice message when save config
+[*] MO : bug fix translated cgv with accentued chars
+
+# 2.9.6
+[*] MO : fix bug 1.6 redirect to order.php
+[*] MO : standard coding + bug 1.6 themes
+
+# 2.9.5
+[*] missing images
+
+# 2.9.4
+[*] MO : Code refactoring
+
+# 2.9.3
+[-] MO : Bug in 5 steps checkout 1.6
+
+# 2.9.2
+[*]: version change for siret number
+[-] MO : siret number is mandatory
+
+# 2.9.1
+Use Tools::ssubstr instead of substr
+
+# 2.9.0
+Move the module to a dedicated repository to avoid recurring conflicts
+
+# 2.8.5
 - Add new Carrier for Seller Cost
 - This carrier is configurable like normal Carrier to allow price/weight bracket
 - It will be use in place of socolissimo if seller relay point is selected
 - It wont appeare in front office, and we recommanded to desactived it once configurated
-
 - seller cost in back office deleted, replaced by activation/desactivation seller cost carrier
 - Overcost for belgium now setting in HT , the amount in TTC visible for information.
 - bug fix rounded amount in front Office
 - bug fix delivery in belgium in post office
 - Improvement relay point shipping address: the customer name, fisrtname now appears in address before name of relay point.
 
-
-2.8 :
-
+# 2.8
 - API socolissimo 4.0
 - Add seller unique cost for seller delivery
 - Add delivery in Belgium
@@ -101,8 +171,7 @@ Socolissimo
     - OPC now working for both 1.4 and 1.5
 - Note : OPC mobile theme 1.5 not available yet , will be soon.
 
-2.3 :
-
+# 2.3
 - Add Backward compatibility to use the module on 1.4 / 1.5 PrestaShop version.
 	(OPC and 5 steps process works)
 
