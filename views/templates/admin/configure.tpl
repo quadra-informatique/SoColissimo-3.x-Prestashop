@@ -23,8 +23,8 @@
 *  
 *}
 <div class="panel">
-    <div class="row mercanet-header">
-        <img src="{$module_dir|escape:'html':'UTF-8'}views/img/socolissimo.jpg" class="col-xs-6 col-md-4 text-center" id="payment-logo" />
+    <div class="row colissimo-header">
+        <img src="{$module_dir|escape:'html':'UTF-8'}views/img/colissimo.png" class="col-xs-6 col-md-4 text-center" id="colissimo-logo" />
         <div class="col-xs-6 col-md-7">
             <h4>{l s='About Socolissimo Simplicité' mod='socolissimo'} {$colissimo_version}</h4>
             <h5 class="text-branded">{l s='Colissimo Simplicité is a service offered by La Poste, which allows you to offer your customers multiple modes of delivery' mod='socolissimo'} :</h5>
@@ -41,28 +41,31 @@
                     <li>{l s='In one of the 18 000 Pickup Relays available in France' mod='socolissimo'}</li>
                 </ul>
             </ul>
-                    <h5> {l s='To open your Colissimo account, please contact' mod='socolissimo'} <b>{l s='La Poste' mod='socolissimo'}</b> :</h5>
-        <ul>
-            <li>{l s='By phone : Call' mod='socolissimo'}<b> 3634 </b>{l s='(French phone number)' mod='socolissimo'}</li>
-            <li><a href="https://www.colissimo.entreprise.laposte.fr/contact" target="_blank">{l s='By message' mod='socolissimo'}</a></li>
-        </ul>
+            <h5>  <b>{l s='La Poste' mod='socolissimo'}</b> :</h5>
+            <ul>
+                <li><b> 3634 </b>{l s='(French phone number)' mod='socolissimo'}</li>
+                <li><a href="https://www.colissimo.entreprise.laposte.fr/contact" target="_blank">{l s='By message' mod='socolissimo'}</a></li>
+            </ul>
             <em class="text-muted small">
                 * {l s='In hac habitasse platea dictumst. Pellentesque dictum, nunc sit amet dapibus tincidunt, nibh dolor efficitur lacus, ut commodo purus urna vel eros.' mod='socolissimo'}
             </em>
         </div>
         <div class="col-xs-12 col-md-2 text-center">
-            <h5 class="text-branded">{l s='Contact our merchant support' mod='socolissimo'}</h5>
-            <h4 class="text-branded">0123 456 789</h4>
-            <em class="text-muted small">
-                {l s='Monday to Friday,' mod='socolissimo'}<br/>
-                {l s='from 8H to 17h30; 0,15€/min' mod='socolissimo'}
-            </em>
-            <p><br/>{l s='or' mod='socolissimo'}</p>
-            <p><a href="mailto:modules@quadra-informatique.fr">modules@quadra-informatique.fr</a></p>
-            <h4><img src="{$module_dir|escape:'htmlall'}/logo.gif" alt="" />{l s='Vendor manual' mod='socolissimo'}</h4>
+            <h5 class="text-branded">{l s='To open your Colissimo account, please contact' mod='socolissimo'}</h5>
+            {l s='By phone : Call' mod='socolissimo'}
+            <h4 class="text-branded">3634</h4>
+            <hr/>
+            <h4>{l s='Vendor manual' mod='socolissimo'}</h4>
             {l s='Don\'t hesitate to read the' mod='socolissimo'} 
-        <b><a href="{$module_dir|escape:'htmlall'}/readme_fr.pdf" target="_blank">{l s='Vendor manual' mod='socolissimo'} </a></b> 
-        {l s='to help you to configure the module' mod='socolissimo'} 
+            <b><a href="{$module_dir|escape:'htmlall'}/readme_fr.pdf" target="_blank">{l s='Vendor manual' mod='socolissimo'} </a></b> 
+            {l s='to help you to configure the module' mod='socolissimo'} 
+            <hr/>
+            <h5 class="text-branded">{l s='Contact our merchant support' mod='socolissimo'}</h5>
+            <h4 class="text-branded">0825 086 005</h4>
+            <em class="text-muted small">
+                {l s='du lundi au vendredi, de 8h à 18h.' mod='socolissimo'}<br/>
+                {l s='Prononcer « Incident », puis « Solutions Web », à l’énoncé des choix disponibles' mod='socolissimo'}
+            </em>
         </div>
     </div>
 </div>
