@@ -1,4 +1,3 @@
-<?php
 /**
 * 2007-2016 PrestaShop
 *
@@ -25,71 +24,36 @@
 */
 
 
-#content .tab-pane:first-child .panel {
-    border-top-left-radius: 0;
-}
-
-.colissimo-header .text-branded {
-    color: #3c3c3b;
-}
-
 .colissimo-header h4{
-    margin: 2px 0;
-    color: #3c3c3b;
+    margin: 10px 0;
     font-size: 1.8em;
-}
-
-.colissimo-header h4 {
-    margin-top: 5px;
-}
-
-.colissimo-header .col-md-6 {
-    margin-top: 18px;
-}
-
-.colissimo-header h4 {
-    margin-bottom: 10px;
 }
 
 .colissimo-header h5 {
     font-size: 1.4em;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 .colissimo-header h6 {
     font-size: 1.3em;
-    margin: 1px 0 4px 0;
+    margin: 10px 0;
 }
 
-.colissimo-header #colissimo-logo {
-    width:262px;
-    height:220px;
+.colissimo-header .support p {
+    margin: 10px 0 0 0;
 }
 
-.colissimo-header > .col-md-7 {
-    vertical-align: middle;
-    border-left: 1px solid #ddd;
-    padding-left: 20px;
+.colissimo-header div h4:first-child,
+.colissimo-header div h5:first-child {
+    margin: 0 0 10px 0 ;
 }
 
-.colissimo-header > .col-md-7:first-child {
-    border-left: none;
+#content.bootstrap .colissimo-about h3 {
+    margin-top:20px;
 }
 
-.colissimo-header #create-account-btn {
-    margin-top: 20px;
-    background-color: #3c3c3b;
-}
-
-.colissimo-header dd,
-.colissimo-header dt {
-    margin-top: 5px;
-}
-
-.colissimo-header ul {
-    padding-left: 15px;
-}
-
-.colissimo-header .ul-spaced li {
-    margin-bottom: 5px;
+.colissimo-header #colissimo-logo,
+.colissimo-about img {
+    max-width: 100%;
+    height: auto;
 }

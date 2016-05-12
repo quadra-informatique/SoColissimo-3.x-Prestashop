@@ -160,11 +160,11 @@ class Socolissimo extends CarrierModule
             !Configuration::updateValue('SOCOLISSIMO_ID', null) ||
             !Configuration::updateValue('SOCOLISSIMO_KEY', null) ||
             !Configuration::updateValue('SOCOLISSIMO_URL', 'ws.colissimo.fr/pudo-fo-frame/storeCall.do') ||
-            !Configuration::updateValue('SOCOLISSIMO_URL_MOBILE', 'ws-mobile.colissimo.fr/') || 
-            !Configuration::updateValue('SOCOLISSIMO_PREPARATION_TIME', 1) || 
-            !Configuration::updateValue('SOCOLISSIMO_COST_SELLER', false) || 
-            !Configuration::updateValue('SOCOLISSIMO_OVERCOST', 3.6) || 
-            !Configuration::updateValue('SOCOLISSIMO_SUP_URL', 'ws.colissimo.fr/supervision-pudo-frame/supervision.jsp') || 
+            !Configuration::updateValue('SOCOLISSIMO_URL_MOBILE', 'ws-mobile.colissimo.fr/') ||
+            !Configuration::updateValue('SOCOLISSIMO_PREPARATION_TIME', 1) ||
+            !Configuration::updateValue('SOCOLISSIMO_COST_SELLER', false) ||
+            !Configuration::updateValue('SOCOLISSIMO_OVERCOST', 3.6) ||
+            !Configuration::updateValue('SOCOLISSIMO_SUP_URL', 'ws.colissimo.fr/supervision-pudo-frame/supervision.jsp') ||
             !Configuration::updateValue('SOCOLISSIMO_SUP', true) ||
             !Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', false) ||
             !Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', true) ||
@@ -246,8 +246,15 @@ class Socolissimo extends CarrierModule
         Configuration::deleteByName('SOCOLISSIMO_OVERCOST_TAX');
         Configuration::deleteByName('SOCOLISSIMO_PERSONAL_DATA');
 
-        if (!parent::uninstall() || !Db::getInstance()->execute('DROP TABLE IF EXISTS `'._DB_PREFIX_.'socolissimo_delivery_info`') || !$this->unregisterHook('extraCarrier') || !$this->unregisterHook('payment')
-            || !$this->unregisterHook('AdminOrder') || !$this->unregisterHook('newOrder') || !$this->unregisterHook('updateCarrier') || !$this->unregisterHook('paymentTop') || !$this->unregisterHook('backOfficeHeader'))
+        if (!parent::uninstall() ||
+            !Db::getInstance()->execute('DROP TABLE IF EXISTS `'._DB_PREFIX_.'socolissimo_delivery_info`') ||
+            !$this->unregisterHook('extraCarrier') ||
+            !$this->unregisterHook('payment') ||
+            !$this->unregisterHook('AdminOrder') ||
+            !$this->unregisterHook('newOrder') ||
+            !$this->unregisterHook('updateCarrier') ||
+            !$this->unregisterHook('paymentTop') ||
+            !$this->unregisterHook('backOfficeHeader'))
             return false;
 
         // Delete So Carrier
@@ -351,11 +358,24 @@ class Socolissimo extends CarrierModule
             )
         );
         //======================================================================
+        // INFO TAB
+        $form['tabs']['about'] = $this->l('About Colissimo Informations');
+
+        $form['input'][] = array(
+            'tab' => 'about',
+            'type' => 'html',
+            'name' => 'about',
+            'html_content' => $this->context->smarty->fetch($this->local_path.'views/templates/admin/about.tpl'),
+        );
+
+        //======================================================================
         // CREDENTIALS TAB
+        $form['tabs']['credentials'] = $this->l('Merchant Informations');
+
         $form['input'][] = array(
             'tab' => 'credentials',
             'type' => 'text',
-            'col' => 1,
+            'col' => 2,
             'required' => true,
             'label' => $this->l('Phone number'),
             'name' => 'SOCOLISSIMO_PERSONAL_PHONE',
@@ -364,7 +384,7 @@ class Socolissimo extends CarrierModule
         $form['input'][] = array(
             'tab' => 'credentials',
             'type' => 'text',
-            'col' => 1,
+            'col' => 2,
             'required' => true,
             'label' => $this->l('Zip code'),
             'name' => 'SOCOLISSIMO_PERSONAL_ZIP_CODE',
@@ -394,7 +414,7 @@ class Socolissimo extends CarrierModule
         $form['input'][] = array(
             'tab' => 'credentials',
             'type' => 'text',
-            'col' => 1,
+            'col' => 2,
             'required' => true,
             'label' => $this->l('Siret'),
             'name' => 'SOCOLISSIMO_PERSONAL_SIRET',
@@ -425,33 +445,35 @@ class Socolissimo extends CarrierModule
         if (!Configuration::get('SOCOLISSIMO_PERSONAL_DATA'))
             return $form;
         else
-            $form['tabs']['credentials'] = $this->l('Merchant Informations');
+
 
         //======================================================================
         // GENERAL TAB
-        $form['tabs']['general'] = $this->l('Your Colissimo Box');
+            $form['tabs']['general'] = $this->l('Your Colissimo Box');
 
         $form['input'][] = array(
             'tab' => 'general',
-            'col' => 2,
+            'col' => 3,
             'type' => 'text',
             'required' => true,
             'label' => $this->l('Encryption key'),
             'name' => 'SOCOLISSIMO_KEY',
-            'desc' => $this->l('Available in your ').' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a>'
+            'desc' => $this->l('Available in your ').' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a>'.'<br/>'.
+            $this->l('by using the menu "Applications > Delivery > Choice of delivery methods" ')
         );
         $form['input'][] = array(
             'tab' => 'general',
-            'col' => 2,
+            'col' => 3,
             'type' => 'text',
             'required' => true,
             'label' => $this->l('Front Office Identifier'),
             'name' => 'SOCOLISSIMO_ID',
-            'desc' => $this->l('Available in your ').' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a>'
+            'desc' => $this->l('Available in your ').' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a>'.'<br/>'.
+            $this->l('by using the menu "Applications > Delivery > Choice of delivery methods" ')
         );
         $form['input'][] = array(
             'tab' => 'general',
-            'col' => 2,
+            'col' => 3,
             'type' => 'text',
             'required' => true,
             'label' => $this->l('Order Preparation time'),
