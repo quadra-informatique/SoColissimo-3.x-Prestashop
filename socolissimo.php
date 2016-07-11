@@ -1493,10 +1493,6 @@ class Socolissimo extends CarrierModule
 
     public function getOrderShippingCost($params, $shipping_cost)
     {
-        // bug in 1.4 cartAdmin
-        if (!$this->context->cart instanceof Cart || !$this->context->cart->id)
-            $this->context->cart = new Cart($params->id);
-
         // for label in tpl
         if (!$this->initial_cost)
             $this->initial_cost = $this->getStandardCost();

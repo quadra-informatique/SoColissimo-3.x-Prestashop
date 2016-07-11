@@ -113,18 +113,8 @@
 		{
 			var interval;
 			$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
-			// 1.4 way
-			if (!soBwdCompat)
-			{
-				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price .price').html(initialCost_label + '<br/>' + initialCost);
-				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price').css('white-space', 'nowrap');
-				$('input[name=id_carrier]').change(function () {
-					so_click();
-				});
-				so_click();
-			}
-			// 1.5 way
-			else {
+			
+			
 				$('input.delivery_option_radio').each(function ()
 				{
 					if ($(this).val() == soCarrierId + ',') {
@@ -136,7 +126,7 @@
 				});
 				if (soCarrierId)
 					so_click();
-			}
+			
 			$('.delivery_option').each(function ( ) {
 				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id_carrier_seller}{literal},') {
 					$(this).remove();
@@ -163,10 +153,7 @@
 					if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
 					{
 						if (acceptCGV()) {
-							if (soBwdCompat)
-								$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
-							else
-								$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+							$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
 							$("#soLink").trigger("click");
 						}
 						return false;
@@ -178,22 +165,12 @@
 
 		function modifyCarrierLine()
 		{
-			if (soBwdCompat)
-				var carrier = $('input.delivery_option_radio:checked');
-
-			else {
-				var carrier = $('input[name=id_carrier]:checked');
-				var container = '#id_carrier' + soCarrierId;
-			}
+			var carrier = $('input.delivery_option_radio:checked');
 
 			if ((carrier.val() == soCarrierId) || (carrier.val() == soCarrierId + ',')) {
-				if (soBwdCompat) {
-					carrier.next().children().children().find('div.delivery_option_delay').append('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label}{literal}</a></div>');
-					// 1.6 theme
-					carrier.parent().parent().parent().parent().find('td.delivery_option_price').before('<td><div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" style="text-align:center;" >{/literal}{$select_label}{literal}</a></div></td>');
-				}
-				else
-					$(container).parent().siblings('.carrier_infos').append('<a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label}{literal}</a>');
+				carrier.next().children().children().find('div.delivery_option_delay').append('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label}{literal}</a></div>');
+				// 1.6 theme
+				carrier.parent().parent().parent().parent().find('td.delivery_option_price').before('<td><div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" style="text-align:center;" >{/literal}{$select_label}{literal}</a></div></td>');
 			} else {
 				$('#button_socolissimo').remove();
 			}
@@ -203,23 +180,19 @@
 				$(container).css('margin', 'auto');
 				$(container).css('margin-top', '5px');
 			} else
-			if (soBwdCompat)
 				$(container).css('display', 'none');
 		}
 
 		function redirect()
 		{
-			if (soBwdCompat)
-				$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
-			else
-				$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+			$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
 			$("#soLink").trigger("click");
 			return false;
 		}
 
 		function serialiseInput(inputs)
 		{
-			if (soBwdCompat && !rewriteActive)
+			if (!rewriteActive)
 				var str = '&first_call=1&';
 			else
 				var str = '?first_call=1&';

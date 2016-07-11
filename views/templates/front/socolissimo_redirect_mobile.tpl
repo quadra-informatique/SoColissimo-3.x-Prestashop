@@ -39,9 +39,7 @@
 	{literal}
 
 		$(document).ready(function () {
-			if (!soBwdCompat)
-				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price .price').html(initialCost_label + '<br/>' + initialCost);
-			else {
+			
 				$('input.delivery_option_radio').each(function () {
 					if ($(this).val() == soCarrierId + ',') {
 						$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
@@ -50,20 +48,17 @@
 							$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
 					}
 				});
-			}
+			
 			$("#form").submit(function () {
-				if (!soBwdCompat) {
-					if ($('#id_carrier{/literal}{$id_carrier}{literal}').is(':checked'))
-						$('#form').attr("action", baseDir + 'modules/socolissimo/redirect_mobile.php' + serialiseInput(soInputs));
-				} else {
+				
 					if ($("input[name*='delivery_option[']:checked").val().replace(",", "") == soCarrierId)
 						$('#form').attr('action', link_socolissimo + serialiseInput(soInputs));
-				}
+				
 			});
 		});
 
 		function serialiseInput(inputs) {
-			if (soBwdCompat && !rewriteActive)
+			if (!rewriteActive)
 				var str = '&first_call=1&';
 			else
 				var str = '?first_call=1&';

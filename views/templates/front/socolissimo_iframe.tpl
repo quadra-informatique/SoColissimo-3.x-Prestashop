@@ -71,33 +71,25 @@
 			});
 			$('#id_carrier{/literal}{$id_carrier_seller}{literal}').parent().parent().remove();
 
-			if (!soBwdCompat) {
-				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price .price').html(initialCost_label + '<br/>' + initialCost);
-				$($('#carrierTable input#id_carrier' + soCarrierId).parent().parent()).find('.carrier_price').css('white-space', 'nowrap');
-			} else {
-				$('input.delivery_option_radio').each(function () {
-					if ($(this).val() == soCarrierId + ',') {
-						$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
-						// 1.6 themes
-						if ($(this).next().children('div.delivery_option_price').length == 0)
-							$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
+			
+			$('input.delivery_option_radio').each(function () {
+				if ($(this).val() == soCarrierId + ',') {
+					$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
+					// 1.6 themes
+					if ($(this).next().children('div.delivery_option_price').length == 0)
+						$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
 
-					}
-				});
-			}
+				}
+			});
+			
 
 			$("#form").submit(function () {
 				if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
 				{
 					if (acceptCGV(($('#hidden_cgv').val()))) {
 
-						if (soBwdCompat) { // 1.5 zone
-							$('div.delivery_options_address h3').css('display', 'none');
-							$('div.delivery_options').css('display', 'none');
-						} else { // 1.4 zone
-							$('#carrierTable td').css('display', 'none');
-							$('#carrierTable th').css('display', 'none');
-						}
+						$('div.delivery_options_address h3').css('display', 'none');
+						$('div.delivery_options').css('display', 'none');
 
 						// common zone
 						$('h3.condition_title').css('display', 'none');
@@ -107,10 +99,7 @@
 						$('#gift_div').css('display', 'none');
 						$('p.cart_navigation').css('display', 'none');
 						$('#soFr').css('display', 'block');
-						if (soBwdCompat)
-								$('#soFr').attr('src', link_socolissimo + serialiseInput(soInputs));
-						else
-							$('#soFr').attr('src', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
+						$('#soFr').attr('src', link_socolissimo + serialiseInput(soInputs));
 					}
 					return false;
 				}
@@ -120,7 +109,7 @@
 
 		function serialiseInput(inputs) {
 
-			if (soBwdCompat && !rewriteActive)
+			if (!rewriteActive)
 				var str = '&first_call=1&';
 			else
 				var str = '?first_call=1&';
