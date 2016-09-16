@@ -1,4 +1,4 @@
-/**
+{*
 * 2007-2016 PrestaShop
 *
 * NOTICE OF LICENSE
@@ -21,42 +21,13 @@
 *  @copyright 2007-2016 PrestaShop SA
 *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
-*/
-
-
-.colissimo-header h4{
-    margin: 10px 0;
-    font-size: 1.8em;
-}
-
-.colissimo-header h5 {
-    font-size: 1.4em;
-    margin: 10px 0;
-}
-
-.colissimo-header h6 {
-    font-size: 1.3em;
-    margin: 10px 0;
-}
-.colissimo-header .alert {
-    font-size: 1.3em;
-	color:red;
-}
-.colissimo-header .support p {
-    margin: 10px 0 0 0;
-}
-
-.colissimo-header div h4:first-child,
-.colissimo-header div h5:first-child {
-    margin: 0 0 10px 0 ;
-}
-
-#content.bootstrap .colissimo-about h3 {
-    margin-top:20px;
-}
-
-.colissimo-header #colissimo-logo,
-.colissimo-about img {
-    max-width: 100%;
-    height: auto;
-}
+*}
+<div class="panel"> 
+<div class="row colissimo-header">
+        <div class="col-md-12 text-center about">
+            <p>
+                <span class="alert">{l s='You must fill merchand information otherwise module won\'t work on front' mod='socolissimo'}</span>
+            </p>
+        </div>
+		</div>
+</div>

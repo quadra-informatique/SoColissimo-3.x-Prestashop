@@ -23,16 +23,6 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<a href="#" style="display:none" class="fancybox fancybox.iframe" id="soLink"></a>
-{if isset($opc) && $opc}
-	<script type="text/javascript">
-		var opc = true;
-	</script>
-{else}
-	<script type="text/javascript">
-		var opc = false;
-	</script>
-{/if}
 {if isset($already_select_delivery) && $already_select_delivery}
 	<script type="text/javascript">
 		var already_select_delivery = true;
@@ -42,9 +32,16 @@
 		var already_select_delivery = false;
 	</script>
 {/if}
+<form id="socoForm" name="form" action="" method="POST">
 
+				{foreach from=$inputs key=key item=val}
+					<input type="hidden" name="{$key|escape:'htmlall':'UTF-8'}" value="{$val|escape:'htmlall':'UTF-8'}"/>
+				{/foreach}
+				
+				
+			</form>
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo|escape:'UTF-8'}";
+	var link_socolissimo = "{$link_socolissimo_mobile|escape:'UTF-8'}";
 	var soInputs = new Object();
 	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
 	var soSellerId = "{$id_carrier_seller|escape:'htmlall'}";
@@ -60,51 +57,9 @@
 	{/foreach}
 
 	{literal}
-		$('#soLink').fancybox({
-			'width': 590,
-			'height': 810,
-			'autoScale': true,
-			'centerOnScroll': true,
-			'autoDimensions': false,
-			'transitionIn': 'none',
-			'transitionOut': 'none',
-			'hideOnOverlayClick': false,
-			'hideOnContentClick': false,
-			'showCloseButton': true,
-			'showIframeLoading': true,
-			'enableEscapeButton': true,
-			'type': 'iframe',
-			onStart: function () {
-				$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
-				
-			},
-			onClosed: function () {
-				$.ajax({
-					type: 'GET',
-					url: baseDir + '/modules/socolissimo/ajax.php',
-					async: false,
-					cache: false,
-					dataType: "json",
-					data: "token=" + soToken,
-					success: function (jsonData) {
-						if (jsonData && jsonData.answer && typeof jsonData.answer != undefined && !opc) {
-							if (jsonData.answer)
-								$('#form').submit();
-							else if (jsonData.msg.length)
-								alert(jsonData.msg);
-						}
-					},
-					error: function (XMLHttpRequest, textStatus, errorThrown) {
-						alert('TECHNICAL ERROR\nDetails:\nError thrown: ' + XMLHttpRequest + '\n' + 'Text status: ' + textStatus);
-					}
-				});
-			}
-		});
-
 		$(document).ready(function ()
 		{
 			var interval;
-			$('#soLink').attr('href', baseDir + 'modules/socolissimo/redirect.php' + serialiseInput(soInputs));
 			
 			
 				$('input.delivery_option_radio').each(function ()
@@ -118,40 +73,16 @@
 				});
 				if (soCarrierId)
 					so_click();
-			
-			$('.delivery_option').each(function ( ) {
-				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id_carrier_seller}{literal},') {
-					$(this).remove();
-				}
-			});
-			$('#id_carrier{/literal}{$id_carrier_seller}{literal}').parent().parent().remove();
 
 		});
 
 
 		function so_click()
 		{
-			if (opc) {
+			
 				if (!already_select_delivery || !$('#edit_socolissimo').length)
 					modifyCarrierLine();
-			}
-			else if (soCarrierId == 0) {
-				$('[name=processCarrier]').unbind('click').live('click', function () {
-					return true;
-				});
-			} else {
-				$('[name=processCarrier]').unbind('click').live('click', function () {
-					if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
-					{
-						if (acceptCGV()) {
-							$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
-							$("#soLink").trigger("click");
-						}
-						return false;
-					}
-					return true;
-				});
-			}
+			
 		}
 
 		function modifyCarrierLine()
@@ -159,25 +90,16 @@
 			var carrier = $('input.delivery_option_radio:checked');
 
 			if ((carrier.val() == soCarrierId) || (carrier.val() == soCarrierId + ',')) {
-				carrier.next().children().children().find('div.delivery_option_delay').append('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label}{literal}</a></div>');
-				// 1.6 theme
-				carrier.parent().parent().parent().parent().find('td.delivery_option_price').before('<td><div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" style="text-align:center;" >{/literal}{$select_label}{literal}</a></div></td>');
+				carrier.parent().parent().parent().parent().find('.order_carrier_logo').after('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" style="text-align:center;" >{/literal}{$select_label}{literal}</a></div>');
 			} else {
 				$('#button_socolissimo').remove();
 			}
-			if (already_select_delivery)
-			{
-				$(container).css('display', 'block');
-				$(container).css('margin', 'auto');
-				$(container).css('margin-top', '5px');
-			} else
-				$(container).css('display', 'none');
 		}
 
 		function redirect()
 		{
-			$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
-			$("#soLink").trigger("click");
+			$('#socoForm').attr('action', link_socolissimo + serialiseInput(soInputs));
+			$('#socoForm').submit();
 			return false;
 		}
 

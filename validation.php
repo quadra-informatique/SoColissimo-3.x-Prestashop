@@ -36,7 +36,7 @@ else
 
 
 /* Init the Display */
-$display = new BWDisplay();
+$display = new FrontController();
 $display->setTemplate(dirname(__FILE__).'/views/templates/front/error.tpl');
 
 $errors_list = array();

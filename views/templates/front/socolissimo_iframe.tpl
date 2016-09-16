@@ -23,12 +23,6 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<style type="text/css">
-    .soBackward_compat_tab {literal}{ text-align: center; }{/literal}
-    .soBackward_compat_tab a {literal}{ margin: 0px; }{/literal}
-</style>
-
-
 <iframe id="soFr" xml:lang="fr" width="100%" height="800" style="border:none;display:none;"src=""></iframe>
 <input id="hidden_cgv" type="hidden" value="{l s='Please accept the terms of service before the next step.' mod='socolissimo'}" />
 <script type="text/javascript">
@@ -47,7 +41,6 @@
 <script type="text/javascript">
 	var link_socolissimo = "{$link_socolissimo|escape:'UTF-8'}";
 	var soInputs = new Object();
-	var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
 	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
 	var soToken = "{$token|escape:'htmlall'}";
 	var initialCost_label = "{$initialCost_label|escape:'htmlall'}";
@@ -72,15 +65,15 @@
 			$('#id_carrier{/literal}{$id_carrier_seller}{literal}').parent().parent().remove();
 
 			
-			$('input.delivery_option_radio').each(function () {
-				if ($(this).val() == soCarrierId + ',') {
-					$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
-					// 1.6 themes
-					if ($(this).next().children('div.delivery_option_price').length == 0)
-						$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
-
-				}
-			});
+			$('input.delivery_option_radio').each(function ()
+				{
+					if ($(this).val() == soCarrierId + ',') {
+						$(this).next().children().children().find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
+						// 1.6 themes
+						if ($(this).next().children('div.delivery_option_price').length == 0)
+							$(this).parents('tr').children('td.delivery_option_price').find('div.delivery_option_price').html(initialCost_label + '<br/>' + initialCost + taxMention);
+					}
+				});
 			
 
 			$("#form").submit(function () {

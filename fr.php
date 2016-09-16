@@ -18,7 +18,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_4d470fde8487e755a50e9235e3dc13ab'
 $_MODULE['<{socolissimo}prestashop>socolissimo_be9f2d13422fc71d3d92fd4b22f309e9'] = 'Colissimo Simplicité';
 $_MODULE['<{socolissimo}prestashop>socolissimo_c9cc8cce247e49bae79f15173ce97354'] = 'Enregistrer';
 $_MODULE['<{socolissimo}prestashop>socolissimo_69ccb7c386b70ae60c80c170246960c7'] = 'A propos de Colissimo';
-$_MODULE['<{socolissimo}prestashop>socolissimo_645f11cd8af35de9d1df8fd7f87500cb'] = 'Informations marchant';
+$_MODULE['<{socolissimo}prestashop>socolissimo_645f11cd8af35de9d1df8fd7f87500cb'] = 'Informations marchand';
 $_MODULE['<{socolissimo}prestashop>socolissimo_1f8261d17452a959e013666c5df45e07'] = 'Numéro de téléphone';
 $_MODULE['<{socolissimo}prestashop>socolissimo_a48b1a090fb0af2d51e34beda530794e'] = 'Exemple  0144183004';
 $_MODULE['<{socolissimo}prestashop>socolissimo_642d3ba5db8b57e006584b544e490ec7'] = 'Code postal';
@@ -71,6 +71,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_6b29e581f608ce4370babebeee439bac'
 $_MODULE['<{socolissimo}prestashop>socolissimo_e7ef50e6093c77be4fcfd36f9432e56f'] = 'Code postal incorrect';
 $_MODULE['<{socolissimo}prestashop>socolissimo_24ab66c8d99aa31c1dcb00f0e5e564df'] = 'Le nombre de colis est incorrect';
 $_MODULE['<{socolissimo}prestashop>socolissimo_8279a78fcce2b4ddfb79dfe689592ed2'] = 'Siret incorrect';
+$_MODULE['<{socolissimo}prestashop>socolissimo_8554bbc520a9d24ffda195065bbcc9ee'] = 'Vous devez accepter les termes et conditions';
 $_MODULE['<{socolissimo}prestashop>socolissimo_82c440defe28e2099cba1af1f0761807'] = 'Identifiant FO non spécifié';
 $_MODULE['<{socolissimo}prestashop>socolissimo_826361881cfc18b8b75405d398f633b5'] = 'Clé de cryptage non spécifiée';
 $_MODULE['<{socolissimo}prestashop>socolissimo_0bf6a620e5f22d8b46e3903a993f7741'] = 'Temps de préparation non spécifié';
@@ -147,6 +148,8 @@ $_MODULE['<{socolissimo}prestashop>configure_fd54c99e2b37f92c479e2538d58a6130'] 
 $_MODULE['<{socolissimo}prestashop>configure_729333c9ebeaca82580ca31bacc23946'] = 'Vous pouvez également appeler le support au';
 $_MODULE['<{socolissimo}prestashop>configure_5dfaf40b2d24f8dddc32cf7154472807'] = 'du Lundi au Vendredi, de 8h à 18h.';
 $_MODULE['<{socolissimo}prestashop>configure_3a7b1fc8062a2030261cf6ac028511cb'] = 'Prononcez « Incident », puis « Solutions Web ».';
+$_MODULE['<{socolissimo}prestashop>configure_warning_b28a56259e5b5fee9ac2077b0fc629af'] = 'Vous devez renseigner la partie \"Informations marchand\" pour activer le module en front office.';
 $_MODULE['<{socolissimo}prestashop>error_58d256f5c88c3a887c1c3b8c9ee76f4d'] = 'Liste des erreurs Colissimo :';
 $_MODULE['<{socolissimo}prestashop>error_0557fa923dcee4d0f86b1409f5c2167f'] = 'Retour';
 $_MODULE['<{socolissimo}prestashop>redirect_611a8475d4cbe64a9a2f5633a82fe314'] = 'Vous allez être redirigé vers Socolissimo dans quelques instants.Si ce n\'est pas le cas, veuillez cliquez sur le bouton.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_iframe_1da9c63ab8644e375c6951f3876071ef'] = '';

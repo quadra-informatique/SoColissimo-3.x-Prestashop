@@ -1,4 +1,5 @@
-{*
+<?php
+/**
 * 2007-2016 PrestaShop
 *
 * NOTICE OF LICENSE
@@ -21,30 +22,29 @@
 *  @copyright 2007-2016 PrestaShop SA
 *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
-*}
-<script type="text/javascript">
-	var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
-	{literal}
-		$(document).ready(function() {
-		{/literal}
-		
-		{foreach from=$ids item=id}
-			{literal}
-				if(soBwdCompat) {
-					$('.delivery_option').each(function( ) {
-						if ($(this).children().children('.delivery_option_radio').val() == '{/literal}{$id}{literal},') {
-							$(this).remove();
-						}
-						if ($(this).find('input.delivery_option_radio').val() == '{/literal}{$id}{literal},') {
-						$(this).remove();
-						}
-					});
-				}
-				else
-					$('#id_carrier{/literal}{$id}{literal}').parent().parent().parent().remove();
-			{/literal}
-		{/foreach}
-		{literal}
-	});
-{/literal}
-</script>
+*/
+
+if (!defined('_PS_VERSION_'))
+	exit;
+
+function upgrade_module_2_10_0($object, $install = false)
+{	
+	// add column dyforwardingcharges checking exitence first (2.10.0 update)
+	$query = 'SELECT * FROM INFORMATION_SCHEMA.COLUMNS
+			  WHERE COLUMN_NAME= "dyforwardingcharges"
+			  AND TABLE_NAME=  "'._DB_PREFIX_.'socolissimo_delivery_info"
+			  AND TABLE_SCHEMA = "'._DB_NAME_.'"';
+
+	$result = Db::getInstance()->ExecuteS($query);
+
+	// adding column lotacheminement
+	if (!$result)
+	{
+		$query = 'ALTER TABLE '._DB_PREFIX_.'socolissimo_delivery_info add  `dyforwardingcharges` decimal(20.6) NOT NULL';
+		Db::getInstance()->Execute($query);
+	}
+    Configuration::deleteByName('SOCOLISSIMO_SUP_BELG');
+	Configuration::deleteByName('SOCOLISSIMO_EXP_BEL');
+	Configuration::updateValue('SOCOLISSIMO_VERSION', '2.10.0');
+	return true;
+}

@@ -25,7 +25,6 @@
 <script type="text/javascript">
 	var link_socolissimo = "{$link_socolissimo|escape:'UTF-8'}";
 	var soInputs = new Object();
-	var soBwdCompat = "{$SOBWD_C|escape:'htmlall'}";
 	var initialCost_label = "{$initialCost_label|escape:'htmlall'}"
 	var initialCost = "{$initialCost|escape:'htmlall'}";
 	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
@@ -61,7 +60,6 @@
 				});
 			
 			$("#form").submit(function () {
-				
 				if ($("input[name*='delivery_option[']:checked").val().replace(",", "") == soCarrierId)
 					$('#form').attr('action', link_socolissimo + serialiseInput(soInputs));
 			});
