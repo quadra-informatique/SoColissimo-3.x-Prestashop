@@ -218,8 +218,6 @@ class Socolissimo extends CarrierModule
 
         if (Shop::isFeatureActive())
             Shop::setContext(Shop::CONTEXT_ALL);
-        if (!Configuration::updateValue('SOCOLISSIMO_VERSION', $this->version))
-            return false;
         // Add carrier in back office
         if (!$this->createSoColissimoCarrier($this->config))
             return false;
@@ -234,7 +232,6 @@ class Socolissimo extends CarrierModule
         $so_id = (int)Configuration::get('SOCOLISSIMO_CARRIER_ID');
         $so_id_seller = (int)Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER');
         Configuration::deleteByName('SOCOLISSIMO_ID');
-        Configuration::deleteByName('SOCOLISSIMO_VERSION');
         Configuration::deleteByName('SOCOLISSIMO_USE_FANCYBOX');
         Configuration::deleteByName('SOCOLISSIMO_USE_IFRAME');
         Configuration::deleteByName('SOCOLISSIMO_KEY');
@@ -306,7 +303,7 @@ class Socolissimo extends CarrierModule
             $this->postProcess();
         }
         $this->context->smarty->assign('module_dir', $this->_path);
-        $this->context->smarty->assign('colissimo_version', Configuration::get('SOCOLISSIMO_VERSION'));
+        $this->context->smarty->assign('colissimo_version', $this->version);
 
         $output = $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
 
@@ -355,7 +352,7 @@ class Socolissimo extends CarrierModule
 
         $form = array(
             'legend' => array(
-                'title' => $this->l('Colissimo Simplicity').' V'.Configuration::get('SOCOLISSIMO_VERSION'),
+                'title' => $this->l('Colissimo Simplicity').' V'.$this->version,
                 'icon' => 'icon-cogs',
             ),
             'submit' => array(
@@ -701,7 +698,64 @@ class Socolissimo extends CarrierModule
     private function postProcess()
     {
 
-        $is_first = false;
+         if (Tools::getValue('SOCOLISSIMO_ID') == null)
+                $this->context->controller->errors[] = $this->l('ID SO not specified');
+
+            if (Tools::getValue('SOCOLISSIMO_KEY') == null)
+                $this->context->controller->errors[] = $this->l('Key SO not specified');
+
+            if (Tools::getValue('SOCOLISSIMO_PREPARATION_TIME') == null)
+                $this->context->controller->errors[] = $this->l('Preparation time not specified');
+            elseif (!Validate::isInt(Tools::getValue('SOCOLISSIMO_PREPARATION_TIME')))
+                $this->context->controller->errors[] = $this->l('Invalid preparation time');
+
+            if (Tools::getValue('SOCOLISSIMO_URL') == null)
+                $this->context->controller->errors[] = $this->l('Front URL is not specified');
+            if (Tools::getValue('SOCOLISSIMO_URL_MOBILE') == null)
+                $this->context->controller->errors[] = $this->l('Front mobile URL is not specified');
+            if (Tools::getValue('SOCOLISSIMO_SUP_URL') == null)
+                $this->context->controller->errors[] = $this->l('Supervision URL is not specified');
+
+            if ((int)Tools::getValue('SOCOLISSIMO_CARRIER_ID') == (int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER'))
+                $this->context->controller->errors[] = $this->l('Socolissimo carrier cannot be the same as socolissimo CC');
+        
+        if (!count($this->context->controller->errors)) {
+            // re allocation id socolissimo if needed
+            if ((int)Tools::getValue('SOCOLISSIMO_CARRIER_ID') != (int)Configuration::get('SOCOLISSIMO_CARRIER_ID')) {
+                Configuration::updateValue(
+                    'SOCOLISSIMO_CARRIER_ID_HIST', Configuration::get(
+                        'SOCOLISSIMO_CARRIER_ID_HIST').'|'.(int)Tools::getValue('SOCOLISSIMO_CARRIER_ID'));
+                Configuration::updateValue(
+                    'SOCOLISSIMO_CARRIER_ID', (int)Tools::getValue('SOCOLISSIMO_CARRIER_ID'));
+                $this->reallocationCarrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'));
+            }
+            // re allocation id socolissimo CC  if needed
+            if ((int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER') != (int)Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER')) {
+                Configuration::updateValue(
+                    'SOCOLISSIMO_CARRIER_ID_HIST', Configuration::get(
+                        'SOCOLISSIMO_CARRIER_ID_HIST').'|'.(int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER'));
+                Configuration::updateValue(
+                    'SOCOLISSIMO_CARRIER_ID_SELLER', (int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER'));
+                $this->reallocationCarrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER'));
+            }
+            foreach ($this->config_single_values_keys as $key) {
+                if (!array_search($key, $this->config_single_values_keys_exception)) {
+                    Configuration::updateValue($key, Tools::getValue($key));
+                }
+            }
+            if (Tools::getValue('DISPLAY_TYPE') == 1) {
+                Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', true);
+                Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', false);
+            }
+            if (Tools::getValue('DISPLAY_TYPE') == 2) {
+                Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', true);
+                Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', false);
+            }
+            if (Tools::getValue('DISPLAY_TYPE') == 0) {
+                Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', false);
+                Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', false);
+            }
+        }
         $reload_credit = false;
 
         if (Configuration::get('SOCOLISSIMO_PERSONAL_DATA')) {
@@ -742,68 +796,8 @@ class Socolissimo extends CarrierModule
                 Configuration::updateValue('SOCOLISSIMO_PERSONAL_SIRET', Tools::getValue('SOCOLISSIMO_PERSONAL_SIRET'));
                 Configuration::updateValue('SOCOLISSIMO_PERSONAL_ACCEPT', Tools::getValue('SOCOLISSIMO_PERSONAL_ACCEPT'));
                 if ($this->savePreactivationRequest()) {
-                    $is_first = true;
                     Configuration::updateValue('SOCOLISSIMO_PERSONAL_DATA', 1);
                 }
-            }
-        }
-        if (!$is_first && Configuration::get('SOCOLISSIMO_PERSONAL_DATA')) {
-            if (Tools::getValue('SOCOLISSIMO_ID') == null)
-                $this->context->controller->errors[] = $this->l('ID SO not specified');
-
-            if (Tools::getValue('SOCOLISSIMO_KEY') == null)
-                $this->context->controller->errors[] = $this->l('Key SO not specified');
-
-            if (Tools::getValue('SOCOLISSIMO_PREPARATION_TIME') == null)
-                $this->context->controller->errors[] = $this->l('Preparation time not specified');
-            elseif (!Validate::isInt(Tools::getValue('SOCOLISSIMO_PREPARATION_TIME')))
-                $this->context->controller->errors[] = $this->l('Invalid preparation time');
-
-            if (Tools::getValue('SOCOLISSIMO_URL') == null)
-                $this->context->controller->errors[] = $this->l('Front URL is not specified');
-            if (Tools::getValue('SOCOLISSIMO_URL_MOBILE') == null)
-                $this->context->controller->errors[] = $this->l('Front mobile URL is not specified');
-            if (Tools::getValue('SOCOLISSIMO_SUP_URL') == null)
-                $this->context->controller->errors[] = $this->l('Supervision URL is not specified');
-
-            if ((int)Tools::getValue('SOCOLISSIMO_CARRIER_ID') == (int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER'))
-                $this->context->controller->errors[] = $this->l('Socolissimo carrier cannot be the same as socolissimo CC');
-        }
-        if (!count($this->context->controller->errors) && Configuration::get('SOCOLISSIMO_PERSONAL_DATA') && !$is_first) {
-            // re allocation id socolissimo if needed
-            if ((int)Tools::getValue('SOCOLISSIMO_CARRIER_ID') != (int)Configuration::get('SOCOLISSIMO_CARRIER_ID')) {
-                Configuration::updateValue(
-                    'SOCOLISSIMO_CARRIER_ID_HIST', Configuration::get(
-                        'SOCOLISSIMO_CARRIER_ID_HIST').'|'.(int)Tools::getValue('SOCOLISSIMO_CARRIER_ID'));
-                Configuration::updateValue(
-                    'SOCOLISSIMO_CARRIER_ID', (int)Tools::getValue('SOCOLISSIMO_CARRIER_ID'));
-                $this->reallocationCarrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'));
-            }
-            // re allocation id socolissimo CC  if needed
-            if ((int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER') != (int)Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER')) {
-                Configuration::updateValue(
-                    'SOCOLISSIMO_CARRIER_ID_HIST', Configuration::get(
-                        'SOCOLISSIMO_CARRIER_ID_HIST').'|'.(int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER'));
-                Configuration::updateValue(
-                    'SOCOLISSIMO_CARRIER_ID_SELLER', (int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER'));
-                $this->reallocationCarrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER'));
-            }
-            foreach ($this->config_single_values_keys as $key) {
-                if (!array_search($key, $this->config_single_values_keys_exception)) {
-                    Configuration::updateValue($key, Tools::getValue($key));
-                }
-            }
-            if (Tools::getValue('DISPLAY_TYPE') == 1) {
-                Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', true);
-                Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', false);
-            }
-            if (Tools::getValue('DISPLAY_TYPE') == 2) {
-                Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', true);
-                Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', false);
-            }
-            if (Tools::getValue('DISPLAY_TYPE') == 0) {
-                Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', false);
-                Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', false);
             }
         }
     }
