@@ -23,17 +23,17 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo_mobile|escape:'UTF-8'}";
+	var link_socolissimo = "{$link_socolissimo_mobile|escape:'htmlall':'UTF-8'}";
 	var soInputs = new Object();
-	var initialCost_label = "{$initialCost_label|escape:'htmlall'}"
-	var initialCost = "{$initialCost|escape:'htmlall'}";
-	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
-	var taxMention = "{$taxMention|escape:'htmlall'}";
-	var baseDir = '{$content_dir|escape:'htmlall'}';
-	var rewriteActive = '{$rewrite_active|escape:'htmlall'}';
+	var initialCost_label = "{$initialCost_label|escape:'htmlall':'UTF-8'}";
+	var initialCost = "{$initialCost|escape:'htmlall':'UTF-8'}";
+	var soCarrierId = "{$id_carrier|escape:'htmlall':'UTF-8'}";
+	var taxMention = "{$taxMention|escape:'htmlall':'UTF-8'}";
+	var baseDir = '{$content_dir|escape:'htmlall':'UTF-8'}';
+	var rewriteActive = '{$rewrite_active|escape:'htmlall':'UTF-8'}';
 
 	{foreach from=$inputs item=input key=name name=myLoop}
-	soInputs.{$name} = "{$input|strip_tags|addslashes}";
+	soInputs.{$name|escape:'htmlall':'UTF-8'} = "{$input|strip_tags|addslashes}";
 	{/foreach}
 	{literal}
 

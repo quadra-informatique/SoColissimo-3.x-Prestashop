@@ -39,18 +39,18 @@
     </script>
 {/if}
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo|escape:'UTF-8'}";
+	var link_socolissimo = "{$link_socolissimo|escape:'htmlall':'UTF-8'}";
 	var soInputs = new Object();
-	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
-	var soToken = "{$token|escape:'htmlall'}";
-	var initialCost_label = "{$initialCost_label|escape:'htmlall'}";
-	var initialCost = "{$initialCost|escape:'htmlall'}";
-	var taxMention = "{$taxMention|escape:'htmlall'}";
-	var baseDir = '{$content_dir|escape:'htmlall'}';
-	var rewriteActive = '{$rewrite_active|escape:'htmlall'}';
+	var soCarrierId = "{$id_carrier|escape:'htmlall':'UTF-8'}";
+	var soToken = "{$token|escape:'htmlall':'UTF-8'}";
+	var initialCost_label = "{$initialCost_label|escape:'htmlall':'UTF-8'}";
+	var initialCost = "{$initialCost|escape:'htmlall':'UTF-8'}";
+	var taxMention = "{$taxMention|escape:'htmlall':'UTF-8'}";
+	var baseDir = '{$content_dir|escape:'htmlall':'UTF-8'}';
+	var rewriteActive = '{$rewrite_active|escape:'htmlall':'UTF-8'}';
 
 	{foreach from=$inputs item=input key=name name=myLoop}
-	soInputs.{$name} = "{$input|strip_tags|addslashes}";
+	soInputs.{$name|escape:'htmlall':'UTF-8'} = "{$input|strip_tags|addslashes}";
     {/foreach}
 
     {literal}
@@ -58,11 +58,11 @@
 		$(document).ready(function ()
 		{
 			$('.delivery_option').each(function ( ) {
-				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id_carrier_seller}{literal},') {
+				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id_carrier_seller|escape:'htmlall':'UTF-8'}{literal},') {
 					$(this).remove();
 				}
 			});
-			$('#id_carrier{/literal}{$id_carrier_seller}{literal}').parent().parent().remove();
+			$('#id_carrier{/literal}{$id_carrier_seller|escape:'htmlall':'UTF-8'}{literal}').parent().parent().remove();
 
 			
 			$('input.delivery_option_radio').each(function ()

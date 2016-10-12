@@ -41,19 +41,19 @@
 				
 			</form>
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo_mobile|escape:'UTF-8'}";
+	var link_socolissimo = "{$link_socolissimo_mobile|escape:'htmlall':'UTF-8'}";
 	var soInputs = new Object();
-	var soCarrierId = "{$id_carrier|escape:'htmlall'}";
-	var soSellerId = "{$id_carrier_seller|escape:'htmlall'}";
-	var soToken = "{$token|escape:'htmlall'}";
-	var initialCost_label = "{$initialCost_label|escape:'htmlall'}";
-	var initialCost = "{$initialCost|escape:'htmlall'}";
-	var taxMention = "{$taxMention|escape:'htmlall'}";
-	var baseDir = '{$content_dir|escape:'htmlall'}';
-	var rewriteActive = '{$rewrite_active|escape:'htmlall'}';
+	var soCarrierId = "{$id_carrier|escape:'htmlall':'UTF-8'}";
+	var soSellerId = "{$id_carrier_seller|escape:'htmlall':'UTF-8'}";
+	var soToken = "{$token|escape:'htmlall':'UTF-8'}";
+	var initialCost_label = "{$initialCost_label|escape:'htmlall':'UTF-8'}";
+	var initialCost = "{$initialCost|escape:'htmlall':'UTF-8'}";
+	var taxMention = "{$taxMention|escape:'htmlall':'UTF-8'}";
+	var baseDir = '{$content_dir|escape:'htmlall':'UTF-8'}';
+	var rewriteActive = '{$rewrite_active|escape:'htmlall':'UTF-8'}';
 
 	{foreach from=$inputs item=input key=name name=myLoop}
-	soInputs.{$name} = "{$input|strip_tags|addslashes}";
+	soInputs.{$name|escape:'htmlall':'UTF-8'} = "{$input|strip_tags|addslashes}";
 	{/foreach}
 
 	{literal}
@@ -90,7 +90,7 @@
 			var carrier = $('input.delivery_option_radio:checked');
 
 			if ((carrier.val() == soCarrierId) || (carrier.val() == soCarrierId + ',')) {
-				carrier.parent().parent().parent().parent().find('.order_carrier_logo').after('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" style="text-align:center;" >{/literal}{$select_label}{literal}</a></div>');
+				carrier.parent().parent().parent().parent().find('.order_carrier_logo').after('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" style="text-align:center;" >{/literal}{$select_label|escape:'htmlall':'UTF-8'}{literal}</a></div>');
 			} else {
 				$('#button_socolissimo').remove();
 			}

@@ -33,5 +33,5 @@
 	</div>
 {/if}
 {if isset($so_url_back)}
-	<a href="{$so_url_back|escape:'htmlall'}step=2&cgv=1" class="button_small" title="{l s='Back' mod='socolissimo'}">{l s='Back' mod='socolissimo'}</a>
+	<a href="{$so_url_back|escape:'htmlall':'UTF-8'}step=2&cgv=1" class="button_small" title="{l s='Back' mod='socolissimo'}">{l s='Back' mod='socolissimo'}</a>
 {/if}

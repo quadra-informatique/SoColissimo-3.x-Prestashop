@@ -30,16 +30,16 @@
 		{foreach from=$ids item=id}
 			{literal}
 			$('.delivery_option').each(function( ) {
-				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id}{literal},') {
+				if ($(this).children('.delivery_option_radio').val() == '{/literal}{$id|escape:'htmlall':'UTF-8'}{literal},') {
 					$(this).remove();
 				}
-				if ($(this).find('input.delivery_option_radio').val() == '{/literal}{$id}{literal},') {
+				if ($(this).find('input.delivery_option_radio').val() == '{/literal}{$id|escape:'htmlall':'UTF-8'}{literal},') {
 					$(this).remove();
 				}
 			});
 			{/literal}
 		{literal}
-			$('#id_carrier{/literal}{$id}{literal}').parent().parent().remove();
+			$('#id_carrier{/literal}{$id|escape:'htmlall':'UTF-8'}{literal}').parent().parent().remove();
 		{/literal}
 		{/foreach}
 	{literal}
