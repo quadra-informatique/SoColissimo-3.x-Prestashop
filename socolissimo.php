@@ -83,8 +83,8 @@ class Socolissimo extends CarrierModule
         $this->description = $this->l('Offer your customer 5 different delivery methods with LaPoste.');
         $this->confirmUninstall = $this->l('Removing the module will also delete the associated carriers');
         $this->ps_versions_compliancy = array(
-            'min' => '1.6',
-            'max' => _PS_VERSION_);
+            'min' => '1.5.0.0',
+            'max' => '1.6.99.99');
 
         $protocol = function_exists('Tools::getProtocol') ? Tools::getProtocol() : 'http://';
         if (Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE')) {
