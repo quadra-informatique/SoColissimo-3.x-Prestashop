@@ -41,7 +41,7 @@
 				
 			</form>
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo_mobile|escape:'htmlall':'UTF-8'}";
+	var link_socolissimo = "{$link_socolissimo_mobile|escape:'UTF-8'}";
 	var soInputs = new Object();
 	var soCarrierId = "{$id_carrier|escape:'htmlall':'UTF-8'}";
 	var soSellerId = "{$id_carrier_seller|escape:'htmlall':'UTF-8'}";
