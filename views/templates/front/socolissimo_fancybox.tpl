@@ -44,7 +44,7 @@
 {/if}
 
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo|escape:'htmlall':'UTF-8'}";
+	var link_socolissimo = "{$link_socolissimo|escape:'UTF-8'}";
 	var soInputs = new Object();
 	var soCarrierId = "{$id_carrier|escape:'htmlall':'UTF-8'}";
 	var soSellerId = "{$id_carrier_seller|escape:'htmlall':'UTF-8'}";

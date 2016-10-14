@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 <script type="text/javascript">
-	var link_socolissimo = "{$link_socolissimo|escape:'htmlall':'UTF-8'}";
+	var link_socolissimo = "{$link_socolissimo|escape:'UTF-8'}";
 	var soInputs = new Object();
 	var initialCost_label = "{$initialCost_label|escape:'htmlall':'UTF-8'}";
 	var initialCost = "{$initialCost|escape:'htmlall':'UTF-8'}";
