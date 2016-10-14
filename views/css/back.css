@@ -23,6 +23,9 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
+.colissimo-header a {
+    color: #ff9600;
+}
 
 .colissimo-header h4{
     margin: 10px 0;
@@ -59,4 +62,64 @@
 .colissimo-about img {
     max-width: 100%;
     height: auto;
+}
+
+/* PrestaShop 1.5 */
+
+#top_container .col-md-1,
+#top_container .col-md-2,
+#top_container .col-md-3,
+#top_container .col-md-6 {
+    float:left;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#top_container .col-md-1 {
+    max-width: 8%;
+}
+
+#top_container .col-md-2 {
+    max-width: 15%;
+}
+
+#top_container .col-md-3 {
+    max-width: 25%;
+}
+
+#top_container .col-md-6 {
+    max-width: 50%;
+}
+
+#top_container .text-center {
+    text-align: center;
+}
+
+#top_container ul {
+    padding-left: 2em;
+    list-style-type: disc;
+}
+
+#top_container li {
+    text-align: -webkit-match-parent;
+}
+
+#top_container #module_form {
+    clear:both;
+    padding-top: 20px;
+}
+
+#top_container #module_form a {
+    color: #ff9600;
+}
+
+#top_container #module_form .margin-form label {
+    float:none;
+}
+
+#top_container h3 {
+    border-top: 2px #8F8F8F solid;
+    padding-top: 5px;
+    left:-260px;
+    position:relative;
 }
