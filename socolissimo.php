@@ -382,30 +382,36 @@ class Socolissimo extends CarrierModule
             'legend' => array(
                 'title' => $this->l('Colissimo Simplicity').' V'.$this->version,
                 'icon' => 'icon-cogs',
-            ),
-            'submit' => array(
-                'title' => $this->l('Save'),
             )
         );
         //======================================================================
         // INFO TAB
-        $form['tabs']['about'] = $this->l('About Colissimo Informations');
+        if (version_compare(_PS_VERSION_, '1.6.0.6', '>')) {
+            $form['tabs']['about'] = $this->l('About Colissimo Informations');
 
-        // Check current language
-        $language = new Language($this->context->language->id);
-        $defaut_tpl = $this->local_path.'views/templates/admin/about.tpl';
-        if ($language->iso_code != 'fr') {
-            $defaut_tpl = $this->local_path.'views/templates/admin/about_en.tpl';
+            // Check current language
+            $language = new Language($this->context->language->id);
+            $defaut_tpl = $this->local_path.'views/templates/admin/about.tpl';
+            if ($language->iso_code != 'fr') {
+                $defaut_tpl = $this->local_path.'views/templates/admin/about_en.tpl';
+            }
+            $form['input'][] = array(
+                'tab' => 'about',
+                'type' => 'html',
+                'name' => 'about',
+                'html_content' => $this->context->smarty->fetch($defaut_tpl),
+            );
         }
-        $form['input'][] = array(
-            'tab' => 'about',
-            'type' => 'html',
-            'name' => 'about',
-            'html_content' => $this->context->smarty->fetch($defaut_tpl),
-        );
+
         //======================================================================
         // CREDENTIALS TAB
-        $form['tabs']['credentials'] = $this->l('Merchant Informations');
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+            $form['input'][] = array(
+                'type' => 'free',
+                'desc' => '<h3>'.$this->l('Merchant Informations').'</h3>'
+            );
+        else
+            $form['tabs']['credentials'] = $this->l('Merchant Informations');
 
         $form['input'][] = array(
             'tab' => 'credentials',
@@ -479,7 +485,13 @@ class Socolissimo extends CarrierModule
 
         //======================================================================
         // GENERAL TAB
-        $form['tabs']['general'] = $this->l('Your Colissimo Box');
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+            $form['input'][] = array(                
+                'type' => 'free',
+                'desc' => '<h3>'.$this->l('Your Colissimo Box').'</h3>'
+            );
+        else
+            $form['tabs']['general'] = $this->l('Your Colissimo Box');
 
         $form['input'][] = array(
             'tab' => 'general',
@@ -515,9 +527,9 @@ class Socolissimo extends CarrierModule
         );
         $form['input'][] = array(
             'tab' => 'general',
-            'type' => 'html',
+            'type' => 'free',
             'name' => 'url_note',
-            'html_content' => '<hr/><strong>'.$this->l('Please fill in these two addresses in your').
+            'desc' => '<hr/><strong>'.$this->l('Please fill in these two addresses in your').
             ' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a></strong><ul>'.
             '<li>'.$this->l('In the "Delivery options selection page"').'</li>'.
             '<li>'.$this->l('In the "Delivery options selection page (mobile version)"').'</li></ul>',
@@ -538,7 +550,13 @@ class Socolissimo extends CarrierModule
 
         //======================================================================
         // SYSTEM TAB
-        $form['tabs']['system'] = $this->l('Colissimo simplicity system parameters');
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+            $form['input'][] = array(
+                'type' => 'free',
+                'desc' => '<h3>'.$this->l('Colissimo simplicity system parameters').'</h3>'
+            );
+        else
+            $form['tabs']['system'] = $this->l('Colissimo simplicity system parameters');
 
         $form['input'][] = array(
             'tab' => 'system',
@@ -560,7 +578,7 @@ class Socolissimo extends CarrierModule
         );
         $form['input'][] = array(
             'tab' => 'system',
-            'type' => 'switch',
+            'type' => (version_compare(_PS_VERSION_, '1.6.0.7', '<') ? 'radio' : 'switch'),
             'label' => $this->l('Supervision'),
             'name' => 'SOCOLISSIMO_SUP',
             'is_bool' => true,
@@ -591,7 +609,13 @@ class Socolissimo extends CarrierModule
 
         //======================================================================
         // PRESTASHOP TAB
-        $form['tabs']['prestashop'] = $this->l('Colissimo simplicity prestashop parameters');
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+            $form['input'][] = array(
+                'type' => 'free',
+                'desc' => '<h3>'.$this->l('Colissimo simplicity prestashop parameters').'</h3>'
+            );
+        else
+            $form['tabs']['prestashop'] = $this->l('Colissimo simplicity prestashop parameters');
 
         $form['input'][] = array(
             'tab' => 'prestashop',
@@ -635,7 +659,7 @@ class Socolissimo extends CarrierModule
         );
         $form['input'][] = array(
             'tab' => 'prestashop',
-            'type' => 'switch',
+            'type' => (version_compare(_PS_VERSION_, '1.6.0.7', '<') ? 'radio' : 'switch'),
             'label' => $this->l('Withdrawal point cost'),
             'name' => 'SOCOLISSIMO_COST_SELLER',
             'is_bool' => true,
@@ -666,6 +690,16 @@ class Socolissimo extends CarrierModule
                 'name' => 'name'
             ),
             'desc' => $this->l('Carrier used to get "Colissimo at a withdrawal point" cost')
+        );
+
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+            $form['input'][] = array(
+                'type' => 'free',
+                'desc' => '<h3>'.$this->l('Save').'</h3>'
+            );
+
+        $form['submit'] = array(
+            'title' => $this->l('Save')
         );
 
         return $form;
