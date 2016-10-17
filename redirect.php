@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2010-2016 La Poste SA
  *
  * NOTICE OF LICENSE
  *
@@ -10,7 +10,7 @@
  * http://opensource.org/licenses/afl-3.0.php
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
+ * to modules-prestashop@laposte.fr so we can send you a copy immediately.
  *
  * DISCLAIMER
  *
@@ -18,10 +18,10 @@
  * versions in the future. If you wish to customize PrestaShop for your
  * needs please refer to http://www.prestashop.com for more information.
  *
- *  @author    PrestaShop SA <contact@prestashop.com> Quadra Informatique <modules@quadra-informatique.fr>
- *  @copyright 2007-2016 PrestaShop SA
+ *  @author    Quadra Informatique <modules@quadra-informatique.fr>
+ *  @copyright 2010-2016 La Poste SA
  *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- *  International Registered Trademark & Property of PrestaShop SA
+ *  International Registered Trademark & Property of La Poste SA
  */
 
 require_once('../../config/config.inc.php');

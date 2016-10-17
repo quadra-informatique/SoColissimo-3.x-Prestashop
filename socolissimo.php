@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2010-2016 La Poste SA
  *
  * NOTICE OF LICENSE
  *
@@ -10,7 +10,7 @@
  * http://opensource.org/licenses/afl-3.0.php
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
+ * to modules-prestashop@laposte.fr so we can send you a copy immediately.
  *
  * DISCLAIMER
  *
@@ -18,10 +18,10 @@
  * versions in the future. If you wish to customize PrestaShop for your
  * needs please refer to http://www.prestashop.com for more information.
  *
- *  @author    PrestaShop SA <contact@prestashop.com> Quadra Informatique <modules@quadra-informatique.fr>
- *  @copyright 2007-2016 PrestaShop SA
+ *  @author    Quadra Informatique <modules@quadra-informatique.fr>
+ *  @copyright 2010-2016 La Poste SA
  *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- *  International Registered Trademark & Property of PrestaShop SA
+ *  International Registered Trademark & Property of La Poste SA
  */
 
 if (!defined('_PS_VERSION_')) {
@@ -70,7 +70,7 @@ class Socolissimo extends CarrierModule
     {
         $this->name = 'socolissimo';
         $this->tab = 'shipping_logistics';
-        $this->version = '2.99.00';
+        $this->version = '3.0.0';
         $this->author = 'Quadra Informatique';
         $this->module_key = '8b991db851bdf7c64ca441f1a4481964';
         $this->need_instance = 0;
@@ -405,13 +405,14 @@ class Socolissimo extends CarrierModule
 
         //======================================================================
         // CREDENTIALS TAB
-        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<')) {
             $form['input'][] = array(
                 'type' => 'free',
                 'desc' => '<h3>'.$this->l('Merchant Informations').'</h3>'
             );
-        else
+        } else {
             $form['tabs']['credentials'] = $this->l('Merchant Informations');
+        }
 
         $form['input'][] = array(
             'tab' => 'credentials',
@@ -485,13 +486,14 @@ class Socolissimo extends CarrierModule
 
         //======================================================================
         // GENERAL TAB
-        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
-            $form['input'][] = array(                
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<')) {
+            $form['input'][] = array(
                 'type' => 'free',
                 'desc' => '<h3>'.$this->l('Your Colissimo Box').'</h3>'
             );
-        else
+        } else {
             $form['tabs']['general'] = $this->l('Your Colissimo Box');
+        }
 
         $form['input'][] = array(
             'tab' => 'general',
@@ -550,13 +552,14 @@ class Socolissimo extends CarrierModule
 
         //======================================================================
         // SYSTEM TAB
-        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<')) {
             $form['input'][] = array(
                 'type' => 'free',
                 'desc' => '<h3>'.$this->l('Colissimo simplicity system parameters').'</h3>'
             );
-        else
+        } else {
             $form['tabs']['system'] = $this->l('Colissimo simplicity system parameters');
+        }
 
         $form['input'][] = array(
             'tab' => 'system',
@@ -609,13 +612,14 @@ class Socolissimo extends CarrierModule
 
         //======================================================================
         // PRESTASHOP TAB
-        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<')) {
             $form['input'][] = array(
                 'type' => 'free',
                 'desc' => '<h3>'.$this->l('Colissimo simplicity prestashop parameters').'</h3>'
             );
-        else
+        } else {
             $form['tabs']['prestashop'] = $this->l('Colissimo simplicity prestashop parameters');
+        }
 
         $form['input'][] = array(
             'tab' => 'prestashop',
