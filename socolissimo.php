@@ -696,11 +696,12 @@ class Socolissimo extends CarrierModule
             'desc' => $this->l('Carrier used to get "Colissimo at a withdrawal point" cost')
         );
 
-        if (version_compare(_PS_VERSION_, '1.6.0.7', '<'))
+        if (version_compare(_PS_VERSION_, '1.6.0.7', '<')) {
             $form['input'][] = array(
                 'type' => 'free',
                 'desc' => '<h3>'.$this->l('Save').'</h3>'
             );
+        }
 
         $form['submit'] = array(
             'title' => $this->l('Save')
