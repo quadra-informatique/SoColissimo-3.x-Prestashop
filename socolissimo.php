@@ -994,12 +994,6 @@ class Socolissimo extends CarrierModule
                 }
             }
         }
-
-        if ($free_shipping) {
-            $std_cost_with_taxes = 0;
-            $seller_cost_with_taxes = 0;
-        }
-
         // Keep this fields order (see doc.)
         $inputs = array(
             'pudoFOId' => Configuration::get('SOCOLISSIMO_ID'),
@@ -1070,7 +1064,14 @@ class Socolissimo extends CarrierModule
         if (Configuration::get('PS_SSL_ENABLED')) {
             $protocol = 'https://';
         }
-
+        $from_mention = $this->l('From');
+        $initial_cost = $from_cost.$this->l(' €');
+        $tax_mention = $this->l(' TTC');
+        if ($free_shipping) {
+            $from_mention = '';
+            $initial_cost = $this->l('Free (Will be apply after address selection)');
+            $tax_mention = '';
+        }
         $this->context->smarty->assign(array(
             'select_label' => $this->l('Select delivery mode'),
             'edit_label' => $this->l('Edit delivery mode'),
@@ -1080,9 +1081,9 @@ class Socolissimo extends CarrierModule
             'id_carrier' => $id_carrier,
             'id_carrier_seller' => Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER'),
             'inputs' => $inputs,
-            'initialCost_label' => $this->l('From'),
-            'initialCost' => $from_cost.$this->l(' €'), // to change label for price in tpl
-            'taxMention' => $this->l(' TTC'), // to change label for price in tpl
+            'initialCost_label' => $from_mention,
+            'initialCost' => $initial_cost, // to change label for price in tpl
+            'taxMention' => $tax_mention, // to change label for price in tpl
             'finishProcess' => $this->l('To choose SoColissimo, click on a delivery method'),
             'rewrite_active' => $rewrite_active,
             'link_socolissimo' => $module_link,

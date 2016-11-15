@@ -157,7 +157,7 @@
 		function modifyCarrierLine()
 		{
 			var carrier = $('input.delivery_option_radio:checked');
-
+			var container = '#id_carrier' + soCarrierId;
 			if ((carrier.val() == soCarrierId) || (carrier.val() == soCarrierId + ',')) {
 				carrier.next().children().children().find('div.delivery_option_delay').append('<div><a class="exclusive_large" id="button_socolissimo" href="#" onclick="redirect();return;" >{/literal}{$select_label|escape:'htmlall':'UTF-8'}{literal}</a></div>');
 				// 1.6 theme
