@@ -1,14 +1,14 @@
-# Module Colissimo Simplicité pour Prestashop
+# Module Colissimo Simplicité pour Prestashop 1.5/1.6
 
 Quadra Informatique est partenaire de La Poste pour vous présenter Colissimo Simplicité : découvrez dès maintenant la nouvelle solution de livraison de La Poste, exclusivement dédiée à l'e-commerce.
 
 ## Manuel Utilisateur
 
-[Découvrez pas à pas la configuration du module Simplicité pour Prestashop][3]
+[Découvrez pas à pas la configuration du module Simplicité pour Prestashop 1.5/1.6][3]
 
 ## Téléchargez et installez le module
 
-[La dernière version stable du module est disponible ICI][4]
+[La dernière version stable du module pour Prestashop 1.5/1.6 est disponible ICI][4]
 
 ## Contributing
 
@@ -44,4 +44,4 @@ Per to the OSL 3 License, the Original Work is provided under this License on an
 [1]: http://doc.prestashop.com/display/PS16/Coding+Standards
 [2]: https://help.github.com/articles/using-pull-requests
 [3]: http://shop.quadra-informatique.fr/?controller=attachment&id_attachment=17
-[4]: http://shop.quadra-informatique.fr/?controller=attachment&id_attachment=16
+[4]: http://shop.quadra-informatique.fr/?controller=attachment&id_attachment=36
