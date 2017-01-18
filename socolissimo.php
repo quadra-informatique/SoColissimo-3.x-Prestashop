@@ -994,6 +994,15 @@ class Socolissimo extends CarrierModule
                 }
             }
         }
+        //weight must be sent in grams
+        $weight_unit = Configuration::get('PS_WEIGHT_UNIT');
+        if (Tools::strtoupper($weight_unit) == 'G') {
+            $weight = (float)$params['cart']->getTotalWeight();
+        } else if (Tools::strtoupper($weight_unit) == 'LB' || Tools::strtoupper($weight_unit) == 'LBS') {
+            $weight = (float)$params['cart']->getTotalWeight() * 453.6;
+        } else {
+            $weight = (float)$params['cart']->getTotalWeight() * 1000;
+        }
         // Keep this fields order (see doc.)
         $inputs = array(
             'pudoFOId' => Configuration::get('SOCOLISSIMO_ID'),
@@ -1024,7 +1033,7 @@ class Socolissimo extends CarrierModule
                 '(',
                 ')'), '', $params['address']->phone_mobile)
             ),
-            'dyWeight' => (float)$params['cart']->getTotalWeight() * 1000,
+            'dyWeight' => $weight,
             'trParamPlus' => $carrier_so->id,
             'trReturnUrlKo' => htmlentities($this->url, ENT_NOQUOTES, 'UTF-8'),
             'trReturnUrlOk' => htmlentities($this->url, ENT_NOQUOTES, 'UTF-8'),
