@@ -22,7 +22,16 @@
  *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of La Poste SA
  */
+ 
+# 3.0.3
+[-] MO : change format address
 
+# 3.0.2
+[-] MO : Bug fix on cart rule
+ 
+# 3.0.1
+[-] MO : Fix for order created in BO
+ 
 # 3.0.0
 [-] MO : New Back Office page & design
 [-] MO : PrestaShop 1.5 & 1.6 support Only
