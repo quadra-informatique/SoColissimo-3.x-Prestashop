@@ -1458,10 +1458,10 @@ class Socolissimo extends CarrierModule
                 '(',
                 ')'), '', $ps_address->phone_mobile) != $return['cephonenumber']) {
             $new_address->id_customer = (int)$id_customer;
-            $firstname_company = preg_replace('/\d/', '', Tools::substr($colissimo_delivery_info->prfirstname, 0, 31));
-            $lastname_company = preg_replace('/\d/', '', Tools::substr($colissimo_delivery_info->prname, 0, 32));
-            $firstname = preg_replace('/\d/', '', Tools::substr($colissimo_delivery_info->cefirstname, 0, 32));
-            $lastname = preg_replace('/\d/', '', Tools::substr($colissimo_delivery_info->cename, 0, 32));
+            $firstname_company = preg_replace('/\d/', '', Tools::substr($return['prfirstname'], 0, 31));
+            $lastname_company = preg_replace('/\d/', '', Tools::substr($return['prname'], 0, 32));
+            $firstname = preg_replace('/\d/', '', Tools::substr($return['cefirstname'], 0, 32));
+            $lastname = preg_replace('/\d/', '', Tools::substr($return['cename'], 0, 32));
             $firstname_company_formatted = trim($this->formatName($firstname_company));
             $lastname_company_formatted = trim($this->formatName($lastname_company));
             $new_address->lastname = trim($this->formatName($lastname));

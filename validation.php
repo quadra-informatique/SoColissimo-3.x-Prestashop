@@ -90,6 +90,17 @@ if (!$so->checkErrors($errors_codes, SCError::REQUIRED)) {
         $errors_list[] = $so->l('Error code:').' '.$so->getError($code);
     }
 }
+// check if retrun country is allowed by shop
+if ($return['PRPAYS']) {
+    $iso_return = $return['PRPAYS'];
+} else {
+    $iso_return = $return['CEPAYS'];
+}
+
+if (!isAvailableReturnCountry($iso_return)) {
+	$errors_list[] = $so->l('Country in address is not allowed in shop.');
+}
+
 if (empty($errors_list)) {
     if ($so->isCorrectSignKey($return['SIGNATURE'], $return) && $so->context->cart->id && saveOrderShippingDetails($so->context->cart->id, (int)$return['TRCLIENTNUMBER'], $return, $so)) {
         $trparamplus = explode('|', $return['TRPARAMPLUS']);
@@ -122,6 +133,29 @@ if (empty($errors_list)) {
 
 $so->context->smarty->assign('error_list', $errors_list);
 $display->run();
+
+function isAvailableReturnCountry($iso_code)
+{
+    if ($iso_code) {
+        $carrier = new Carrier(Configuration::get('SOCOLISSIMO_CARRIER_ID'));
+        $zones = $carrier->getZones();
+        $country = Country::getByIso($iso_code);
+        if ((int)$country && (int)$carrier->id) {
+            $is_available = false;
+            $return_country = new Country((int)$country);
+            $zone_country = Country::getIdZone((int)$country);
+            if ($zone_country && $return_country->active) {
+                foreach ($zones as $zone) {
+                    if ($zone['id_zone'] == $zone_country) {
+                        $is_available = true;
+                    }
+                }
+                return $is_available;
+            }
+        }
+    }
+    return false;
+}
 
 function saveOrderShippingDetails($id_cart, $id_customer, $so_params, $so_object)
 {

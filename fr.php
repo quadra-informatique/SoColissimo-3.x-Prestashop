@@ -16,7 +16,6 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_ac08649aa09ff3b879525627bf086dd1'
 $_MODULE['<{socolissimo}prestashop>socolissimo_a3a53f075adf77334cc34d0f7497ff44'] = '\'Url de l\'administration de Colissimo\'';
 $_MODULE['<{socolissimo}prestashop>socolissimo_4d470fde8487e755a50e9235e3dc13ab'] = 'doivent être renseignés pour fonctionner correctement';
 $_MODULE['<{socolissimo}prestashop>socolissimo_be9f2d13422fc71d3d92fd4b22f309e9'] = 'Colissimo Simplicité';
-$_MODULE['<{socolissimo}prestashop>socolissimo_c9cc8cce247e49bae79f15173ce97354'] = 'Enregistrer';
 $_MODULE['<{socolissimo}prestashop>socolissimo_69ccb7c386b70ae60c80c170246960c7'] = 'A propos de Colissimo';
 $_MODULE['<{socolissimo}prestashop>socolissimo_645f11cd8af35de9d1df8fd7f87500cb'] = 'Informations marchand';
 $_MODULE['<{socolissimo}prestashop>socolissimo_1f8261d17452a959e013666c5df45e07'] = 'Numéro de téléphone';
@@ -67,11 +66,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_578096cb378fea4d78dc6e59fee84c31'
 $_MODULE['<{socolissimo}prestashop>socolissimo_7001bdc2a0dca0abf8cb633029c68ef6'] = 'Ce coût s\'applique en lieu et place du coût \"normal\" pour la livraison en commerce de proximité.  Un transporteur \"commerce de proximité\" a été crée afin de vous permettre de paramétrer son coût par tranche de prix/poids. Ses tarifs seront utilisés à la place de ceux du transporteur classique lors d\'une livraison en point commerce. Une fois configuré, merci de désactiver le transporteur \"commerce de proximité\".';
 $_MODULE['<{socolissimo}prestashop>socolissimo_de2f435741ad4ee91553202b8bcc0507'] = 'Transporteur Point de retrait';
 $_MODULE['<{socolissimo}prestashop>socolissimo_c12fa33252d42e12e6e6674b95a901c4'] = 'Transporteur utilisé pour déterminé le tarif de la livraison en point de retrait';
-$_MODULE['<{socolissimo}prestashop>socolissimo_6b29e581f608ce4370babebeee439bac'] = 'Numéro de téléphone incorrect';
-$_MODULE['<{socolissimo}prestashop>socolissimo_e7ef50e6093c77be4fcfd36f9432e56f'] = 'Code postal incorrect';
-$_MODULE['<{socolissimo}prestashop>socolissimo_24ab66c8d99aa31c1dcb00f0e5e564df'] = 'Le nombre de colis est incorrect';
-$_MODULE['<{socolissimo}prestashop>socolissimo_8279a78fcce2b4ddfb79dfe689592ed2'] = 'Siret incorrect';
-$_MODULE['<{socolissimo}prestashop>socolissimo_8554bbc520a9d24ffda195065bbcc9ee'] = 'Vous devez accepter les termes et conditions';
+$_MODULE['<{socolissimo}prestashop>socolissimo_c9cc8cce247e49bae79f15173ce97354'] = 'Enregistrer';
 $_MODULE['<{socolissimo}prestashop>socolissimo_82c440defe28e2099cba1af1f0761807'] = 'Identifiant FO non spécifié';
 $_MODULE['<{socolissimo}prestashop>socolissimo_826361881cfc18b8b75405d398f633b5'] = 'Clé de cryptage non spécifiée';
 $_MODULE['<{socolissimo}prestashop>socolissimo_0bf6a620e5f22d8b46e3903a993f7741'] = 'Temps de préparation non spécifié';
@@ -80,11 +75,16 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_16449aba4eeb91e06418c42d90fd93f5'
 $_MODULE['<{socolissimo}prestashop>socolissimo_d388441a9740f2356b06e6b434777e0a'] = 'Url de front mobile non renseignée';
 $_MODULE['<{socolissimo}prestashop>socolissimo_c84002b08f444ad4564751209a6625f0'] = 'Url de supervision non renseignée';
 $_MODULE['<{socolissimo}prestashop>socolissimo_9ae6fe001d646e4631d877a3dd5c1e59'] = 'Le transporteur Socolissimo doit être différent du transporteur socolissimo CC';
-$_MODULE['<{socolissimo}prestashop>socolissimo_898d22b4259367825dbbbc174f049197'] = 'Choisir un mode de livraison';
-$_MODULE['<{socolissimo}prestashop>socolissimo_6e55ec92b403f0ab31c29f62c837834a'] = 'Modifier le mode de livraison';
+$_MODULE['<{socolissimo}prestashop>socolissimo_6b29e581f608ce4370babebeee439bac'] = 'Numéro de téléphone incorrect';
+$_MODULE['<{socolissimo}prestashop>socolissimo_e7ef50e6093c77be4fcfd36f9432e56f'] = 'Code postal incorrect';
+$_MODULE['<{socolissimo}prestashop>socolissimo_24ab66c8d99aa31c1dcb00f0e5e564df'] = 'Le nombre de colis est incorrect';
+$_MODULE['<{socolissimo}prestashop>socolissimo_8279a78fcce2b4ddfb79dfe689592ed2'] = 'Siret incorrect';
+$_MODULE['<{socolissimo}prestashop>socolissimo_8554bbc520a9d24ffda195065bbcc9ee'] = 'Vous devez accepter les termes et conditions';
 $_MODULE['<{socolissimo}prestashop>socolissimo_5da618e8e4b89c66fe86e32cdafde142'] = 'A partir de';
 $_MODULE['<{socolissimo}prestashop>socolissimo_96d4c80bd0b7ccbce555b7d49422c8d9'] = '€';
 $_MODULE['<{socolissimo}prestashop>socolissimo_3199d0e4fdc235d991b423c73acdcff7'] = 'TTC';
+$_MODULE['<{socolissimo}prestashop>socolissimo_898d22b4259367825dbbbc174f049197'] = 'Choisir un mode de livraison';
+$_MODULE['<{socolissimo}prestashop>socolissimo_6e55ec92b403f0ab31c29f62c837834a'] = 'Modifier le mode de livraison';
 $_MODULE['<{socolissimo}prestashop>socolissimo_7ea4eac85d1d1967562869cf1e14b1d0'] = 'Pour choisir Colissimo, cochez une méthode de livraison';
 $_MODULE['<{socolissimo}prestashop>socolissimo_201bdb87f8e278b943d07ae924d5de6e'] = 'Mode de livraison';
 $_MODULE['<{socolissimo}prestashop>socolissimo_ce26601dac0dea138b7295f02b7620a7'] = 'Client';
@@ -101,6 +101,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_021944549c2795a6e4db23b92f198a5e'
 $_MODULE['<{socolissimo}prestashop>socolissimo_ce8ae9da5b7cd6c3df2929543a9af92d'] = 'E-mail';
 $_MODULE['<{socolissimo}prestashop>validation_57832417838cf085221e39f83c147a5d'] = 'La clé est requise par Colissimo :';
 $_MODULE['<{socolissimo}prestashop>validation_befec70964837a08794ca1b092471d83'] = 'Code d\'erreur :';
+$_MODULE['<{socolissimo}prestashop>validation_75147bf00179a2fe2afa7a1c8c839f55'] = 'Pas de livraison prévue par la boutique dans le pays indiqué dans l\'adresse choisie.';
 $_MODULE['<{socolissimo}prestashop>validation_ec4e66deaec002f69d337b4a7fb8f6ae'] = 'Impossible de mettre le panier à jour. Veuillez de nouveau effectuer votre sélection';
 $_MODULE['<{socolissimo}prestashop>scerror_09456f1fe3dbf4b7bbc3281e6cfcce8f'] = 'L\'ID FO est manquant';
 $_MODULE['<{socolissimo}prestashop>scerror_d157bc2bca42ee803c4d5682833447e8'] = 'Mauvais ID FO';
@@ -152,4 +153,3 @@ $_MODULE['<{socolissimo}prestashop>configure_warning_b28a56259e5b5fee9ac2077b0fc
 $_MODULE['<{socolissimo}prestashop>error_58d256f5c88c3a887c1c3b8c9ee76f4d'] = 'Liste des erreurs Colissimo :';
 $_MODULE['<{socolissimo}prestashop>error_0557fa923dcee4d0f86b1409f5c2167f'] = 'Retour';
 $_MODULE['<{socolissimo}prestashop>redirect_611a8475d4cbe64a9a2f5633a82fe314'] = 'Vous allez être redirigé vers Socolissimo dans quelques instants.Si ce n\'est pas le cas, veuillez cliquez sur le bouton.';
-$_MODULE['<{socolissimo}prestashop>socolissimo_iframe_1da9c63ab8644e375c6951f3876071ef'] = '';
