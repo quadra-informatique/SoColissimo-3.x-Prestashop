@@ -91,7 +91,7 @@ if (!$so->checkErrors($errors_codes, SCError::REQUIRED)) {
     }
 }
 // check if retrun country is allowed by shop
-if ($return['PRPAYS']) {
+if (array_key_exists('PRPAYS',$return)) {
     $iso_return = $return['PRPAYS'];
 } else {
     $iso_return = $return['CEPAYS'];
