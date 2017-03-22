@@ -1004,6 +1004,8 @@ class Socolissimo extends CarrierModule
             $weight = (float)$params['cart']->getTotalWeight() * 1000;
         }
         // Keep this fields order (see doc.)
+		// town fix 
+		$town = str_replace('\'', ' ', Tools::substr($params['address']->city, 0, 32));
         $inputs = array(
             'pudoFOId' => Configuration::get('SOCOLISSIMO_ID'),
             'ceName' => $this->replaceAccentedChars(Tools::substr($params['address']->lastname, 0, 34)),
@@ -1019,7 +1021,7 @@ class Socolissimo extends CarrierModule
             'ceAdress3' => $this->replaceAccentedChars(Tools::substr($params['address']->address1, 0, 38)),
             'ceAdress4' => $this->replaceAccentedChars(Tools::substr($params['address']->address2, 0, 38)),
             'ceZipCode' => $this->replaceAccentedChars($params['address']->postcode),
-            'ceTown' => $this->replaceAccentedChars(Tools::substr($params['address']->city, 0, 32)),
+            'ceTown' => $this->replaceAccentedChars($town),
             'ceEmail' => $this->replaceAccentedChars($params['cookie']->email),
             'cePhoneNumber' => $this->replaceAccentedChars(
                 str_replace(array(
@@ -1467,7 +1469,7 @@ class Socolissimo extends CarrierModule
             $new_address->lastname = trim($this->formatName($lastname));
             $new_address->firstname = trim($this->formatName($firstname));
             $new_address->postcode = $return['przipcode'];
-            $new_address->city = $return['prtown'];
+            $new_address->city = str_replace('\'',' ',$return['prtown']);
             $new_address->id_country = $iso_code;
             $new_address->alias = 'Colissimo - '.date('d-m-Y');
             $new_address->phone_mobile = $return['cephonenumber'];
@@ -1487,7 +1489,7 @@ class Socolissimo extends CarrierModule
                 ((isset($return['pradress1'])) ? $new_address->other .= $return['pradress1'] : $new_address->other = '');
                 ((isset($return['pradress4'])) ? $new_address->other .= ' | '.$return['pradress4'] : $new_address->other = '');
                 $new_address->postcode = $return['przipcode'];
-                $new_address->city = $return['prtown'];
+                $new_address->city = str_replace('\'',' ',$return['prtown']);
                 $new_address->id_country = $iso_code;
                 $new_address->alias = 'Colissimo - '.date('d-m-Y');
                 $new_address->add();
