@@ -79,7 +79,11 @@
 			$("#form").submit(function () {
 				if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
 				{
-					if (acceptCGV(($('#hidden_cgv').val()))) {
+					var passCheck = true;
+                    if (typeof(acceptCGVPass) === "function") {
+                        passCheck = acceptCGVPass();
+                    }
+					if (acceptCGV(($('#hidden_cgv').val())) && passCheck) {
 
 						$('div.delivery_options_address h3').css('display', 'none');
 						$('div.delivery_options').css('display', 'none');

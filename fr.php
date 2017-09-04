@@ -83,6 +83,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_8554bbc520a9d24ffda195065bbcc9ee'
 $_MODULE['<{socolissimo}prestashop>socolissimo_5da618e8e4b89c66fe86e32cdafde142'] = 'A partir de';
 $_MODULE['<{socolissimo}prestashop>socolissimo_96d4c80bd0b7ccbce555b7d49422c8d9'] = '€';
 $_MODULE['<{socolissimo}prestashop>socolissimo_3199d0e4fdc235d991b423c73acdcff7'] = 'TTC';
+$_MODULE['<{socolissimo}prestashop>socolissimo_efc5b392834c632e4bea3e7661c8358f'] = 'Gratuit (sera appliqué après la selection d\'adresse)';
 $_MODULE['<{socolissimo}prestashop>socolissimo_898d22b4259367825dbbbc174f049197'] = 'Choisir un mode de livraison';
 $_MODULE['<{socolissimo}prestashop>socolissimo_6e55ec92b403f0ab31c29f62c837834a'] = 'Modifier le mode de livraison';
 $_MODULE['<{socolissimo}prestashop>socolissimo_7ea4eac85d1d1967562869cf1e14b1d0'] = 'Pour choisir Colissimo, cochez une méthode de livraison';

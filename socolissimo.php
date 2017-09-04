@@ -530,7 +530,7 @@ class Socolissimo extends CarrierModule
         $form['input'][] = array(
             'tab' => 'general',
             'type' => 'free',
-            'name' => 'url_note',
+            'name' => 'URL_NOTE',
             'desc' => '<hr/><strong>'.$this->l('Please fill in these two addresses in your').
             ' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a></strong><ul>'.
             '<li>'.$this->l('In the "Delivery options selection page"').'</li>'.
@@ -728,7 +728,7 @@ class Socolissimo extends CarrierModule
             $display_type = 2;
         }
         $return['DISPLAY_TYPE'] = $display_type;
-
+		$return['URL_NOTE'] = '';
         $return['VALIDATION_URL'] = '<p class="form-control-static">'.htmlentities($this->url, ENT_NOQUOTES, 'UTF-8').'</p>';
         $return['RETURN_URL'] = '<p class="form-control-static">'.htmlentities($this->url, ENT_NOQUOTES, 'UTF-8').'</p>';
         return $return;
@@ -1660,6 +1660,25 @@ class Socolissimo extends CarrierModule
 		if (!$this->context->cart instanceof Cart || !$this->context->cart->id) {
 			$this->context->cart = new Cart($params->id);
 		}
+		
+		// check colissimopass module installed and used
+        if (Module::isEnabled('colissimopass')) {
+            // is user connect ?
+            require_once(_PS_MODULE_DIR_.'colissimopass/classes/ColissimoPassUser.php');
+            if (ColissimoPassUser::isConnect()) {
+                return 0;
+            }
+            // is product pass in cart ?
+            $cart = $this->context->cart;
+            $products = $cart->getProducts();
+            if (is_array($products)) {
+                foreach ($products as $product) {
+                    if ($product['id_product'] == (int)Configuration::get('ID_COLISSIMO_PASS_PDT')) {
+                        return 0;
+                    }
+                }
+            }
+        }
         // for label in tpl
         if (!$this->initial_cost) {
             $this->initial_cost = $this->getStandardCost();

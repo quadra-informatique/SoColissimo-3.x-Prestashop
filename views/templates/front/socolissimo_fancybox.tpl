@@ -143,7 +143,11 @@
 				$('[name=processCarrier]').unbind('click').live('click', function () {
 					if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
 					{
-						if (acceptCGV()) {
+						var passCheck = true;
+                        if (typeof(acceptCGVPass) === "function") {
+                            passCheck = acceptCGVPass();
+						}
+						if (acceptCGV() && passCheck) {
 							$('#soLink').attr('href', link_socolissimo + serialiseInput(soInputs));
 							$("#soLink").trigger("click");
 						}
