@@ -91,14 +91,14 @@ if (!$so->checkErrors($errors_codes, SCError::REQUIRED)) {
     }
 }
 // check if retrun country is allowed by shop
-if (array_key_exists('PRPAYS',$return)) {
+if (array_key_exists('PRPAYS', $return)) {
     $iso_return = $return['PRPAYS'];
 } else {
     $iso_return = $return['CEPAYS'];
 }
 
 if (!isAvailableReturnCountry($iso_return)) {
-	$errors_list[] = $so->l('Country in address is not allowed in shop.');
+    $errors_list[] = $so->l('Country in address is not allowed in shop.');
 }
 
 if (empty($errors_list)) {

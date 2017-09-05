@@ -728,7 +728,7 @@ class Socolissimo extends CarrierModule
             $display_type = 2;
         }
         $return['DISPLAY_TYPE'] = $display_type;
-		$return['URL_NOTE'] = '';
+        $return['URL_NOTE'] = '';
         $return['VALIDATION_URL'] = '<p class="form-control-static">'.htmlentities($this->url, ENT_NOQUOTES, 'UTF-8').'</p>';
         $return['RETURN_URL'] = '<p class="form-control-static">'.htmlentities($this->url, ENT_NOQUOTES, 'UTF-8').'</p>';
         return $return;
@@ -1004,8 +1004,8 @@ class Socolissimo extends CarrierModule
             $weight = (float)$params['cart']->getTotalWeight() * 1000;
         }
         // Keep this fields order (see doc.)
-		// town fix 
-		$town = str_replace('\'', ' ', Tools::substr($params['address']->city, 0, 32));
+        // town fix
+        $town = str_replace('\'', ' ', Tools::substr($params['address']->city, 0, 32));
         $inputs = array(
             'pudoFOId' => Configuration::get('SOCOLISSIMO_ID'),
             'ceName' => $this->replaceAccentedChars(Tools::substr($params['address']->lastname, 0, 34)),
@@ -1116,7 +1116,6 @@ class Socolissimo extends CarrierModule
 
         if ((Configuration::Get('SOCOLISSIMO_ID') != null) && (Configuration::get('SOCOLISSIMO_KEY') != null) && (Configuration::Get('SOCOLISSIMO_PERSONAL_DATA')) && $this->checkAvailibility() && $this->checkSoCarrierAvailable((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'))
             && in_array((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'), $ids)) {
-
             if (Context::getContext()->getMobileDevice() || $this->isIpad() || $this->isMobile()) {
                 if (Configuration::get('PS_ORDER_PROCESS_TYPE')) {
                     return $this->fetchTemplate('socolissimo_redirect_mobile_opc.tpl');
@@ -1322,7 +1321,6 @@ class Socolissimo extends CarrierModule
         }
 
         if ($carrier->add()) {
-
             if (Shop::isFeatureActive()) {
                 Shop::setContext(Shop::CONTEXT_ALL);
             }
@@ -1469,7 +1467,7 @@ class Socolissimo extends CarrierModule
             $new_address->lastname = trim($this->formatName($lastname));
             $new_address->firstname = trim($this->formatName($firstname));
             $new_address->postcode = $return['przipcode'];
-            $new_address->city = str_replace('\'',' ',$return['prtown']);
+            $new_address->city = str_replace('\'', ' ', $return['prtown']);
             $new_address->id_country = $iso_code;
             $new_address->alias = 'Colissimo - '.date('d-m-Y');
             $new_address->phone_mobile = $return['cephonenumber'];
@@ -1477,7 +1475,7 @@ class Socolissimo extends CarrierModule
             if (!in_array($return['delivery_mode'], array(
                     'DOM',
                     'RDV'))) {
-				$new_address->company = $firstname_company_formatted.' '.$lastname_company_formatted;
+                $new_address->company = $firstname_company_formatted.' '.$lastname_company_formatted;
                 $new_address->active = 1;
                 $new_address->deleted = 1;
                 $new_address->address1 = $return['pradress1'];
@@ -1489,7 +1487,7 @@ class Socolissimo extends CarrierModule
                 ((isset($return['pradress1'])) ? $new_address->other .= $return['pradress1'] : $new_address->other = '');
                 ((isset($return['pradress4'])) ? $new_address->other .= ' | '.$return['pradress4'] : $new_address->other = '');
                 $new_address->postcode = $return['przipcode'];
-                $new_address->city = str_replace('\'',' ',$return['prtown']);
+                $new_address->city = str_replace('\'', ' ', $return['prtown']);
                 $new_address->id_country = $iso_code;
                 $new_address->alias = 'Colissimo - '.date('d-m-Y');
                 $new_address->add();
@@ -1656,12 +1654,11 @@ class Socolissimo extends CarrierModule
 
     public function getOrderShippingCost($params, $shipping_cost)
     {
-		// for order in BO
-		if (!$this->context->cart instanceof Cart || !$this->context->cart->id) {
-			$this->context->cart = new Cart($params->id);
-		}
-		
-		// check colissimopass module installed and used
+        // for order in BO
+        if (!$this->context->cart instanceof Cart || !$this->context->cart->id) {
+            $this->context->cart = new Cart($params->id);
+        }
+        // check colissimopass module installed and used
         if (Module::isEnabled('colissimopass')) {
             // is user connect ?
             require_once(_PS_MODULE_DIR_.'colissimopass/classes/ColissimoPassUser.php');
