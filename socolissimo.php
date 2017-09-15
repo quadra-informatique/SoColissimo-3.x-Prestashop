@@ -1662,7 +1662,7 @@ class Socolissimo extends CarrierModule
         if (Module::isEnabled('colissimopass')) {
             // is user connect ?
             require_once(_PS_MODULE_DIR_.'colissimopass/classes/ColissimoPassUser.php');
-            if (ColissimoPassUser::isConnect()) {
+            if (ColissimoPassUser::isActive()) {
                 return 0;
             }
             // is product pass in cart ?
