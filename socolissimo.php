@@ -1149,6 +1149,13 @@ class Socolissimo extends CarrierModule
         $order->id_address_delivery = $this->isSameAddress((int)$order->id_address_delivery, (int)$order->id_cart, (int)$order->id_customer);
         $order->update();
         Configuration::updateValue('SOCOLISSIMO_CONFIGURATION_OK', true);
+		if (Module::isEnabled('colissimopass')) {
+            // is user connect ?
+            require_once(_PS_MODULE_DIR_.'colissimopass/colissimopass.php');
+            if (ColissimoPassUser::isActive()) {
+                Colissimopass::sendConsignment($order);
+            }
+        }
     }
 
     public function hookAdminOrder($params)
