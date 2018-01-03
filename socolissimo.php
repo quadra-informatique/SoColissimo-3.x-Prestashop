@@ -70,7 +70,7 @@ class Socolissimo extends CarrierModule
     {
         $this->name = 'socolissimo';
         $this->tab = 'shipping_logistics';
-        $this->version = '3.0.8';
+        $this->version = '3.0.9';
         $this->author = 'Quadra Informatique';
         $this->module_key = '8b991db851bdf7c64ca441f1a4481964';
         $this->need_instance = 0;
@@ -1149,7 +1149,7 @@ class Socolissimo extends CarrierModule
         $order->id_address_delivery = $this->isSameAddress((int)$order->id_address_delivery, (int)$order->id_cart, (int)$order->id_customer);
         $order->update();
         Configuration::updateValue('SOCOLISSIMO_CONFIGURATION_OK', true);
-		if (Module::isEnabled('colissimopass')) {
+        if (Module::isEnabled('colissimopass')) {
             // is user connect ?
             require_once(_PS_MODULE_DIR_.'colissimopass/colissimopass.php');
             if (ColissimoPassUser::isActive()) {
