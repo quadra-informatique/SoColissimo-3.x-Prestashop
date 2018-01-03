@@ -1044,7 +1044,7 @@ class Socolissimo extends CarrierModule
             'trInter' => 1,
             'ceLang' => 'FR'
         );
-        if (!$inputs['dyForwardingChargesCMT'] && !Configuration::get('SOCOLISSIMO_COST_SELLER')) {
+        if (isset($inputs['dyForwardingChargesCMT']) && !$inputs['dyForwardingChargesCMT'] && !Configuration::get('SOCOLISSIMO_COST_SELLER')) {
             unset($inputs['dyForwardingChargesCMT']);
         }
 
