@@ -22,11 +22,14 @@
  *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of La Poste SA
  */
- # 3.0.9
+# 3.0.10
+[-] MO : add free card option
+
+# 3.0.9
 [-] MO : fix notice on array inputs
 fix reallocate carrier method
 
- # 3.0.8
+# 3.0.8
 [-] MO : implement colissimo pass tracking
  
 # 3.0.7
