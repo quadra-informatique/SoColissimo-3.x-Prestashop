@@ -16,6 +16,7 @@
  *  @copyright La Poste
  *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+
 require_once _PS_MODULE_DIR_.'socolissimo/classes/ColissimoDeliveryPoint.php';
 
 class SocolissimoredirectdeliverypointModuleFrontController extends ModuleFrontController
