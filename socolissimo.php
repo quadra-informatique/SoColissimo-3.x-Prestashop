@@ -29,6 +29,7 @@ if (!defined('_PS_VERSION_')) {
 }
 
 require_once(_PS_MODULE_DIR_.'socolissimo/classes/ColissimoDeliveryPoint.php');
+
 class Socolissimo extends CarrierModule
 {
 
@@ -36,7 +37,7 @@ class Socolissimo extends CarrierModule
     protected $config_single_values_keys = false;
     protected $config_single_values_keys_exception = false;
     private $_html = '';
-	private $link_to_img = '';
+    private $link_to_img = '';
     private $post_errors = array();
     private $api_num_version = '4.0';
     private $config = array(
@@ -88,7 +89,7 @@ class Socolissimo extends CarrierModule
             'min' => '1.5.0.0',
             'max' => '1.6.99.99');
 
-		$this->link_to_img = $this->_path.'/views/img/';
+        $this->link_to_img = $this->_path.'/views/img/';
         $protocol = function_exists('Tools::getProtocol') ? Tools::getProtocol() : 'http://';
         if (Configuration::get('PS_SSL_ENABLED') && Configuration::get('PS_SSL_ENABLED_EVERYWHERE')) {
             $protocol = 'https://';
@@ -152,7 +153,7 @@ class Socolissimo extends CarrierModule
             'SOCOLISSIMO_KEY',
             'SOCOLISSIMO_URL',
             'SOCOLISSIMO_URL_MOBILE',
-			'SOCOLISSIMO_URL_POINTDERETRAIT',
+            'SOCOLISSIMO_URL_POINTDERETRAIT',
             'SOCOLISSIMO_WS_URL',
             'SOCOLISSIMO_OVERCOST',
             'SOCOLISSIMO_COST_SELLER',
@@ -167,7 +168,7 @@ class Socolissimo extends CarrierModule
             'SOCOLISSIMO_PERSONAL_ZIP_CODE',
             'SOCOLISSIMO_PERSONAL_QUANTITIES',
             'SOCOLISSIMO_PERSONAL_SIRET',
-			'SOCOLISSIMO_USE_POINTDERETRAIT',
+            'SOCOLISSIMO_USE_POINTDERETRAIT',
             'SOCOLISSIMO_PERSONAL_DATA',
             'SOCOLISSIMO_LOGIN',
             'SOCOLISSIMO_PASSWORD'
@@ -196,7 +197,7 @@ class Socolissimo extends CarrierModule
             !Configuration::updateValue('SOCOLISSIMO_SUP', true) ||
             !Configuration::updateValue('SOCOLISSIMO_USE_FANCYBOX', 0) ||
             !Configuration::updateValue('SOCOLISSIMO_USE_IFRAME', true) ||
-			!Configuration::updateValue('SOCOLISSIMO_TOKEN_POINTDERETRAIT', '') ||
+            !Configuration::updateValue('SOCOLISSIMO_TOKEN_POINTDERETRAIT', '') ||
             !Configuration::updateValue('SOCOLISSIMO_PDR_TOKEN_HOUR', '') ||
             !Configuration::updateValue('SOCOLISSIMO_USE_POINTDERETRAIT', '1') ||
             !Configuration::updateValue('SOCOLISSIMO_URL_POINTDERETRAIT', 'ws.colissimo.fr/widget-point-retrait/rest/authenticate.rest') ||
@@ -247,7 +248,7 @@ class Socolissimo extends CarrierModule
         if (!Db::getInstance()->execute($sql)) {
             return false;
         }
-		$sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'socolissimo_delivery_point` (
+        $sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'socolissimo_delivery_point` (
                   `id_socolissimo_delivery_point` INT NOT NULL AUTO_INCREMENT,
                   `id_cart` INT NOT NULL,
                   `id_customer` INT NOT NULL,
@@ -317,7 +318,7 @@ class Socolissimo extends CarrierModule
         Configuration::deleteByName('SOCOLISSIMO_KEY');
         Configuration::deleteByName('SOCOLISSIMO_URL');
         Configuration::deleteByName('SOCOLISSIMO_URL_MOBILE');
-		Configuration::deleteByName('SOCOLISSIMO_URL_POINTDERETRAIT');
+        Configuration::deleteByName('SOCOLISSIMO_URL_POINTDERETRAIT');
         Configuration::deleteByName('SOCOLISSIMO_OVERCOST');
         Configuration::deleteByName('SOCOLISSIMO_COST_SELLER');
         Configuration::deleteByName('SOCOLISSIMO_UPG_COUNTRY');
@@ -641,7 +642,7 @@ class Socolissimo extends CarrierModule
         );
         $form['input'][] = array(
             'tab' => 'system',
-			'col' => 3,
+            'col' => 3,
             'type' => 'text',
             'required' => true,
             'label' => $this->l('Url web service la poste'),
@@ -773,13 +774,13 @@ class Socolissimo extends CarrierModule
             ),
             'desc' => $this->l('Carrier used to get "Colissimo at a withdrawal point" cost')
         );
-		//======================================================================
+        //======================================================================
         // WITHDRAWAL TAB
         if (version_compare(_PS_VERSION_, '1.6.0.7', '<')) {
             $form['input'][] = array(
                 'type' => 'free',
                 'desc' => '<h3>'.$this->l('Withdrawal account').'</h3>'
-                 );
+            );
         } else {
             $form['tabs']['withdrawal'] = $this->l('Withdrawal account');
         }
@@ -818,7 +819,7 @@ class Socolissimo extends CarrierModule
             'desc' => $this->l('Your connexion login at(only for free option) ').' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a>'
         );
 
-                $form['input'][] = array(
+        $form['input'][] = array(
             'tab' => 'withdrawal',
             'col' => 3,
             'type' => 'text',
@@ -829,7 +830,7 @@ class Socolissimo extends CarrierModule
             'desc' => $this->l('Your connexion password at(only for free option) ').' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a>'
         );
 
-             $form['input'][] = array(
+        $form['input'][] = array(
             'tab' => 'withdrawal',
             'col' => 3,
             'type' => 'text',
@@ -841,7 +842,6 @@ class Socolissimo extends CarrierModule
             '<br/>'.$this->l('Must be the same parameter as in your ').
             ' <a href="https://www.colissimo.entreprise.laposte.fr" target="_blank" >Colissimo Box </a>'
         );
-		
         if (version_compare(_PS_VERSION_, '1.6.0.7', '<')) {
             $form['input'][] = array(
                 'type' => 'free',
@@ -918,17 +918,16 @@ class Socolissimo extends CarrierModule
             $this->context->controller->errors[] = $this->l('ID SO not specified');
         }
 
-        if (Tools::getValue('SOCOLISSIMO_KEY') == null && (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == 0) && (Tools::getValue('SOCOLISSIMO_USE_POINTDERETRAIT') == 0)) { 
+        if (Tools::getValue('SOCOLISSIMO_KEY') == null && (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == 0) && (Tools::getValue('SOCOLISSIMO_USE_POINTDERETRAIT') == 0)) {
             $this->context->controller->errors[] = $this->l('Key SO not specified');
         }
 
-		if (Tools::getValue('SOCOLISSIMO_LOGIN') == null && (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == 1) && (Tools::getValue('SOCOLISSIMO_USE_POINTDERETRAIT') == 1 )) {
+        if (Tools::getValue('SOCOLISSIMO_LOGIN') == null && (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == 1) && (Tools::getValue('SOCOLISSIMO_USE_POINTDERETRAIT') == 1 )) {
             $this->context->controller->errors[] = $this->l('Login Colissimo is not specified, required for free option');
         }
         if (Tools::getValue('SOCOLISSIMO_PASSWORD') == null && (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == 1) && (Tools::getValue('SOCOLISSIMO_USE_POINTDERETRAIT') == 1 )) {
             $this->context->controller->errors[] = $this->l('Pass Colissimo is not specified, required for free option');
         }
-		
         if (Tools::getValue('SOCOLISSIMO_PREPARATION_TIME') == null) {
             $this->context->controller->errors[] = $this->l('Preparation time not specified');
         } elseif (!Validate::isInt(Tools::getValue('SOCOLISSIMO_PREPARATION_TIME'))) {
@@ -954,9 +953,7 @@ class Socolissimo extends CarrierModule
             if ((int)Tools::getValue('SOCOLISSIMO_CARRIER_ID') != (int)Configuration::get('SOCOLISSIMO_CARRIER_ID')) {
                 Configuration::updateValue(
                     'SOCOLISSIMO_CARRIER_ID_HIST',
-                    Configuration::get(
-                        'SOCOLISSIMO_CARRIER_ID_HIST'
-                    ).'|'.(int)Tools::getValue('SOCOLISSIMO_CARRIER_ID')
+                    Configuration::get('SOCOLISSIMO_CARRIER_ID_HIST').'|'.(int)Tools::getValue('SOCOLISSIMO_CARRIER_ID')
                 );
                 Configuration::updateValue(
                     'SOCOLISSIMO_CARRIER_ID',
@@ -968,9 +965,7 @@ class Socolissimo extends CarrierModule
             if ((int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER') != (int)Configuration::get('SOCOLISSIMO_CARRIER_ID_SELLER')) {
                 Configuration::updateValue(
                     'SOCOLISSIMO_CARRIER_ID_HIST',
-                    Configuration::get(
-                        'SOCOLISSIMO_CARRIER_ID_HIST'
-                    ).'|'.(int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER')
+                    Configuration::get('SOCOLISSIMO_CARRIER_ID_HIST').'|'.(int)Tools::getValue('SOCOLISSIMO_CARRIER_ID_SELLER')
                 );
                 Configuration::updateValue(
                     'SOCOLISSIMO_CARRIER_ID_SELLER',
@@ -1035,14 +1030,14 @@ class Socolissimo extends CarrierModule
                 Configuration::updateValue('SOCOLISSIMO_PERSONAL_QUANTITIES', Tools::getValue('SOCOLISSIMO_PERSONAL_QUANTITIES'));
                 Configuration::updateValue('SOCOLISSIMO_PERSONAL_SIRET', Tools::getValue('SOCOLISSIMO_PERSONAL_SIRET'));
                 Configuration::updateValue('SOCOLISSIMO_PERSONAL_ACCEPT', Tools::getValue('SOCOLISSIMO_PERSONAL_ACCEPT'));
-				Configuration::updateValue('SOCOLISSIMO_USE_POINTDERETRAIT', Tools::getValue('SOCOLISSIMO_USE_POINTDERETRAIT'));
+                Configuration::updateValue('SOCOLISSIMO_USE_POINTDERETRAIT', Tools::getValue('SOCOLISSIMO_USE_POINTDERETRAIT'));
                 if ($this->savePreactivationRequest()) {
                     Configuration::updateValue('SOCOLISSIMO_PERSONAL_DATA', 1);
                 }
             }
         }
     }
-    
+
     /**
      * Add the CSS & JavaScript files in the BO.
      */
@@ -1055,8 +1050,7 @@ class Socolissimo extends CarrierModule
 
     public function hookExtraCarrier($params)
     {
-
-		if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == '1') {
+        if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
             $this->context->controller->addJS((__PS_BASE_URI__).'modules/socolissimo/views/js/jquery.frameColiposte.js');
         }
         $carrier_so = new Carrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'));
@@ -1093,9 +1087,7 @@ class Socolissimo extends CarrierModule
             '2' => 'MME',
             '3' => 'MLE');
 
-        if (in_array((int)$customer->id_gender, array(
-                1,
-                2))) {
+        if (in_array((int)$customer->id_gender, array(1, 2))) {
             $cecivility = $gender[(int)$customer->id_gender];
         } else {
             $cecivility = 'MR';
@@ -1164,7 +1156,7 @@ class Socolissimo extends CarrierModule
         // Keep this fields order (see doc.)
         // town fix
         $town = str_replace('\'', ' ', Tools::substr($params['address']->city, 0, 32));
-		$token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
+        $token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
         $token_update_date = Configuration::get('SOCOLISSIMO_PDR_TOKEN_HOUR');
         $now = time();
         $diff = abs($now - (strtotime($token_update_date)));
@@ -1177,59 +1169,59 @@ class Socolissimo extends CarrierModule
         }
 
         $wsUrl = Configuration::get('SOCOLISSIMO_WS_URL');
-        if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == '1') {
+        if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
             $inputs = array(
-            'ceCountry' => $this->replaceAccentedChars($town),
-            'ceLang' => 'FR',
-            'dyPreparationTime' => (int) Configuration::Get('SOCOLISSIMO_PREPARATION_TIME'),
-            'ceAddress' => $this->replaceAccentedChars(Tools::substr($params['address']->address1, 0, 38)),
-            'ceZipCode' => $this->replaceAccentedChars($params['address']->postcode),
-            'ceTown' => $this->replaceAccentedChars($town),
-            'dyWeight' => $weight,
-            'cePays' => $country->iso_code,
-            'token' => $token,
-            'wsUrl' => $wsUrl,
+                'ceCountry' => $this->replaceAccentedChars($town),
+                'ceLang' => 'FR',
+                'dyPreparationTime' => (int)Configuration::Get('SOCOLISSIMO_PREPARATION_TIME'),
+                'ceAddress' => $this->replaceAccentedChars(Tools::substr($params['address']->address1, 0, 38)),
+                'ceZipCode' => $this->replaceAccentedChars($params['address']->postcode),
+                'ceTown' => $this->replaceAccentedChars($town),
+                'dyWeight' => $weight,
+                'cePays' => $country->iso_code,
+                'token' => $token,
+                'wsUrl' => $wsUrl,
             );
         } else {
-		$inputs = array(
-            'pudoFOId' => Configuration::get('SOCOLISSIMO_ID'),
-            'ceName' => $this->replaceAccentedChars(Tools::substr($params['address']->lastname, 0, 34)),
-            'dyPreparationTime' => (int)Configuration::Get('SOCOLISSIMO_PREPARATION_TIME'),
-            'dyForwardingCharges' => $std_cost_with_taxes,
-            'dyForwardingChargesCMT' => $seller_cost_with_taxes,
-            'trClientNumber' => (int)$params['address']->id_customer,
-            'orderId' => $this->formatOrderId((int)$params['address']->id),
-            'numVersion' => $this->getNumVersion(),
-            'ceCivility' => $cecivility,
-            'ceFirstName' => $this->replaceAccentedChars(Tools::substr($params['address']->firstname, 0, 29)),
-            'ceCompanyName' => $this->replaceAccentedChars(Tools::substr($params['address']->company, 0, 38)),
-            'ceAdress3' => $this->replaceAccentedChars(Tools::substr($params['address']->address1, 0, 38)),
-            'ceAdress4' => $this->replaceAccentedChars(Tools::substr($params['address']->address2, 0, 38)),
-            'ceZipCode' => $this->replaceAccentedChars($params['address']->postcode),
-            'ceTown' => $this->replaceAccentedChars($town),
-            'ceEmail' => $this->replaceAccentedChars($params['cookie']->email),
-            'cePhoneNumber' => $this->replaceAccentedChars(
-                str_replace(array(
-                ' ',
-                '.',
-                '-',
-                ',',
-                ';',
-                '/',
-                '\\',
-                '(',
-                ')'), '', $params['address']->phone_mobile)
-            ),
-            'dyWeight' => $weight,
-            'trParamPlus' => $carrier_so->id,
-            'trReturnUrlKo' => htmlentities($this->url, ENT_NOQUOTES, 'UTF-8'),
-            'trReturnUrlOk' => htmlentities($this->url, ENT_NOQUOTES, 'UTF-8'),
-            'CHARSET' => 'UTF-8',
-            'cePays' => $country->iso_code,
-            'trInter' => 1,
-            'ceLang' => 'FR'
-        );
-}
+            $inputs = array(
+                'pudoFOId' => Configuration::get('SOCOLISSIMO_ID'),
+                'ceName' => $this->replaceAccentedChars(Tools::substr($params['address']->lastname, 0, 34)),
+                'dyPreparationTime' => (int)Configuration::Get('SOCOLISSIMO_PREPARATION_TIME'),
+                'dyForwardingCharges' => $std_cost_with_taxes,
+                'dyForwardingChargesCMT' => $seller_cost_with_taxes,
+                'trClientNumber' => (int)$params['address']->id_customer,
+                'orderId' => $this->formatOrderId((int)$params['address']->id),
+                'numVersion' => $this->getNumVersion(),
+                'ceCivility' => $cecivility,
+                'ceFirstName' => $this->replaceAccentedChars(Tools::substr($params['address']->firstname, 0, 29)),
+                'ceCompanyName' => $this->replaceAccentedChars(Tools::substr($params['address']->company, 0, 38)),
+                'ceAdress3' => $this->replaceAccentedChars(Tools::substr($params['address']->address1, 0, 38)),
+                'ceAdress4' => $this->replaceAccentedChars(Tools::substr($params['address']->address2, 0, 38)),
+                'ceZipCode' => $this->replaceAccentedChars($params['address']->postcode),
+                'ceTown' => $this->replaceAccentedChars($town),
+                'ceEmail' => $this->replaceAccentedChars($params['cookie']->email),
+                'cePhoneNumber' => $this->replaceAccentedChars(
+                    str_replace(array(
+                    ' ',
+                    '.',
+                    '-',
+                    ',',
+                    ';',
+                    '/',
+                    '\\',
+                    '(',
+                    ')'), '', $params['address']->phone_mobile)
+                ),
+                'dyWeight' => $weight,
+                'trParamPlus' => $carrier_so->id,
+                'trReturnUrlKo' => htmlentities($this->url, ENT_NOQUOTES, 'UTF-8'),
+                'trReturnUrlOk' => htmlentities($this->url, ENT_NOQUOTES, 'UTF-8'),
+                'CHARSET' => 'UTF-8',
+                'cePays' => $country->iso_code,
+                'trInter' => 1,
+                'ceLang' => 'FR'
+            );
+        }
         if (isset($inputs['dyForwardingChargesCMT']) && !$inputs['dyForwardingChargesCMT'] && !Configuration::get('SOCOLISSIMO_COST_SELLER')) {
             unset($inputs['dyForwardingChargesCMT']);
         }
@@ -1273,7 +1265,7 @@ class Socolissimo extends CarrierModule
             $initial_cost = $this->l('Free (Will be apply after address selection)');
             $tax_mention = '';
         }
-		$is_15 = 0;
+        $is_15 = 0;
         if (version_compare(_PS_VERSION_, '1.6.0.0', '<')) {
             $is_15 = 1;
         }
@@ -1294,28 +1286,25 @@ class Socolissimo extends CarrierModule
             'rewrite_active' => $rewrite_active,
             'link_socolissimo' => $module_link,
             'link_socolissimo_mobile' => $module_link_mobile,
-			'module_link' => $module_link,
+            'module_link' => $module_link,
             'wsUrl' => $protocol.$wsUrl,
             'baseUrl' => $baseUrl,
             'link_to_img' => $this->link_to_img,
             'is_15' => $is_15
-			));
+        ));
 
         $ids = array();
         foreach ($carriers as $carrier) {
             $ids[] = $carrier['id_carrier'];
         }
 
-        if ($params['cart']->id_carrier == Configuration::Get(
-            'SOCOLISSIMO_CARRIER_ID'
-        ) && $this->getDeliveryInfos($this->context->cart->id, $this->context->customer->id)) {
+        if ($params['cart']->id_carrier == Configuration::Get('SOCOLISSIMO_CARRIER_ID') && $this->getDeliveryInfos($this->context->cart->id, $this->context->customer->id)) {
             $this->context->smarty->assign('already_select_delivery', true);
         } else {
             $this->context->smarty->assign('already_select_delivery', false);
         }
 
-        if ((Configuration::Get('SOCOLISSIMO_ID') != null || Configuration::Get('SOCOLISSIMO_USE_POINTDERETRAIT')) && (Configuration::get('SOCOLISSIMO_KEY') != null || Configuration::Get('SOCOLISSIMO_USE_POINTDERETRAIT')) && (Configuration::Get('SOCOLISSIMO_PERSONAL_DATA')) && $this->checkAvailibility() && $this->checkSoCarrierAvailable((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'))
-            && in_array((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'), $ids)) {
+        if ((Configuration::Get('SOCOLISSIMO_ID') != null || Configuration::Get('SOCOLISSIMO_USE_POINTDERETRAIT')) && (Configuration::get('SOCOLISSIMO_KEY') != null || Configuration::Get('SOCOLISSIMO_USE_POINTDERETRAIT')) && (Configuration::Get('SOCOLISSIMO_PERSONAL_DATA')) && $this->checkAvailibility() && $this->checkSoCarrierAvailable((int)Configuration::get('SOCOLISSIMO_CARRIER_ID')) && in_array((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'), $ids)) {
             if (Context::getContext()->getMobileDevice() || $this->isIpad() || $this->isMobile()) {
                 if (Configuration::get('PS_ORDER_PROCESS_TYPE')) {
                     return $this->fetchTemplate('socolissimo_redirect_mobile_opc.tpl');
@@ -1330,7 +1319,7 @@ class Socolissimo extends CarrierModule
             if (Configuration::get('SOCOLISSIMO_USE_IFRAME') && !Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
                 return $this->fetchTemplate('socolissimo_iframe.tpl');
             }
-			if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
+            if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
                 return $this->fetchTemplate('socolissimo_delivery_point.tpl');
             }
             return $this->fetchTemplate('socolissimo_redirect.tpl');
@@ -1349,10 +1338,18 @@ class Socolissimo extends CarrierModule
         }
 
         $order = $params['order'];
-         if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == '1') {
-            $order->id_address_delivery = $this->isExist((int) $order->id_address_delivery, (int) $order->id_cart, (int) $order->id_customer);
+        if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == '1') {
+            $order->id_address_delivery = $this->isExist(
+                (int)$order->id_address_delivery,
+                (int)$order->id_cart,
+                (int)$order->id_customer
+            );
         } else {
-            $order->id_address_delivery = $this->isSameAddress((int) $order->id_address_delivery, (int) $order->id_cart, (int) $order->id_customer);
+            $order->id_address_delivery = $this->isSameAddress(
+                (int)$order->id_address_delivery,
+                (int)$order->id_cart,
+                (int)$order->id_customer
+            );
         }
         $order->update();
         Configuration::updateValue('SOCOLISSIMO_CONFIGURATION_OK', true);
@@ -1386,14 +1383,14 @@ class Socolissimo extends CarrierModule
 
         $so_carrier = new Carrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'));
         if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT') == '1') {
-            $delivery_infos = $this->getDeliveryInfosPointderetrait((int) $order->id_cart, (int) $order->id_customer);
+            $delivery_infos = $this->getDeliveryInfosPointderetrait((int)$order->id_cart, (int)$order->id_customer);
             $sql = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'country c
-                                          LEFT JOIN '._DB_PREFIX_.'country_lang cl ON cl.id_lang = '.(int) $params['cookie']->id_lang.'
+                                          LEFT JOIN '._DB_PREFIX_.'country_lang cl ON cl.id_lang = '.(int)$params['cookie']->id_lang.'
                                           AND cl.id_country = c.id_country WHERE iso_code = "'.pSQL($delivery_infos['codePays']).'"');
         } else {
-            $delivery_infos = $this->getDeliveryInfos((int) $order->id_cart, (int) $order->id_customer);
+            $delivery_infos = $this->getDeliveryInfos((int)$order->id_cart, (int)$order->id_customer);
             $sql = Db::getInstance()->getRow('SELECT * FROM '._DB_PREFIX_.'country c
-                                          LEFT JOIN '._DB_PREFIX_.'country_lang cl ON cl.id_lang = '.(int) $params['cookie']->id_lang.'
+                                          LEFT JOIN '._DB_PREFIX_.'country_lang cl ON cl.id_lang = '.(int)$params['cookie']->id_lang.'
                                           AND cl.id_country = c.id_country WHERE iso_code = "'.pSQL($delivery_infos['cecountry']).'"');
         }
         $name_country = $sql['name'];
@@ -1402,74 +1399,72 @@ class Socolissimo extends CarrierModule
             $html = '<br><div class="panel"><fieldset style="width:400px;"><legend><img src="'.$this->_path.'logo.gif" alt="" /> ';
             $html .= $this->l('Colissimo Simplicité').'</legend><b>'.$this->l('Delivery mode').' : </b>';
 
-if (!Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
-            $sc_fields = new SCFields($delivery_infos['delivery_mode']);
+            if (!Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
+                $sc_fields = new SCFields($delivery_infos['delivery_mode']);
 
-            switch ($sc_fields->delivery_mode) {
-                case SCFields::HOME_DELIVERY:
-                    $html .= $delivery_mode[$delivery_infos['delivery_mode']].'<br /><br />';
-                    $html .= '<b>'.$this->l('Customer').' : </b>'.
-                        Tools::htmlentitiesUTF8($address_delivery->firstname).' '.Tools::htmlentitiesUTF8($address_delivery->lastname).'<br />'.
-                        (!empty($delivery_infos['cecompanyname']) ? '<b>'
-                            .$this->l('Company').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cecompanyname']).'<br/>' : '' ).
-                        (!empty($delivery_infos['ceemail']) ? '<b>'
-                            .$this->l('E-mail address').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['ceemail']).'<br/>' : '' ).
-                        (!empty($delivery_infos['cephonenumber']) ? '<b>'
-                            .$this->l('Phone').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cephonenumber']).'<br/><br/>' : '' ).
-                        '<b>'.$this->l('Customer address').' : </b><br/>'
-                        .(Tools::htmlentitiesUTF8($address_delivery->address1) ? Tools::htmlentitiesUTF8($address_delivery->address1).'<br />' : '')
-                        .(!empty($address_delivery->address2) ? Tools::htmlentitiesUTF8($address_delivery->address2).'<br />' : '')
-                        .(!empty($address_delivery->postcode) ? Tools::htmlentitiesUTF8($address_delivery->postcode).'<br />' : '')
-                        .(!empty($address_delivery->city) ? Tools::htmlentitiesUTF8($address_delivery->city).'<br />' : '')
-                        .(!empty($address_delivery->country) ? Tools::htmlentitiesUTF8($address_delivery->country).'<br />' : '')
-                        .(!empty($address_delivery->other) ? '<hr><b>'
-                            .$this->l('Other').' : </b>'.Tools::htmlentitiesUTF8($address_delivery->other).'<br /><br />' : '')
-                        .(!empty($delivery_infos['cedoorcode1']) ? '<b>'
-                            .$this->l('Door code').' 1 : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cedoorcode1']).'<br/>' : '' )
-                        .(!empty($delivery_infos['cedoorcode2']) ? '<b>'
-                            .$this->l('Door code').' 2 : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cedoorcode2']).'<br/>' : '' )
-                        .(!empty($delivery_infos['cedeliveryinformation']) ? '<b>'.$this->l('Delivery information').' : </b>'.
-                            Tools::htmlentitiesUTF8($delivery_infos['cedeliveryinformation']).'<br/><br/>' : '' );
-                    break;
-                case SCFields::RELAY_POINT:
-                    $html .= str_replace('+', ' ', $delivery_mode[$delivery_infos['delivery_mode']]).'<br/>'
-                        .(!empty($delivery_infos['prid']) ? '<b>'.
-                            $this->l('Pick up point ID').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['prid']).'<br/>' : '' )
-                        .(!empty($delivery_infos['prname']) ? '<b>'.
-                            $this->l('Pick up point').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['prname']).'<br/>' : '' )
-                        .'<b>'.$this->l('Pick up point address').' : </b><br/>'
-                        .(!empty($delivery_infos['pradress1']) ? Tools::htmlentitiesUTF8($delivery_infos['pradress1']).'<br/>' : '' )
-                        .(!empty($delivery_infos['pradress2']) ? Tools::htmlentitiesUTF8($delivery_infos['pradress2']).'<br/>' : '' )
-                        .(!empty($delivery_infos['pradress3']) ? Tools::htmlentitiesUTF8($delivery_infos['pradress3']).'<br/>' : '' )
-                        .(!empty($delivery_infos['pradress4']) ? Tools::htmlentitiesUTF8($delivery_infos['pradress4']).'<br/>' : '' )
-                        .(!empty($delivery_infos['przipcode']) ? Tools::htmlentitiesUTF8($delivery_infos['przipcode']).'<br/>' : '' )
-                        .(!empty($delivery_infos['prtown']) ? Tools::htmlentitiesUTF8($delivery_infos['prtown']).'<br/>' : '' )
-                        .(!empty($name_country) ? Tools::htmlentitiesUTF8($name_country).'<br/>' : '' )
-                        .(!empty($delivery_infos['ceemail']) ? '<b>'.
-                            $this->l('Email').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['ceemail']).'<br/>' : '' )
-                        .(!empty($delivery_infos['cephonenumber']) ? '<b>'.
-                            $this->l('Phone').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cephonenumber']).'<br/><br/>' : '' );
+                switch ($sc_fields->delivery_mode) {
+                    case SCFields::HOME_DELIVERY:
+                        $html .= $delivery_mode[$delivery_infos['delivery_mode']].'<br /><br />';
+                        $html .= '<b>'.$this->l('Customer').' : </b>'.
+                            Tools::htmlentitiesUTF8($address_delivery->firstname).' '.Tools::htmlentitiesUTF8($address_delivery->lastname).'<br />'.
+                            (!empty($delivery_infos['cecompanyname']) ? '<b>'
+                                .$this->l('Company').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cecompanyname']).'<br/>' : '' ).
+                            (!empty($delivery_infos['ceemail']) ? '<b>'
+                                .$this->l('E-mail address').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['ceemail']).'<br/>' : '' ).
+                            (!empty($delivery_infos['cephonenumber']) ? '<b>'
+                                .$this->l('Phone').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cephonenumber']).'<br/><br/>' : '' ).
+                            '<b>'.$this->l('Customer address').' : </b><br/>'
+                            .(Tools::htmlentitiesUTF8($address_delivery->address1) ? Tools::htmlentitiesUTF8($address_delivery->address1).'<br />' : '')
+                            .(!empty($address_delivery->address2) ? Tools::htmlentitiesUTF8($address_delivery->address2).'<br />' : '')
+                            .(!empty($address_delivery->postcode) ? Tools::htmlentitiesUTF8($address_delivery->postcode).'<br />' : '')
+                            .(!empty($address_delivery->city) ? Tools::htmlentitiesUTF8($address_delivery->city).'<br />' : '')
+                            .(!empty($address_delivery->country) ? Tools::htmlentitiesUTF8($address_delivery->country).'<br />' : '')
+                            .(!empty($address_delivery->other) ? '<hr><b>'
+                                .$this->l('Other').' : </b>'.Tools::htmlentitiesUTF8($address_delivery->other).'<br /><br />' : '')
+                            .(!empty($delivery_infos['cedoorcode1']) ? '<b>'
+                                .$this->l('Door code').' 1 : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cedoorcode1']).'<br/>' : '' )
+                            .(!empty($delivery_infos['cedoorcode2']) ? '<b>'
+                                .$this->l('Door code').' 2 : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cedoorcode2']).'<br/>' : '' )
+                            .(!empty($delivery_infos['cedeliveryinformation']) ? '<b>'.$this->l('Delivery information').' : </b>'.
+                                Tools::htmlentitiesUTF8($delivery_infos['cedeliveryinformation']).'<br/><br/>' : '' );
+                        break;
+                    case SCFields::RELAY_POINT:
+                        $html .= str_replace('+', ' ', $delivery_mode[$delivery_infos['delivery_mode']]).'<br/>'
+                            .(!empty($delivery_infos['prid']) ? '<b>'.
+                                $this->l('Pick up point ID').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['prid']).'<br/>' : '' )
+                            .(!empty($delivery_infos['prname']) ? '<b>'.
+                                $this->l('Pick up point').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['prname']).'<br/>' : '' )
+                            .'<b>'.$this->l('Pick up point address').' : </b><br/>'
+                            .(!empty($delivery_infos['pradress1']) ? Tools::htmlentitiesUTF8($delivery_infos['pradress1']).'<br/>' : '' )
+                            .(!empty($delivery_infos['pradress2']) ? Tools::htmlentitiesUTF8($delivery_infos['pradress2']).'<br/>' : '' )
+                            .(!empty($delivery_infos['pradress3']) ? Tools::htmlentitiesUTF8($delivery_infos['pradress3']).'<br/>' : '' )
+                            .(!empty($delivery_infos['pradress4']) ? Tools::htmlentitiesUTF8($delivery_infos['pradress4']).'<br/>' : '' )
+                            .(!empty($delivery_infos['przipcode']) ? Tools::htmlentitiesUTF8($delivery_infos['przipcode']).'<br/>' : '' )
+                            .(!empty($delivery_infos['prtown']) ? Tools::htmlentitiesUTF8($delivery_infos['prtown']).'<br/>' : '' )
+                            .(!empty($name_country) ? Tools::htmlentitiesUTF8($name_country).'<br/>' : '' )
+                            .(!empty($delivery_infos['ceemail']) ? '<b>'.
+                                $this->l('Email').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['ceemail']).'<br/>' : '' )
+                            .(!empty($delivery_infos['cephonenumber']) ? '<b>'.
+                                $this->l('Phone').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['cephonenumber']).'<br/><br/>' : '' );
 
-                    break;
+                        break;
+                }
             }
-			}
-			 if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
-                    $html .= 'Livraison en point de retrait'.'<br /><br />';
-                    $html .= '<b>'.$this->l('Customer').' : </b>'.
+            if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
+                $html .= 'Livraison en point de retrait'.'<br /><br />';
+                $html .= '<b>'.$this->l('Customer').' : </b>'.
                     Tools::htmlentitiesUTF8($address_delivery->firstname).' '.Tools::htmlentitiesUTF8($address_delivery->lastname).'<br />'.
-                   (!empty($delivery_infos['cecompanyname']) ? '<b>' .$this->l('Company').' : </b>'.Tools::htmlentitiesUTF8($address_delivery->company).'<br/>' : '' )
-                   .(!empty($delivery_infos['identifiant']) ? '<b>'
+                    (!empty($delivery_infos['cecompanyname']) ? '<b>'.$this->l('Company').' : </b>'.Tools::htmlentitiesUTF8($address_delivery->company).'<br/>' : '' )
+                    .(!empty($delivery_infos['identifiant']) ? '<b>'
                         .$this->l('Identifiant').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['identifiant']).'<br/>' : '' ).
-                             '<b>'.$this->l('Withdrawal point').' : </b><br/>'
-                         .(Tools::htmlentitiesUTF8($address_delivery->address1) ? Tools::htmlentitiesUTF8($address_delivery->address1).'<br />' : '')
-                         .(!empty($address_delivery->address2) ? Tools::htmlentitiesUTF8($address_delivery->address2).'<br />' : '')
-                         .(!empty($address_delivery->postcode) ? Tools::htmlentitiesUTF8($address_delivery->postcode).'<br />' : '')
-                         .(!empty($address_delivery->city) ? Tools::htmlentitiesUTF8($address_delivery->city).'<br />' : '')
-                         .(!empty($address_delivery->country) ? Tools::htmlentitiesUTF8($address_delivery->country).'<br />' : '')
-                         .(!empty($address_delivery->other) ? '<hr><b>'
-                         .$this->l('Other').' : </b>'.Tools::htmlentitiesUTF8($address_delivery->other).'<br /><br />' : ''
-                         )
-                          ;
+                    '<b>'.$this->l('Withdrawal point').' : </b><br/>'
+                    .(Tools::htmlentitiesUTF8($address_delivery->address1) ? Tools::htmlentitiesUTF8($address_delivery->address1).'<br />' : '')
+                    .(!empty($address_delivery->address2) ? Tools::htmlentitiesUTF8($address_delivery->address2).'<br />' : '')
+                    .(!empty($address_delivery->postcode) ? Tools::htmlentitiesUTF8($address_delivery->postcode).'<br />' : '')
+                    .(!empty($address_delivery->city) ? Tools::htmlentitiesUTF8($address_delivery->city).'<br />' : '')
+                    .(!empty($address_delivery->country) ? Tools::htmlentitiesUTF8($address_delivery->country).'<br />' : '')
+                    .(!empty($address_delivery->other) ? '<hr><b>'
+                        .$this->l('Other').' : </b>'.Tools::htmlentitiesUTF8($address_delivery->other).'<br /><br />' : '');
             }
             $html .= '</fieldset></div>';
             return $html;
@@ -1662,17 +1657,19 @@ if (!Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
 			WHERE id_cart = '.(int)$id_cart.' AND id_customer = '.(int)$id_customer
         );
     }
-	public function getDeliveryInfosPointderetrait($id_cart, $id_customer)
+
+    public function getDeliveryInfosPointderetrait($id_cart, $id_customer)
     {
         return Db::getInstance()->getRow(
             'SELECT * FROM '._DB_PREFIX_.'socolissimo_delivery_point
-            WHERE id_cart = '.(int) $id_cart.' AND id_customer = '.(int) $id_customer
+            WHERE id_cart = '.(int)$id_cart.' AND id_customer = '.(int)$id_customer
         );
     }
-public function isExist($id_address, $id_cart, $id_customer)
+
+    public function isExist($id_address, $id_cart, $id_customer)
     {
 
-        $id_socolissimo_deliverypoint_info_exist = ColissimoDeliveryPoint::alreadyExists((int) $id_cart, (int) $id_customer);
+        $id_socolissimo_deliverypoint_info_exist = ColissimoDeliveryPoint::alreadyExists((int)$id_cart, (int)$id_customer);
 
         $return = Db::getInstance()->getRow(
             'SELECT * FROM '._DB_PREFIX_.'socolissimo_delivery_point
@@ -1683,28 +1680,27 @@ public function isExist($id_address, $id_cart, $id_customer)
             return $id_address;
         }
 
-        $socolissimo_deliverypoint_info = new ColissimoDeliveryPoint((int) $id_socolissimo_deliverypoint_info_exist);
-        $new_address                     = new Address();
-        $customer                        = new Customer($id_customer);
-        $sql                             = Db::getInstance()->getRow('SELECT c.id_country, cl.name FROM '._DB_PREFIX_.'country c
-                                          LEFT JOIN '._DB_PREFIX_.'country_lang cl ON cl.id_lang = '.(int) $this->context->language->id.'
+        $socolissimo_deliverypoint_info = new ColissimoDeliveryPoint((int)$id_socolissimo_deliverypoint_info_exist);
+        $new_address = new Address();
+        $customer = new Customer($id_customer);
+        $sql = Db::getInstance()->getRow('SELECT c.id_country, cl.name FROM '._DB_PREFIX_.'country c
+                                          LEFT JOIN '._DB_PREFIX_.'country_lang cl ON cl.id_lang = '.(int)$this->context->language->id.'
                                           AND cl.id_country = c.id_country WHERE iso_code = "'.pSQL($socolissimo_deliverypoint_info->codePays).'"');
-        $iso_code                        = $sql['id_country'];
-        $new_address->id_customer        = (int) $id_customer;
-        $new_address->firstname          = preg_replace('/\d/', '', Tools::substr($customer->firstname, 0, 32));
-        $new_address->lastname           = preg_replace('/\d/', '', Tools::substr($customer->lastname, 0, 32));
-        $new_address->postcode           = $socolissimo_deliverypoint_info->codePostal;
-        $new_address->city               = str_replace('\'', ' ', $socolissimo_deliverypoint_info->localite);
-        $new_address->id_country         = $iso_code;
-        $new_address->company            = 'Livraison en Point de Retrait';
-        $new_address->alias              = 'Col-Point de retrait-'.date('d-m-Y');
-        $new_address->address1           = $socolissimo_deliverypoint_info->adresse1;
+        $iso_code = $sql['id_country'];
+        $new_address->id_customer = (int)$id_customer;
+        $new_address->firstname = preg_replace('/\d/', '', Tools::substr($customer->firstname, 0, 32));
+        $new_address->lastname = preg_replace('/\d/', '', Tools::substr($customer->lastname, 0, 32));
+        $new_address->postcode = $socolissimo_deliverypoint_info->codePostal;
+        $new_address->city = str_replace('\'', ' ', $socolissimo_deliverypoint_info->localite);
+        $new_address->id_country = $iso_code;
+        $new_address->company = 'Livraison en Point de Retrait';
+        $new_address->alias = 'Col-Point de retrait-'.date('d-m-Y');
+        $new_address->address1 = $socolissimo_deliverypoint_info->adresse1;
         ((isset($socolissimo_deliverypoint_info->adresse2)) ? $new_address->address2 = $socolissimo_deliverypoint_info->adresse2 : $new_address->address2 = '');
-        $this->context->cart->id_carrier = (int) Configuration::getGlobalValue('SOCOLISSIMO_CARRIER_ID');
+        $this->context->cart->id_carrier = (int)Configuration::getGlobalValue('SOCOLISSIMO_CARRIER_ID');
         $new_address->add();
         $new_address->save();
-        var_dump($new_address->id);
-        return (int) $new_address->id;
+        return (int)$new_address->id;
     }
 
     public function isSameAddress($id_address, $id_cart, $id_customer)
@@ -1887,8 +1883,7 @@ public function isExist($id_address, $id_cart, $id_customer)
                 return false;
             }
         } else {
-            if ((Configuration::get('PS_SHIPPING_METHOD') && $carrier->getMaxDeliveryPriceByWeight($id_zone) === false && !$carrier->is_free) || (!Configuration::get('PS_SHIPPING_METHOD') && $carrier->getMaxDeliveryPriceByPrice($id_zone)
-                === false && !$carrier->is_free)) {
+            if ((Configuration::get('PS_SHIPPING_METHOD') && $carrier->getMaxDeliveryPriceByWeight($id_zone) === false && !$carrier->is_free) || (!Configuration::get('PS_SHIPPING_METHOD') && $carrier->getMaxDeliveryPriceByPrice($id_zone) === false && !$carrier->is_free)) {
                 return false;
             }
         }
@@ -1910,24 +1905,12 @@ public function isExist($id_address, $id_cart, $id_customer)
                     ),
                     $id_zone,
                     $this->context->cart->id_currency
-                )
-                )
+                ))
                 ) {
                     return false;
                 }
             } else {
-                if ((Configuration::get('PS_SHIPPING_METHOD') && !Carrier::checkDeliveryPriceByWeight((int)$carrier->id, $this->context->cart->getTotalWeight(), $id_zone) ) || (!Configuration::get('PS_SHIPPING_METHOD')
-                    && !Carrier::checkDeliveryPriceByPrice(
-                        (int)$carrier->id,
-                        $this->context->cart->getOrderTotal(
-                            true,
-                            Cart::BOTH_WITHOUT_SHIPPING
-                        ),
-                        $id_zone,
-                        $this->context->cart->id_currency
-                    )
-                    )
-                ) {
+                if ((Configuration::get('PS_SHIPPING_METHOD') && !Carrier::checkDeliveryPriceByWeight((int)$carrier->id, $this->context->cart->getTotalWeight(), $id_zone) ) || (!Configuration::get('PS_SHIPPING_METHOD') && !Carrier::checkDeliveryPriceByPrice((int)$carrier->id, $this->context->cart->getOrderTotal(true, Cart::BOTH_WITHOUT_SHIPPING), $id_zone, $this->context->cart->id_currency))) {
                     return false;
                 }
             }
@@ -2041,23 +2024,8 @@ public function isExist($id_address, $id_cart, $id_customer)
                 }
             }
             if ($carrier->shipping_method == 2) {
-                if ($carrier->getDeliveryPriceByPrice(
-                    $this->context->cart->getOrderTotal(
-                        true,
-                        Cart::BOTH_WITHOUT_SHIPPING
-                    ),
-                    $id_zone,
-                    $this->context->cart->id_currency
-                )
-                ) {
-                    return $carrier->getDeliveryPriceByPrice(
-                        $this->context->cart->getOrderTotal(
-                            true,
-                            Cart::BOTH_WITHOUT_SHIPPING
-                        ),
-                        $id_zone,
-                        $this->context->cart->id_currency
-                    );
+                if ($carrier->getDeliveryPriceByPrice($this->context->cart->getOrderTotal(true, Cart::BOTH_WITHOUT_SHIPPING), $id_zone, $this->context->cart->id_currency)) {
+                    return $carrier->getDeliveryPriceByPrice($this->context->cart->getOrderTotal(true, Cart::BOTH_WITHOUT_SHIPPING), $id_zone, $this->context->cart->id_currency);
                 }
             }
         } else {
@@ -2067,23 +2035,8 @@ public function isExist($id_address, $id_cart, $id_customer)
                 }
             }
             if (!Configuration::get('PS_SHIPPING_METHOD')) {
-                if ($carrier->getDeliveryPriceByPrice(
-                    $this->context->cart->getOrderTotal(
-                        true,
-                        Cart::BOTH_WITHOUT_SHIPPING
-                    ),
-                    $id_zone,
-                    $this->context->cart->id_currency
-                )
-                ) {
-                    return $carrier->getDeliveryPriceByPrice(
-                        $this->context->cart->getOrderTotal(
-                            true,
-                            Cart::BOTH_WITHOUT_SHIPPING
-                        ),
-                        $id_zone,
-                        $this->context->cart->id_currency
-                    );
+                if ($carrier->getDeliveryPriceByPrice($this->context->cart->getOrderTotal(true, Cart::BOTH_WITHOUT_SHIPPING), $id_zone, $this->context->cart->id_currency)) {
+                    return $carrier->getDeliveryPriceByPrice($this->context->cart->getOrderTotal(true, Cart::BOTH_WITHOUT_SHIPPING), $id_zone, $this->context->cart->id_currency);
                 }
             }
         }
@@ -2375,16 +2328,17 @@ public function isExist($id_address, $id_cart, $id_customer)
         }
         return $langs;
     }
-	public function getTokenPointDeRetrait()
+
+    public function getTokenPointDeRetrait()
     {
 
         $url = Configuration::get('SOCOLISSIMO_URL_POINTDERETRAIT');
         $login = Configuration::get('SOCOLISSIMO_LOGIN');
         $password = Configuration::get('SOCOLISSIMO_PASSWORD');
-        $params = [
+        $params = array(
             'login' => $login,
             'password' => $password
-        ];
+        );
         $autorisation = 'Authorization: Basic';
         $content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8';
 
@@ -2406,7 +2360,7 @@ public function isExist($id_address, $id_cart, $id_customer)
             )
         );
         $curl_response = curl_exec($curl);
-        $json          = json_decode($curl_response);
+        $json = json_decode($curl_response);
         return $json->token;
     }
 }
