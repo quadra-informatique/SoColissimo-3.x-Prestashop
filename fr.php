@@ -48,6 +48,10 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_c1f03f22a877607fe003a4281646143f'
 $_MODULE['<{socolissimo}prestashop>socolissimo_5e8487dd7c11bb1c553c7ecee3d82d1a'] = 'URL de la page Colissimo Simplicité';
 $_MODULE['<{socolissimo}prestashop>socolissimo_9abdbf15f57390e082b3dedc95a2d55f'] = 'Adresse FO Mobile';
 $_MODULE['<{socolissimo}prestashop>socolissimo_caa6da3490008582fce39f86a7cc00b9'] = 'URL de la page Colissimo Simplicité Mobile. Les clients naviguant avec des smartphones ou Ipad seront redirigés sur cette url. Attention cette url n\'autorise pas la livraison en Belgique pour le moment.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_d3fc8dca382e8201c0214a88285f05cc'] = 'Url du webservice la poste';
+$_MODULE['<{socolissimo}prestashop>socolissimo_1c05dfa6e3e5f5cfea8c643f38dc68c6'] = 'Url du webservice la poste';
+$_MODULE['<{socolissimo}prestashop>socolissimo_c8582cb9cdbfd43e9d637ec7705663d9'] = 'Url d\'authentification de l\'option point de retrait';
+$_MODULE['<{socolissimo}prestashop>socolissimo_b758ba37899439a5f87a2ce25dd6e8a3'] = 'URL Web service pour récupérer votre autorisation à utiliser le module avec l\'option Colissimo Point de Retrait.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_85068ddf0b9bcbb6913008356fe328a0'] = 'Supervision';
 $_MODULE['<{socolissimo}prestashop>socolissimo_acd0f52aa3b63581312e2d7caa6c6206'] = 'Autoriser ou non la vérification de la disponibilité des services Colissimo.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_00d23a76e43b46dae9ec7aa9dcbebb32'] = 'Activé';
@@ -66,9 +70,18 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_578096cb378fea4d78dc6e59fee84c31'
 $_MODULE['<{socolissimo}prestashop>socolissimo_7001bdc2a0dca0abf8cb633029c68ef6'] = 'Ce coût s\'applique en lieu et place du coût \"normal\" pour la livraison en commerce de proximité.  Un transporteur \"commerce de proximité\" a été crée afin de vous permettre de paramétrer son coût par tranche de prix/poids. Ses tarifs seront utilisés à la place de ceux du transporteur classique lors d\'une livraison en point commerce. Une fois configuré, merci de désactiver le transporteur \"commerce de proximité\".';
 $_MODULE['<{socolissimo}prestashop>socolissimo_de2f435741ad4ee91553202b8bcc0507'] = 'Transporteur Point de retrait';
 $_MODULE['<{socolissimo}prestashop>socolissimo_c12fa33252d42e12e6e6674b95a901c4'] = 'Transporteur utilisé pour déterminé le tarif de la livraison en point de retrait';
+$_MODULE['<{socolissimo}prestashop>socolissimo_7129baf388c6599dfdb6e227dd138a3c'] = 'Option Point de retrait';
+$_MODULE['<{socolissimo}prestashop>socolissimo_57bd390e46b623a6ff0ae6ca17c54111'] = 'Activer l\'option Colissimo Point de retrait, option gratuite.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_5eccc2744510f0350472f9a9df3cfeaa'] = 'Activer l\'option Colissimo point de retrait, si vous disposez d\'un compte professionnel, désactivez cette option.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_74ca93d1a183dfc8e36b46a169ab69fb'] = 'Identifiant Colissimo';
+$_MODULE['<{socolissimo}prestashop>socolissimo_b6f291dbad448beafe0cc225d529ebd9'] = 'Votre identifiant de connexion(seulement pour option gratuite)';
+$_MODULE['<{socolissimo}prestashop>socolissimo_bdcdf1c6385e44b3a681bb64a4ee282d'] = 'Mot de pass Colissimo';
+$_MODULE['<{socolissimo}prestashop>socolissimo_84ab4a236f2a557942bcfbd85ba2205f'] = 'Votre mot de pass de connexion(seulement pour option gratuite)';
 $_MODULE['<{socolissimo}prestashop>socolissimo_c9cc8cce247e49bae79f15173ce97354'] = 'Enregistrer';
 $_MODULE['<{socolissimo}prestashop>socolissimo_82c440defe28e2099cba1af1f0761807'] = 'Identifiant FO non spécifié';
 $_MODULE['<{socolissimo}prestashop>socolissimo_826361881cfc18b8b75405d398f633b5'] = 'Clé de cryptage non spécifiée';
+$_MODULE['<{socolissimo}prestashop>socolissimo_43e2f4c29126abdaa562a8fa0c6d1597'] = 'Votre identifiant Colissimo n\'est pas spécifié, il est nescessaire pour utiliser Colissimo point de retrait.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_176a7703a843496f40a8274430f350b3'] = 'Votre mot de pass Colissimo n\'est pas spécifié, il est nescessaire pour utiliser Colissimo point de retrait.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_0bf6a620e5f22d8b46e3903a993f7741'] = 'Temps de préparation non spécifié';
 $_MODULE['<{socolissimo}prestashop>socolissimo_228485c5faff886fa4520323dc5b2c76'] = 'Temps de préparation invalide';
 $_MODULE['<{socolissimo}prestashop>socolissimo_16449aba4eeb91e06418c42d90fd93f5'] = 'Url de front non renseignée';
@@ -100,6 +113,8 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_e937c6393ce858786bd31a279b50572d'
 $_MODULE['<{socolissimo}prestashop>socolissimo_f109a88feec5ad3aeb82580c7a20ec31'] = 'Point de retrait';
 $_MODULE['<{socolissimo}prestashop>socolissimo_021944549c2795a6e4db23b92f198a5e'] = 'Adresse du point de retrait';
 $_MODULE['<{socolissimo}prestashop>socolissimo_ce8ae9da5b7cd6c3df2929543a9af92d'] = 'E-mail';
+$_MODULE['<{socolissimo}prestashop>socolissimo_c9437f7d5f041bdf9e1361e6966ee00e'] = 'Identifiant';
+$_MODULE['<{socolissimo}prestashop>socolissimo_08eb31af908e2244867f6e812f82e935'] = 'Point de retrait';
 $_MODULE['<{socolissimo}prestashop>validation_57832417838cf085221e39f83c147a5d'] = 'La clé est requise par Colissimo :';
 $_MODULE['<{socolissimo}prestashop>validation_befec70964837a08794ca1b092471d83'] = 'Code d\'erreur :';
 $_MODULE['<{socolissimo}prestashop>validation_75147bf00179a2fe2afa7a1c8c839f55'] = 'Pas de livraison prévue par la boutique dans le pays indiqué dans l\'adresse choisie.';
@@ -154,3 +169,5 @@ $_MODULE['<{socolissimo}prestashop>configure_warning_b28a56259e5b5fee9ac2077b0fc
 $_MODULE['<{socolissimo}prestashop>error_58d256f5c88c3a887c1c3b8c9ee76f4d'] = 'Liste des erreurs Colissimo :';
 $_MODULE['<{socolissimo}prestashop>error_0557fa923dcee4d0f86b1409f5c2167f'] = 'Retour';
 $_MODULE['<{socolissimo}prestashop>redirect_611a8475d4cbe64a9a2f5633a82fe314'] = 'Vous allez être redirigé vers Socolissimo dans quelques instants.Si ce n\'est pas le cas, veuillez cliquez sur le bouton.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_delivery_point_e9c2fa1e3934b1629647e1f1a99a6034'] = 'Votre point de livraison a bien été enregistré.';
+$_MODULE['<{socolissimo}prestashop>socolissimo_delivery_point_a5a742bf22c66ffb1664b811442ad600'] = 'Une erreur est survenue. Le service est temporairement inaccessible. Veuillez réessayer plus tard.';
