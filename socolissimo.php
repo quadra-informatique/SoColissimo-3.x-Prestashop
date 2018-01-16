@@ -779,10 +779,10 @@ class Socolissimo extends CarrierModule
         if (version_compare(_PS_VERSION_, '1.6.0.7', '<')) {
             $form['input'][] = array(
                 'type' => 'free',
-                'desc' => '<h3>'.$this->l('Withdrawal account').'</h3>'
+                'desc' => '<h3>'.$this->l('Front page Withdrawal').'</h3>'
             );
         } else {
-            $form['tabs']['withdrawal'] = $this->l('Withdrawal account');
+            $form['tabs']['withdrawal'] = $this->l('Front page Withdrawal');
         }
 
         $form['input'][] = array(

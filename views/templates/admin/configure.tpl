@@ -28,6 +28,11 @@
             <img src="{$module_dir|escape:'htmlall':'UTF-8'}views/img/colissimo.png" id="colissimo-logo" />
         </div>
         <div class="col-md-6 about">
+		    <h4>{l s='Novelty Colissimo : Front page withdrawal point' mod='socolissimo'} {$colissimo_version|escape:'htmlall':'UTF-8'}</h4>
+            <ul>
+                <li>La solution clé en main proposant la livraison en France et en Europe.</li>
+                <li> Une personnalisation en harmonie avec le design de votre site.</li>
+                <li> une solution responsive design disponible en 7 langues. </li> 
             <h4>{l s='About Socolissimo Simplicité' mod='socolissimo'} {$colissimo_version|escape:'htmlall':'UTF-8'}</h4>
             Une solution gratuite sans développement, facile à implémenter depuis votre back-office Prestashop.
             <ul>
@@ -35,7 +40,7 @@
                 <li>Un large choix de modes de livraison pour satisfaire vos e-acheteurs.</li>
                 <li>Un chiffre d’affaires additionnel grâce à l’offre Colissimo vers l'Europe</li>
                 <li>Un accès offert à un espace client dédié sur la « Colissimo Box » et à un outil de suivi de vos expéditions : ColiView.</li>
-                <li>Une version mobile du module pour assurer une complémentarité et un relai d’achat tout au long de la journée. Vous captez ainsi des ventes supplémentaires grâce à votre présence multicanale.</li>
+                <li> Une version mobile du module pour assurer une complémentarité et un relai d’achat tout au long de la journée.</li>
             </ul>
             <em class="text-muted small">
                 NB : Ce module s’adresse aux marchands disposant d’un numéro SIRET.
