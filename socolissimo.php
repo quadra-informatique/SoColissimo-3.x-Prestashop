@@ -1156,20 +1156,21 @@ class Socolissimo extends CarrierModule
         // Keep this fields order (see doc.)
         // town fix
         $town = str_replace('\'', ' ', Tools::substr($params['address']->city, 0, 32));
-        $token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
-        $token_update_date = Configuration::get('SOCOLISSIMO_PDR_TOKEN_HOUR');
-        $now = time();
-        $diff = abs($now - (strtotime($token_update_date)));
-        if ($token == null || $diff >= 899) { /* conrespond à 15 minutes */
-            Configuration::updateGlobalValue('SOCOLISSIMO_TOKEN_POINTDERETRAIT', $this->getTokenPointDeRetrait());
-            Configuration::updateGlobalValue('SOCOLISSIMO_PDR_TOKEN_HOUR', date('Y-m-d H:i:s'));
-            $token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
-        } else {
-            $token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
-        }
-
         $wsUrl = Configuration::get('SOCOLISSIMO_WS_URL');
         if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
+            $token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
+            $token_update_date = Configuration::get('SOCOLISSIMO_PDR_TOKEN_HOUR');
+            $now = time();
+            $diff = abs($now - (strtotime($token_update_date)));
+            if ($token == null || $diff >= 899) { /* conrespond à 15 minutes */
+                Configuration::updateGlobalValue('SOCOLISSIMO_TOKEN_POINTDERETRAIT', $this->getTokenPointDeRetrait());
+                Configuration::updateGlobalValue('SOCOLISSIMO_PDR_TOKEN_HOUR', date('Y-m-d H:i:s'));
+                $token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
+            } else {
+                $token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
+            }
+
+            
             $inputs = array(
                 'ceCountry' => $this->replaceAccentedChars($town),
                 'ceLang' => 'FR',
@@ -2360,7 +2361,12 @@ class Socolissimo extends CarrierModule
             )
         );
         $curl_response = curl_exec($curl);
-        $json = json_decode($curl_response);
-        return $json->token;
+        if ($curl_response) {
+            $json = json_decode($curl_response);
+            if ($json instanceof stdClass && property_exists($json, 'token')) {
+                return $json->token;
+            }
+        }
+        return false;
     }
 }
