@@ -70,6 +70,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_578096cb378fea4d78dc6e59fee84c31'
 $_MODULE['<{socolissimo}prestashop>socolissimo_7001bdc2a0dca0abf8cb633029c68ef6'] = 'Ce coût s\'applique en lieu et place du coût \"normal\" pour la livraison en commerce de proximité.  Un transporteur \"commerce de proximité\" a été crée afin de vous permettre de paramétrer son coût par tranche de prix/poids. Ses tarifs seront utilisés à la place de ceux du transporteur classique lors d\'une livraison en point commerce. Une fois configuré, merci de désactiver le transporteur \"commerce de proximité\".';
 $_MODULE['<{socolissimo}prestashop>socolissimo_de2f435741ad4ee91553202b8bcc0507'] = 'Transporteur Point de retrait';
 $_MODULE['<{socolissimo}prestashop>socolissimo_c12fa33252d42e12e6e6674b95a901c4'] = 'Transporteur utilisé pour déterminé le tarif de la livraison en point de retrait';
+$_MODULE['<{socolissimo}prestashop>socolissimo_e6a741f9a4147d7fdc8a3b60d0781e9c'] = 'Front Page point retrait';
 $_MODULE['<{socolissimo}prestashop>socolissimo_57bd390e46b623a6ff0ae6ca17c54111'] = 'Activer Front Page point retrait';
 $_MODULE['<{socolissimo}prestashop>socolissimo_5eccc2744510f0350472f9a9df3cfeaa'] = 'Activer l\'option Colissimo Front Page point retrait, si vous disposez d\'un compte professionnel, désactivez cette option.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_74ca93d1a183dfc8e36b46a169ab69fb'] = 'Identifiant Colissimo';

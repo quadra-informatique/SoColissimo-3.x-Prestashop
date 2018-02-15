@@ -124,7 +124,11 @@ if (empty($errors_list)) {
         if (!$so->context->cart->update()) {
             $errors_list[] = $so->l('Cart cannot be updated. Please try again your selection');
         } else {
-            Tools::redirect($redirect.'step=3&cgv=1&id_carrier='.$so->context->cart->id_carrier);
+			if (Configuration::get('PS_ORDER_PROCESS_TYPE')) {
+				Tools::redirect($redirect.'cgv=1&id_carrier='.$so->context->cart->id_carrier);
+			} else {
+				Tools::redirect($redirect.'step=3&cgv=1&id_carrier='.$so->context->cart->id_carrier);
+			}
         }
     } else {
         $errors_list[] = $so->getError('999');
