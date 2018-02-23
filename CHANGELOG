@@ -22,6 +22,11 @@
  *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of La Poste SA
  */
+# 3.0.12
+[-] MO : Fix french translation
+fix redirect with paypal on OPC
+fix strtoupper method
+
 # 3.0.11
 [-] MO : Fix variable setting
 
