@@ -1723,9 +1723,9 @@ class Socolissimo extends CarrierModule
 
         $iso_code = $sql['id_country'];
 
-        if ($this->upper($ps_address->lastname) != $this->upper($return['prname']) || $ps_address->id_country != $iso_code || $this->upper($ps_address->firstname) != $this->upper($return['prfirstname'])
-            || $this->upper($ps_address->address1) != $this->upper($return['pradress3']) || $this->upper($ps_address->address2) != $this->upper($return['pradress2']) || $this->upper($ps_address->postcode)
-            != $this->upper($return['przipcode']) || $this->upper($ps_address->city) != $this->upper($return['prtown']) || str_replace(array(
+        if (Tools::strtoupper($ps_address->lastname) != Tools::strtoupper($return['prname']) || $ps_address->id_country != $iso_code || Tools::strtoupper($ps_address->firstname) != Tools::strtoupper($return['prfirstname'])
+            || Tools::strtoupper($ps_address->address1) != Tools::strtoupper($return['pradress3']) || Tools::strtoupper($ps_address->address2) != Tools::strtoupper($return['pradress2']) || Tools::strtoupper($ps_address->postcode)
+            != Tools::strtoupper($return['przipcode']) || Tools::strtoupper($ps_address->city) != Tools::strtoupper($return['prtown']) || str_replace(array(
                 ' ',
                 '.',
                 '-',
@@ -1931,16 +1931,6 @@ class Socolissimo extends CarrierModule
             require_once(_PS_MODULE_DIR_.'colissimopass/classes/ColissimoPassUser.php');
             if (ColissimoPassUser::isActive()) {
                 return 0;
-            }
-            // is product pass in cart ?
-            $cart = $this->context->cart;
-            $products = $cart->getProducts();
-            if (is_array($products)) {
-                foreach ($products as $product) {
-                    if ($product['id_product'] == (int)Configuration::get('ID_COLISSIMO_PASS_PDT')) {
-                        return 0;
-                    }
-                }
             }
         }
         // for label in tpl
