@@ -41,12 +41,13 @@
     soInputs.{$name|escape:'htmlall':'UTF-8'} = "{$input|strip_tags|addslashes}";
     {/foreach}
   $(document).ready(function () {
-      
+        
             /* iframe génération */
             /* hidding iframe if carrier Colissimo Simplicité is not selected */
             
              if ($('#widget-container').length) {
             $('#widget-container').hide();
+            jQuery("#colissimo-container").html(data);
         }
             var id_hook = $('#colissimo-version').parent().attr('id');
             if ($('.delivery_option_radio:checked').val() == soCarrierId + ',') {
@@ -66,7 +67,7 @@
             $(function () {
                 $('#widget-container').frameColiposteOpen({
                     "ceLang": soInputs.ceLang,
-                    "callBackFrame":  encodeURI(callBackFrame),
+                    "callBackFrame": "callBackFrame",
                     "ceCountryList": "FR,BE,DE,NL,LU,ES,GB,PT,AT,EE,LV,LT",
                     "dyPreparationTime": soInputs.dyPreparationTime,
                     "ceAddress": soInputs.ceAddress,
@@ -76,11 +77,12 @@
                     "token": soInputs.token
                 });
                  
-                function callBackFrame(point) {
-                  saveDeliveryPoint(point, moduleLink);
-                }
             });
         }
+		
+		function callBackFrame(point) {
+            saveDeliveryPoint(point, moduleLink);
+    }
 </script>
 
 
