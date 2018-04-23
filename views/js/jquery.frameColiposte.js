@@ -156,10 +156,13 @@ jQuery.extend(jQuery.fn, {
             success: function (data) {
                 colissimo('#widget-container').html(data);
 
-                if (params.ceCountry != null && params.ceCountry != '')
-                {
-                    colissimo("#listePays").attr('value', params.ceCountry);
-                }
+					if (params.ceCountry != null && params.ceCountry != '')
+                    { 
+				setTimeout(function () {
+                     colissimo("#listePays").val(params.ceCountry);
+                        }, 1000)
+                       
+                    }
 
                 setTimeout(function () {
                     if (params.ceAddress != null && params.ceAddress != '')
