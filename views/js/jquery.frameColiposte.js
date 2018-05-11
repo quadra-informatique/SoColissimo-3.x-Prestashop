@@ -42,7 +42,7 @@ jQuery.extend(jQuery.fn, {
         //jquery.frameColiposte
         var colissimo = $;
         var url = colissimo('script[src*="jquery.frameColiposte"]').attr("src");
-        var indexpath = url.indexOf('widget-point-retrait', 0);
+        //var indexpath = url.indexOf('widget-point-retrait', 0);
         var urlColiposte = wsUrl;
         var lang = params.ceLang;
         var is15 = colissimo('#colissimo-version').val();
