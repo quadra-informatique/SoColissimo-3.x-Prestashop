@@ -93,6 +93,7 @@ $_MODULE['<{socolissimo}prestashop>socolissimo_e7ef50e6093c77be4fcfd36f9432e56f'
 $_MODULE['<{socolissimo}prestashop>socolissimo_24ab66c8d99aa31c1dcb00f0e5e564df'] = 'Le nombre de colis est incorrect';
 $_MODULE['<{socolissimo}prestashop>socolissimo_8279a78fcce2b4ddfb79dfe689592ed2'] = 'Siret incorrect';
 $_MODULE['<{socolissimo}prestashop>socolissimo_8554bbc520a9d24ffda195065bbcc9ee'] = 'Vous devez accepter les termes et conditions';
+$_MODULE['<{socolissimo}prestashop>socolissimo_735237a7b87ccf7027107701c1ca546e'] = 'Vous devez choisir un point relais pour afficher les moyens de paiement.';
 $_MODULE['<{socolissimo}prestashop>socolissimo_5da618e8e4b89c66fe86e32cdafde142'] = 'À partir de';
 $_MODULE['<{socolissimo}prestashop>socolissimo_96d4c80bd0b7ccbce555b7d49422c8d9'] = '€';
 $_MODULE['<{socolissimo}prestashop>socolissimo_3199d0e4fdc235d991b423c73acdcff7'] = 'TTC';

@@ -1050,8 +1050,10 @@ class Socolissimo extends CarrierModule
 
     public function hookExtraCarrier($params)
     {
+        $have_selected_point = false;
         if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
             $this->context->controller->addJS((__PS_BASE_URI__).'modules/socolissimo/views/js/jquery.frameColiposte.js');
+            $this->context->controller->addJS((__PS_BASE_URI__).'modules/socolissimo/views/js/front.js');
         }
         $carrier_so = new Carrier((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'));
 
@@ -1158,6 +1160,10 @@ class Socolissimo extends CarrierModule
         $town = str_replace('\'', ' ', Tools::substr($params['address']->city, 0, 32));
         $wsUrl = Configuration::get('SOCOLISSIMO_WS_URL');
         if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
+            if ((int)ColissimoDeliveryPoint::alreadyExists($this->context->cart->id, $this->context->customer->id)) {
+                $have_selected_point = true;
+            }
+          
             $token = Configuration::get('SOCOLISSIMO_TOKEN_POINTDERETRAIT');
             $token_update_date = Configuration::get('SOCOLISSIMO_PDR_TOKEN_HOUR');
             $now = time();
@@ -1291,7 +1297,9 @@ class Socolissimo extends CarrierModule
             'wsUrl' => $protocol.$wsUrl,
             'baseUrl' => $baseUrl,
             'link_to_img' => $this->link_to_img,
-            'is_15' => $is_15
+            'is_15' => $is_15,
+            'msg_order_carrier_colissimo' => $this->l('Before proceding, you must select relay point first.'),
+            'have_selected_point' => (int)$have_selected_point
         ));
 
         $ids = array();

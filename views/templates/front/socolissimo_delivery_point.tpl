@@ -22,7 +22,9 @@
 *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of La Poste SA
 *}
+{addJsDef msg_order_carrier_colissimo=$msg_order_carrier_colissimo}
 <input type="hidden" value="{$is_15|escape:'htmlall':'UTF-8'}" id="colissimo-version"/>
+<input type="hidden" value="{$have_selected_point|escape:'htmlall':'UTF-8'}" id="have_selected_point"/>
 <input type="hidden" id="widget-conf-message" value="{l s='Your delivery point has been registered.' mod='socolissimo'}" />
 <input type="hidden" id="widget-error-message" value="{l s='Error : the web service is inaccessible, please try again later and check your configurations.' mod='socolissimo'}" />
 <script type="text/javascript">
@@ -46,8 +48,8 @@
             /* hidding iframe if carrier Colissimo Simplicité is not selected */
             
             if ($('#widget-container').length) {
-				$('#widget-container').hide();
-			}
+                $('#widget-container').hide();
+            }
             var id_hook = $('#colissimo-version').parent().attr('id');
             if ($('.delivery_option_radio:checked').val() == soCarrierId + ',') {
                 if (!$('#widget-container').length) {

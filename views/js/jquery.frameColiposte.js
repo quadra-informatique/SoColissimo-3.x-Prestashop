@@ -30,6 +30,9 @@ function saveDeliveryPoint(point, moduleLink) {
         success: function (data) {
             var msg = $('#widget-conf-message').val();
             displayConfDelivery(msg);
+            $('#have_selected_point').val('1');
+            if (typeof(updatePaymentMethodsDisplay) !== 'undefined')
+						updatePaymentMethodsDisplay();
         },
         error: function (data) {
 
