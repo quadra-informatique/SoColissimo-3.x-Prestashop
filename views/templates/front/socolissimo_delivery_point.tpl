@@ -45,10 +45,9 @@
             /* iframe génération */
             /* hidding iframe if carrier Colissimo Simplicité is not selected */
             
-             if ($('#widget-container').length) {
-            $('#widget-container').hide();
-            jQuery("#colissimo-container").html(data);
-        }
+            if ($('#widget-container').length) {
+				$('#widget-container').hide();
+			}
             var id_hook = $('#colissimo-version').parent().attr('id');
             if ($('.delivery_option_radio:checked').val() == soCarrierId + ',') {
                 if (!$('#widget-container').length) {
