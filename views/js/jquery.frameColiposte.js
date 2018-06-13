@@ -33,6 +33,11 @@ function saveDeliveryPoint(point, moduleLink) {
             $('#have_selected_point').val('1');
             if (typeof(updatePaymentMethodsDisplay) !== 'undefined')
 						updatePaymentMethodsDisplay();
+
+            $('.relay-info-title').html(point.nom);
+            $('.relay-info-address').html(point.adresse1);
+            $('.relay-info-city').html(point.codePostal+ ' '+ point.localite);
+            $('.choice-info').show();
         },
         error: function (data) {
 

@@ -77,14 +77,17 @@ $(document).ready(function () {
 			return false;
 		}
 	});
+    idCarrierColissimoSelected();
 });
 
 function idCarrierColissimoSelected() {
     if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
 	{
+        $('.choice-info').show();
         return true;
     }
-		return false;
+    $('.choice-info').hide();
+    return false;
 
     
 	

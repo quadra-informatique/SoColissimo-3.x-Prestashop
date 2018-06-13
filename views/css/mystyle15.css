@@ -857,3 +857,24 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
 .w363{
     width: 305px;
 }
+.relay-info-intro{
+    text-decoration: underline;
+    color:#f39606;
+    padding-bottom: 15px;
+    display: inline-block;
+    font-weight: bold;
+}
+.choice-info{
+    background-color: #f1f1f1;
+    padding:20px;
+    margin-bottom: 15px;
+}
+.relay-info-title{
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    font-size:16px;
+    font-weight: bold;
+    display: inline-block;
+    color:#000;
+}
