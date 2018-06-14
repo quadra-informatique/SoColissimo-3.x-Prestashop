@@ -29,7 +29,7 @@ function saveDeliveryPoint(point, moduleLink) {
         data: point,
         success: function (data) {
             var msg = $('#widget-conf-message').val();
-            displayConfDelivery(msg);
+            //displayConfDelivery(msg);
             $('#have_selected_point').val('1');
             if (typeof(updatePaymentMethodsDisplay) !== 'undefined')
 						updatePaymentMethodsDisplay();
@@ -38,6 +38,7 @@ function saveDeliveryPoint(point, moduleLink) {
             $('.relay-info-address').html(point.adresse1);
             $('.relay-info-city').html(point.codePostal+ ' '+ point.localite);
             $('.choice-info').show();
+            $('.choice-info').focus();
         },
         error: function (data) {
 
