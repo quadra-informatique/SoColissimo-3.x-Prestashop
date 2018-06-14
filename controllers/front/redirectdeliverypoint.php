@@ -46,6 +46,9 @@ class SocolissimoredirectdeliverypointModuleFrontController extends ModuleFrontC
         if (Tools::getValue('accesPersonneMobiliteReduite')) {
             $socolissimo_pointderetrait_info->accesPersonneMobiliteReduite = (bool)Tools::getValue('accesPersonneMobiliteReduite');
         }
+         if (Tools::getValue('nom')) {
+            $socolissimo_pointderetrait_info->nom = trim(utf8_encode(Tools::getValue('nom')));
+        }
         if (Tools::getValue('adresse1')) {
             $socolissimo_pointderetrait_info->adresse1 = trim(utf8_encode(Tools::getValue('adresse1')));
         }
@@ -80,25 +83,25 @@ class SocolissimoredirectdeliverypointModuleFrontController extends ModuleFrontC
             $socolissimo_pointderetrait_info->distributionSort = trim(Tools::getValue('distributionSort'));
         }
         if (Tools::getValue('horairesOuvertureLundi')) {
-            $socolissimo_pointderetrait_info->horairesOuvertureLundi = trim(Tools::getValue('horairesOuvertureLundi'));
+            $socolissimo_pointderetrait_info->horairesOuvertureLundi = $this->sanitize(Tools::getValue('horairesOuvertureLundi'));
         }
         if (Tools::getValue('horairesOuvertureMardi')) {
-            $socolissimo_pointderetrait_info->horairesOuvertureMardi = trim(Tools::getValue('horairesOuvertureMardi'));
+            $socolissimo_pointderetrait_info->horairesOuvertureMardi = $this->sanitize(Tools::getValue('horairesOuvertureMardi'));
         }
         if (Tools::getValue('horairesOuvertureMercredi')) {
-            $socolissimo_pointderetrait_info->horairesOuvertureMercredi = trim(Tools::getValue('horairesOuvertureMercredi'));
+            $socolissimo_pointderetrait_info->horairesOuvertureMercredi = $this->sanitize(Tools::getValue('horairesOuvertureMercredi'));
         }
         if (Tools::getValue('horairesOuvertureJeudi')) {
-            $socolissimo_pointderetrait_info->horairesOuvertureJeudi = trim(Tools::getValue('horairesOuvertureJeudi'));
+            $socolissimo_pointderetrait_info->horairesOuvertureJeudi = $this->sanitize(Tools::getValue('horairesOuvertureJeudi'));
         }
         if (Tools::getValue('horairesOuvertureVendredi')) {
-            $socolissimo_pointderetrait_info->horairesOuvertureVendredi = trim(Tools::getValue('horairesOuvertureVendredi'));
+            $socolissimo_pointderetrait_info->horairesOuvertureVendredi = $this->sanitize(Tools::getValue('horairesOuvertureVendredi'));
         }
         if (Tools::getValue('horairesOuvertureSamedi')) {
-            $socolissimo_pointderetrait_info->horairesOuvertureSamedi = trim(Tools::getValue('horairesOuvertureSamedi'));
+            $socolissimo_pointderetrait_info->horairesOuvertureSamedi = $this->sanitize(Tools::getValue('horairesOuvertureSamedi'));
         }
         if (Tools::getValue('horairesOuvertureDimanche')) {
-            $socolissimo_pointderetrait_info->horairesOuvertureDimanche = trim(Tools::getValue('horairesOuvertureDimanche'));
+            $socolissimo_pointderetrait_info->horairesOuvertureDimanche = $this->sanitize(Tools::getValue('horairesOuvertureDimanche'));
         }
         if (Tools::getValue('identifiant')) {
             $socolissimo_pointderetrait_info->identifiant = trim(Tools::getValue('identifiant'));
@@ -141,5 +144,13 @@ class SocolissimoredirectdeliverypointModuleFrontController extends ModuleFrontC
         }
         $this->context->cart->id_carrier = (int)Configuration::getGlobalValue('SOCOLISSIMO_CARRIER_ID');
         $socolissimo_pointderetrait_info->save();
+    }
+    
+    public function sanitize($value){
+        if ($value) {
+            $value = str_replace('&nbsp;', '', $value);
+            return trim($value);
+        }
+        return false;
     }
 }
