@@ -1755,8 +1755,6 @@ class Socolissimo extends CarrierModule
             $lastname_company = preg_replace('/\d/', '', Tools::substr($return['prname'], 0, 32));
             $firstname = preg_replace('/\d/', '', Tools::substr($return['cefirstname'], 0, 32));
             $lastname = preg_replace('/\d/', '', Tools::substr($return['cename'], 0, 32));
-            $firstname_company_formatted = trim($this->formatName($firstname_company));
-            $lastname_company_formatted = trim($this->formatName($lastname_company));
             $new_address->lastname = trim($this->formatName($lastname));
             $new_address->firstname = trim($this->formatName($firstname));
             $new_address->postcode = $return['przipcode'];
@@ -1764,11 +1762,14 @@ class Socolissimo extends CarrierModule
             $new_address->id_country = $iso_code;
             $new_address->alias = 'Colissimo - '.date('d-m-Y');
             $new_address->phone_mobile = $return['cephonenumber'];
+            $new_address->company = $return['cecompanyname'];
 
             if (!in_array($return['delivery_mode'], array(
                     'DOM',
                     'RDV'))) {
-                $new_address->company = $firstname_company_formatted.' '.$lastname_company_formatted;
+                /**$firstname_company_formatted = trim($this->formatName($firstname_company));
+                $lastname_company_formatted = trim($this->formatName($lastname_company));
+                $new_address->company = $firstname_company_formatted.' '.$lastname_company_formatted;**/
                 $new_address->active = 1;
                 $new_address->deleted = 1;
                 $new_address->address1 = $return['pradress1'];
