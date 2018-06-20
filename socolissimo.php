@@ -1762,7 +1762,8 @@ class Socolissimo extends CarrierModule
             $new_address->id_country = $iso_code;
             $new_address->alias = 'Colissimo - '.date('d-m-Y');
             $new_address->phone_mobile = $return['cephonenumber'];
-            $new_address->company = $return['cecompanyname'];
+            $company_name = preg_replace(array('/\d/', '/\'/'), '', Tools::substr($return['cecompanyname'], 0, 31));
+            $new_address->company = trim($this->formatName($company_name));
 
             if (!in_array($return['delivery_mode'], array(
                     'DOM',
