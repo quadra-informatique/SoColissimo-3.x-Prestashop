@@ -22,6 +22,16 @@
  *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of La Poste SA
  */ 
+# 3.0.15
+Fix Front Page integration in mobile.
+Fix company format
+Fix company with cecompanyname
+[-] MO : focus on relay address
+[-] MO : fix relay name recording 
+[-] MO : add relay information 
+[-] MO : force select relay point
+[-] MO : fix reload card when switching carrier
+ 
 # 3.0.14
 [-] MO : Fix country selection on free account card 
 
