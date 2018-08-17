@@ -1319,6 +1319,9 @@ class Socolissimo extends CarrierModule
         }
 
         if ((Configuration::Get('SOCOLISSIMO_ID') != null || Configuration::Get('SOCOLISSIMO_USE_POINTDERETRAIT')) && (Configuration::get('SOCOLISSIMO_KEY') != null || Configuration::Get('SOCOLISSIMO_USE_POINTDERETRAIT')) && (Configuration::Get('SOCOLISSIMO_PERSONAL_DATA')) && $this->checkAvailibility() && $this->checkSoCarrierAvailable((int)Configuration::get('SOCOLISSIMO_CARRIER_ID')) && in_array((int)Configuration::get('SOCOLISSIMO_CARRIER_ID'), $ids)) {
+            if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
+                return $this->fetchTemplate('socolissimo_delivery_point.tpl');
+            }
             if (Context::getContext()->getMobileDevice() || $this->isIpad() || $this->isMobile()) {
                 if (Configuration::get('PS_ORDER_PROCESS_TYPE')) {
                     return $this->fetchTemplate('socolissimo_redirect_mobile_opc.tpl');
@@ -1332,9 +1335,6 @@ class Socolissimo extends CarrierModule
             }
             if (Configuration::get('SOCOLISSIMO_USE_IFRAME') && !Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
                 return $this->fetchTemplate('socolissimo_iframe.tpl');
-            }
-            if (Configuration::get('SOCOLISSIMO_USE_POINTDERETRAIT')) {
-                return $this->fetchTemplate('socolissimo_delivery_point.tpl');
             }
             return $this->fetchTemplate('socolissimo_redirect.tpl');
         } else {
