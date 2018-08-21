@@ -27,6 +27,7 @@ function saveDeliveryPoint(point, moduleLink) {
         url: moduleLink,
         method: 'POST',
         data: point,
+        async: true,
         success: function (data) {
             var msg = $('#widget-conf-message').val();
             //displayConfDelivery(msg);

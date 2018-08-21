@@ -136,8 +136,8 @@
 <input type="hidden" id="pudoWidgetAddress1">
 <input type="hidden" id="pudoWidgetAddress2">
 <input type="hidden" id="pudoWidgetAddress3">
-<input type="hidden" id ="pudoWidgetCity">
+<input type="hidden" id="pudoWidgetCity">
 <input type="hidden" id="pudoWidgetZipCode">
-<input type="hidden" id ="pudoWidgetCountry">
+<input type="hidden" id="pudoWidgetCountry">
 <input type="hidden" id="pudoWidgetType">
 
