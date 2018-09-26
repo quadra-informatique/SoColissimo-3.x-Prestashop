@@ -1472,6 +1472,7 @@ class Socolissimo extends CarrierModule
                     .(!empty($delivery_infos['identifiant']) ? '<b>'
                         .$this->l('Identifiant').' : </b>'.Tools::htmlentitiesUTF8($delivery_infos['identifiant']).'<br/>' : '' ).
                     '<b>'.$this->l('Withdrawal point').' : </b><br/>'
+                    .(!empty($delivery_infos['nom']) ? Tools::htmlentitiesUTF8($delivery_infos['nom']).'<br />' : '')
                     .(Tools::htmlentitiesUTF8($address_delivery->address1) ? Tools::htmlentitiesUTF8($address_delivery->address1).'<br />' : '')
                     .(!empty($address_delivery->address2) ? Tools::htmlentitiesUTF8($address_delivery->address2).'<br />' : '')
                     .(!empty($address_delivery->postcode) ? Tools::htmlentitiesUTF8($address_delivery->postcode).'<br />' : '')
