@@ -92,17 +92,23 @@
             if ($('#widget-container').length) {
                 $('#widget-container').hide();
             }
+			
             var id_hook = $('#colissimo-version').parent().attr('id');
             $('.choice-info').hide();
-            if ($('.delivery_option_radio:checked').val() == soCarrierId + ',') {
-                if (!$('#widget-container').length) {
-                $('#footer').append('<div id="widget-container" class="col-xs-12"></div>');
-                generateMap();
-            }
+			
+            if ($('.delivery_option_radio:checked').val() == soCarrierId + ',')
+			{
+                if (!$('#widget-container').length)
+				{
+					$('#footer').append('<div id="widget-container" class="col-xs-12"></div>');
+					generateMap();
+				}
+				
                 $('#'+id_hook).append($('#widget-container'));
                 $('#widget-container').show();
                 $('.choice-info').show();
             }
+			
             $('.delivery_option_radio').change(function () {
                 $('#footer').append($('#widget-container'));
             });

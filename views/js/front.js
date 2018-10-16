@@ -19,7 +19,7 @@
 $(document).ready(function () {
     var have_selected_point = parseInt($('#have_selected_point').val());
     $('form[name=carrier_area]').submit(function (e) {
-        if (($('#id_carrier' + soCarrierId).is(':checked')))
+        if (isCarrierColissimoSelected())
         {
             if (!have_selected_point) {
                 if (!!$.prototype.fancybox)
@@ -81,16 +81,22 @@ $(document).ready(function () {
 });
 
 function idCarrierColissimoSelected() {
-    if (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','))
+    if (isCarrierColissimoSelected())
 	{
         $('.choice-info').show();
         return true;
     }
     $('.choice-info').hide();
-    return false;
+    return false;	
+}
 
+function isCarrierColissimoSelected() {
+    if(typeof soCarrierId !== 'undefined')
+    {
+        return (($('#id_carrier' + soCarrierId).is(':checked')) || ($('.delivery_option_radio:checked').val() == soCarrierId + ','));
+    }
     
-	
+    return false;
 }
 
 function updatePaymentMethods(json)
