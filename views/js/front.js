@@ -17,10 +17,11 @@
  */
 
 $(document).ready(function () {
-    var have_selected_point = parseInt($('#have_selected_point').val());
+    var have_selected_point = 0;
     $('form[name=carrier_area]').submit(function (e) {
         if (isCarrierColissimoSelected())
         {
+			have_selected_point = parseInt($('#have_selected_point').val());
             if (!have_selected_point) {
                 if (!!$.prototype.fancybox)
                     $.fancybox.open([
