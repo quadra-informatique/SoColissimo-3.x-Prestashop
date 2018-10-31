@@ -46,7 +46,7 @@ class SocolissimoredirectdeliverypointModuleFrontController extends ModuleFrontC
         if (Tools::getValue('accesPersonneMobiliteReduite')) {
             $socolissimo_pointderetrait_info->accesPersonneMobiliteReduite = (bool)Tools::getValue('accesPersonneMobiliteReduite');
         }
-         if (Tools::getValue('nom')) {
+        if (Tools::getValue('nom')) {
             $socolissimo_pointderetrait_info->nom = trim(utf8_encode(Tools::getValue('nom')));
         }
         if (Tools::getValue('adresse1')) {
@@ -146,7 +146,8 @@ class SocolissimoredirectdeliverypointModuleFrontController extends ModuleFrontC
         $socolissimo_pointderetrait_info->save();
     }
     
-    public function sanitize($value){
+    public function sanitize($value)
+    {
         if ($value) {
             $value = str_replace('&nbsp;', '', $value);
             return trim($value);
